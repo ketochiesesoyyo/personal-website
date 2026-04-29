@@ -75,11 +75,17 @@
 
       function resize() {
         const rect = canvas.getBoundingClientRect();
+        if (rect.width < 1 || rect.height < 1) return;
         width = rect.width;
         height = rect.height;
         canvas.width = Math.round(width * dpr);
         canvas.height = Math.round(height * dpr);
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        // Clamp existing particles into new bounds (when shrinking)
+        for (const p of particles) {
+          if (p.x > width) p.x = width;
+          if (p.y > height) p.y = height;
+        }
       }
 
       function init() {
@@ -178,10 +184,11 @@
         raf = 0;
       }
 
-      window.addEventListener("resize", () => {
+      const ro = new ResizeObserver(() => {
         resize();
-        init();
+        if (particles.length === 0 && width > 0 && height > 0) init();
       });
+      ro.observe(canvas);
 
       window.addEventListener("mousemove", (e) => {
         const rect = canvas.getBoundingClientRect();
@@ -204,8 +211,8 @@
       });
       io.observe(canvas);
 
-      resize();
-      init();
+      // Kick off the loop. Sizing happens once the ResizeObserver fires
+      // after layout — that's how Safari avoids the stretched-buffer bug.
       start();
     }
   }
