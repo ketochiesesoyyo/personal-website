@@ -16,7 +16,7 @@ interface Props {
 const {
   title,
   description = site.bio,
-  ogImage = "/og-default.png",
+  ogImage,
   ogType = "website",
   noIndex = false,
   jsonLd,
@@ -26,15 +26,19 @@ const pageTitle = title
   ? `${title} — ${site.studio}`
   : `${site.studio} — Independent Product & AI Builder`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
-const ogImageURL = new URL(ogImage, Astro.site).toString();
+const ogImageURL = ogImage ? new URL(ogImage, Astro.site).toString() : undefined;
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, "") ?? "";
 
 const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
+  "@id": `${siteUrl}/#person`,
   name: site.founder,
   url: Astro.site?.toString(),
   jobTitle: "Independent Product & AI Builder",
   description: site.bio,
+  sameAs: [site.socials.linkedin, site.socials.github, "https://matchwise.app"],
   knowsAbout: [
     "AI Automation",
     "Product Engineering",
@@ -50,13 +54,32 @@ const personSchema = {
   worksFor: { "@type": "Organization", name: "MatchWise" },
 };
 
-const websiteSchema = {
+const studioSchema = {
   "@context": "https://schema.org",
-  "@type": "WebSite",
+  "@type": "ProfessionalService",
+  "@id": `${siteUrl}/#studio`,
   name: site.studio,
   url: Astro.site?.toString(),
   description: site.bio,
-  author: { "@type": "Person", name: site.founder },
+  founder: { "@id": `${siteUrl}/#person` },
+  areaServed: "Worldwide",
+  knowsLanguage: ["en", "es"],
+  serviceType: [
+    "AI Automation",
+    "Custom Application Development",
+    "GTM & Revenue Operations Consulting",
+  ],
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${siteUrl}/#website`,
+  name: site.studio,
+  url: Astro.site?.toString(),
+  description: site.bio,
+  author: { "@id": `${siteUrl}/#person` },
+  publisher: { "@id": `${siteUrl}/#studio` },
 };
 
 const extraJsonLd = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
@@ -81,18 +104,19 @@ const safeStringify = (data: object) =>
     <meta property="og:description" content={description} />
     <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonicalURL} />
-    <meta property="og:image" content={ogImageURL} />
+    {ogImageURL && <meta property="og:image" content={ogImageURL} />}
     <meta property="og:site_name" content={site.studio} />
     <meta property="og:locale" content="en_US" />
 
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:card" content={ogImageURL ? "summary_large_image" : "summary"} />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImageURL} />
+    {ogImageURL && <meta name="twitter:image" content={ogImageURL} />}
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="alternate" type="application/rss+xml" title="Henrick F. — Writing" href="/rss.xml" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -102,6 +126,7 @@ const safeStringify = (data: object) =>
     />
 
     <script type="application/ld+json" set:html={safeStringify(personSchema)} />
+    <script type="application/ld+json" set:html={safeStringify(studioSchema)} />
     <script type="application/ld+json" set:html={safeStringify(websiteSchema)} />
     {extraJsonLd.map((schema) => (
       <script type="application/ld+json" set:html={safeStringify(schema)} />

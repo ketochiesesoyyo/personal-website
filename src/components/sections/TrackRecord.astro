@@ -17,7 +17,14 @@ import SectionEyebrow from "~/components/SectionEyebrow.astro";
     <div class="mt-10 flex flex-wrap items-center justify-center gap-x-10 gap-y-4 font-display text-xl md:text-2xl text-[color:var(--color-muted)]">
       {site.trackRecord.companies.map((c, i) => (
         <>
-          <span class="hover:text-[color:var(--color-fg)] transition-colors">{c}</span>
+          <a
+            href={c.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-[color:var(--color-fg)] transition-colors"
+          >
+            {c.name}
+          </a>
           {i < site.trackRecord.companies.length - 1 && <span class="text-[color:var(--color-line)]">·</span>}
         </>
       ))}

@@ -1,0 +1,73 @@
+---
+import { getCollection } from "astro:content";
+import SectionEyebrow from "~/components/SectionEyebrow.astro";
+
+const all = await getCollection("posts", ({ data }) => !data.draft);
+const recent = all
+  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf())
+  .slice(0, 3);
+
+function formatDate(d: Date) {
+  return d.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+}
+---
+
+<section id="writing" class="mx-auto max-w-6xl px-6 py-24 border-t border-[color:var(--color-line)]">
+  <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
+    <div>
+      <SectionEyebrow class="mb-3">Recent writing</SectionEyebrow>
+      <h2 class="font-display text-4xl md:text-5xl tracking-tight">Notes from the build.</h2>
+    </div>
+    <p class="text-[color:var(--color-muted)] max-w-md">
+      Long-form research and reflection on AI, engineering, and where things are going. Case studies on what just shifted — and what it means for operators building today.
+    </p>
+  </div>
+
+  {recent.length === 0 ? (
+    <div class="border-t border-[color:var(--color-line)] py-16 text-center">
+      <p class="text-[color:var(--color-muted)]">First piece is in research. Check back soon.</p>
+      <a href="/writing" class="inline-block mt-6 text-sm text-[color:var(--color-muted)] hover:text-[color:var(--color-accent)]">
+        Browse writing →
+      </a>
+    </div>
+  ) : (
+    <>
+      <ul class="border-t border-[color:var(--color-line)]">
+        {recent.map((post) => (
+          <li>
+            <a
+              href={`/writing/${post.id}`}
+              class="group block py-7 md:py-8 border-b border-[color:var(--color-line)]"
+            >
+              <div class="flex items-start justify-between gap-6">
+                <div class="flex-1 min-w-0">
+                  <div class="text-xs text-[color:var(--color-muted)] uppercase tracking-[0.18em] mb-2">
+                    {formatDate(post.data.publishedAt)} · {post.data.topic}
+                  </div>
+                  <h3 class="font-display text-2xl md:text-3xl tracking-tight group-hover:text-[color:var(--color-accent)] transition-colors">
+                    {post.data.title}
+                  </h3>
+                  <p class="text-[color:var(--color-muted)] mt-2 max-w-2xl leading-relaxed">
+                    {post.data.excerpt}
+                  </p>
+                </div>
+                <div class="font-display text-xl text-[color:var(--color-muted)] group-hover:text-[color:var(--color-accent)] group-hover:translate-x-1 transition shrink-0 mt-1">
+                  →
+                </div>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <div class="mt-8 flex justify-end">
+        <a href="/writing" class="text-sm text-[color:var(--color-muted)] hover:text-[color:var(--color-accent)]">
+          All writing →
+        </a>
+      </div>
+    </>
+  )}
+</section>

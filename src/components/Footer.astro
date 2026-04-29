@@ -15,6 +15,8 @@ const year = new Date().getFullYear();
         {site.nav.map((item) => (
           <li><a href={item.href} class="hover:text-[color:var(--color-accent)]">{item.label}</a></li>
         ))}
+        <li><a href="/writing" class="hover:text-[color:var(--color-accent)]">Writing</a></li>
+        <li><a href="/rss.xml" class="hover:text-[color:var(--color-accent)]">RSS</a></li>
       </ul>
     </div>
     <div>
@@ -23,7 +25,6 @@ const year = new Date().getFullYear();
         <li><a href={`mailto:${site.email}`} class="hover:text-[color:var(--color-accent)]">{site.email}</a></li>
         <li><a href={site.socials.linkedin} class="hover:text-[color:var(--color-accent)]">LinkedIn</a></li>
         <li><a href={site.socials.github} class="hover:text-[color:var(--color-accent)]">GitHub</a></li>
-        <li><a href={site.socials.x} class="hover:text-[color:var(--color-accent)]">X</a></li>
       </ul>
     </div>
   </div>
