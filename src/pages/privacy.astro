@@ -1,0 +1,155 @@
+---
+import Base from "~/layouts/Base.astro";
+import { site } from "~/site.config";
+
+const lastUpdated = "April 29, 2026";
+---
+
+<Base
+  title="Privacy Policy"
+  description="How henrickf.com handles your data. Plain language, minimal collection, no tracking."
+  noIndex={false}
+>
+  <article class="mx-auto max-w-3xl px-6 pt-20 pb-32">
+    <a href="/" class="text-sm text-[color:var(--color-muted)] hover:text-[color:var(--color-accent)]">
+      ← Home
+    </a>
+
+    <header class="mt-12 pb-10 border-b border-[color:var(--color-line)]">
+      <div class="text-xs text-[color:var(--color-muted)] uppercase tracking-[0.2em] mb-6">
+        Last updated · {lastUpdated}
+      </div>
+      <h1 class="font-display text-4xl md:text-6xl tracking-tight leading-[1.05]">
+        Privacy Policy
+      </h1>
+      <p class="mt-6 text-xl text-[color:var(--color-muted)] leading-relaxed">
+        What data this site collects, why, and what I do with it. The short version: very little, and nothing for advertising.
+      </p>
+    </header>
+
+    <div class="prose-essay mt-12 text-lg leading-[1.75]">
+      <p>
+        This Privacy Policy describes how <a href={site.url}>henrickf.com</a> (the "Site") collects, uses, and protects information when you visit.
+        The Site is operated by {site.founder} ("I", "me"). Contact: <a href={`mailto:${site.email}`}>{site.email}</a>.
+      </p>
+
+      <h2>1. The short version</h2>
+      <ul>
+        <li>I don't run advertising or marketing trackers on this site.</li>
+        <li>I don't sell, rent, or share your personal data with third parties for their own marketing.</li>
+        <li>The site is a static website hosted on Vercel. Server logs and font requests generate the only meaningful data exhaust.</li>
+        <li>If you email me, I keep your email and message so I can reply and follow up.</li>
+      </ul>
+
+      <h2>2. What I collect</h2>
+
+      <h3>Server logs (via Vercel)</h3>
+      <p>
+        The Site is hosted on Vercel. As with any web host, Vercel automatically logs basic technical information for each request,
+        including IP address, browser user agent, requested URL, referrer, and timestamp. These logs are used to operate the Site,
+        prevent abuse, and diagnose errors. They are retained according to Vercel's standard retention policies.
+        See <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Vercel's privacy policy</a> for details.
+      </p>
+
+      <h3>Fonts (via Google Fonts)</h3>
+      <p>
+        The Site loads typography from Google Fonts. When your browser fetches a font file, Google receives the request,
+        which includes your IP address and user agent. Google states that font requests are not used to build user profiles or for ad targeting.
+        See <a href="https://developers.google.com/fonts/faq/privacy" target="_blank" rel="noopener noreferrer">Google Fonts' privacy FAQ</a>.
+        If you're in a jurisdiction where Google Fonts' default behavior is contested (some EU contexts), you can block these requests in your browser; the Site will still render in fallback fonts.
+      </p>
+
+      <h3>Email correspondence</h3>
+      <p>
+        If you email <a href={`mailto:${site.email}`}>{site.email}</a> to discuss a project or ask a question,
+        your email address and the contents of your message are stored in my email provider's systems so I can read and reply.
+        I keep correspondence as long as it's relevant to our working relationship and a reasonable period afterward.
+      </p>
+
+      <h3>What the Site does NOT collect</h3>
+      <ul>
+        <li>No analytics platform is currently installed.</li>
+        <li>No advertising or remarketing pixels.</li>
+        <li>No first-party or third-party tracking cookies.</li>
+        <li>No web forms collecting personal data (contact happens via your email client, on your terms).</li>
+      </ul>
+      <p>
+        If I add analytics later (for example, a privacy-respecting product like Plausible or Fathom), I'll update this page and disclose what's collected.
+      </p>
+
+      <h2>3. Why I collect what I collect</h2>
+      <ul>
+        <li><strong>To operate and secure the Site:</strong> server logs let the host detect abuse and diagnose outages.</li>
+        <li><strong>To respond to you:</strong> if you email me, I need your message to reply.</li>
+        <li><strong>To comply with legal obligations:</strong> retention of records where the law requires it.</li>
+      </ul>
+      <p>
+        I do not use any of this data for behavioral advertising, profiling for marketing, or automated decision-making about you.
+      </p>
+
+      <h2>4. Sharing</h2>
+      <p>I share information only with service providers strictly necessary to run the Site:</p>
+      <ul>
+        <li><strong>Vercel</strong> (hosting and edge infrastructure).</li>
+        <li><strong>Google Fonts</strong> (typography delivery).</li>
+        <li><strong>My email provider</strong> (to receive and store correspondence you initiate).</li>
+      </ul>
+      <p>
+        I do not sell your data. I do not share it with advertising networks. If a legal authority compels disclosure under valid process, I'll comply with what's actually required and nothing more.
+      </p>
+
+      <h2>5. Your rights</h2>
+      <p>
+        Depending on where you live, you may have the right to:
+      </p>
+      <ul>
+        <li>Ask what personal information I hold about you.</li>
+        <li>Ask me to correct inaccurate data.</li>
+        <li>Ask me to delete your data, subject to legal retention obligations.</li>
+        <li>Withdraw consent or object to certain processing.</li>
+        <li>Lodge a complaint with your local data protection authority (in Mexico, the INAI; in the EU/UK, your national supervisory authority; in California, the CPPA).</li>
+      </ul>
+      <p>
+        To exercise any of these rights, email <a href={`mailto:${site.email}`}>{site.email}</a>. I'll respond within a reasonable time and at no cost, except where the law allows otherwise (e.g., manifestly unfounded or repeated requests).
+      </p>
+
+      <h2>6. International transfers</h2>
+      <p>
+        The Site's hosting and email infrastructure may store and process data outside your country (typically in the United States or EU regions, depending on the provider).
+        Where required, transfers rely on the providers' standard contractual clauses or equivalent safeguards.
+      </p>
+
+      <h2>7. Children</h2>
+      <p>
+        The Site is not directed to children under 13 (or the equivalent minimum age in your jurisdiction). I don't knowingly collect personal information from children.
+        If you believe a child has provided personal data, contact me and I'll delete it.
+      </p>
+
+      <h2>8. Security</h2>
+      <p>
+        I use providers with industry-standard security practices (HTTPS in transit, hosted infrastructure with managed access controls).
+        No system is perfectly secure; if a breach affecting your data occurs, I'll notify affected users in line with applicable law.
+      </p>
+
+      <h2>9. Changes to this policy</h2>
+      <p>
+        I may update this policy when the Site changes or when the law requires it. The "Last updated" date at the top of this page reflects the most recent revision.
+        Material changes will be flagged on the home page or by direct notice where appropriate.
+      </p>
+
+      <h2>10. Contact</h2>
+      <p>
+        Questions about privacy or your rights: <a href={`mailto:${site.email}`}>{site.email}</a>.
+      </p>
+    </div>
+
+    <div class="mt-20 pt-12 border-t border-[color:var(--color-line)] flex justify-between items-center">
+      <a href="/" class="text-sm text-[color:var(--color-muted)] hover:text-[color:var(--color-accent)]">
+        ← Home
+      </a>
+      <a href="/terms" class="text-sm text-[color:var(--color-muted)] hover:text-[color:var(--color-accent)]">
+        Terms of Use →
+      </a>
+    </div>
+  </article>
+</Base>

@@ -1,6 +1,6 @@
 ---
 title: "AI Should Never Choose For You: A Buyer-Builder Case Against Agentic Hype"
-excerpt: "Most B2B buyers in 2026 don't want AI to choose for them — they want help to choose better. Here's why I bought AI as augmentation at Bedu, why I build it as augmentation at MatchWise, and what that means for any AI-native startup's GTM."
+excerpt: "Most B2B buyers in 2026 don't want AI to choose for them. They want help to choose better. Here's why I bought AI as augmentation at Bedu, why I build it as augmentation at MatchWise, and what that means for any AI-native startup's GTM."
 publishedAt: 2026-04-29
 topic: GTM
 sourceUrls:
@@ -20,28 +20,28 @@ about:
   - AI buyer behavior
 faqs:
   - q: What's the difference between agentic and assistive AI?
-    a: "Assistive AI helps a human make a decision; the human still chooses. Agentic AI makes the decision and acts on it. The boundary is who has the steering wheel: assistive AI suggests and the user accepts or rejects; agentic AI moves and the user audits the result. By 2026, B2B buyers are heavily preferring assistive — they want help, not autonomy."
+    a: "Assistive AI helps a human make a decision; the human still chooses. Agentic AI makes the decision and acts on it. The boundary is who has the steering wheel: assistive AI suggests and the user accepts or rejects; agentic AI moves and the user audits the result. By 2026, B2B buyers are heavily preferring assistive. They want help, not autonomy."
   - q: Why are B2B buyers tired of AI in product pitches?
-    a: "Three things converging by 2026: pricing pushback (Copilot-style $30/seat economics didn't pencil out for many enterprises), agentic demos that consistently underperform on real workflows, and category fatigue — when every vendor is 'AI-powered,' the label stops differentiating. The path forward is positioning on outcomes, not technology."
+    a: "Three things converging by 2026: pricing pushback (Copilot-style $30/seat economics didn't pencil out for many enterprises), agentic demos that consistently underperform on real workflows, and category fatigue. When every vendor is 'AI-powered,' the label stops differentiating. The path forward is positioning on outcomes, not technology."
   - q: Should my product hide its AI usage?
-    a: "Hide isn't quite right — buyers will figure it out. Don't lead with AI is the rule. Lead with the outcome: 'We screen 400 candidates in minutes' beats 'We use AI to screen candidates.' The technology is an implementation detail; the outcome is the product. Mentioning AI later as a how-it-works detail is fine; AI as the entire pitch is increasingly weak."
+    a: "Hide isn't quite right; buyers will figure it out. Don't lead with AI is the rule. Lead with the outcome: 'We screen 400 candidates in minutes' beats 'We use AI to screen candidates.' The technology is an implementation detail; the outcome is the product. Mentioning AI later as a how-it-works detail is fine; AI as the entire pitch is increasingly weak."
   - q: Does this advice apply to AI-native startups too?
-    a: "Especially. AI-native startups built in 2024-25 leaned on the technology in their positioning because the category was new and buyer curiosity was the wedge. By 2026 that wedge is dead — every category has fifty AI-native entrants. The winning AI-native pitch in 2026 sounds like a non-AI pitch with a better outcome."
+    a: "Especially. AI-native startups built in 2024-25 leaned on the technology in their positioning because the category was new and buyer curiosity was the wedge. By 2026 that wedge is dead; every category has fifty AI-native entrants. The winning AI-native pitch in 2026 sounds like a non-AI pitch with a better outcome."
   - q: When does agentic positioning still work?
-    a: "Two narrow cases: when the autonomous task is genuinely scary for a human to own (24/7 security alert triage, fraud detection at scale, support tier-one resolution), or when the buyer is sophisticated and explicitly wants to outsource judgment. For most B2B workflows — sales, marketing, recruiting, ops — buyers want augmentation. The agentic pitch is a category mismatch in those contexts."
+    a: "Two narrow cases: when the autonomous task is genuinely scary for a human to own (24/7 security alert triage, fraud detection at scale, support tier-one resolution), or when the buyer is sophisticated and explicitly wants to outsource judgment. For most B2B workflows (sales, marketing, recruiting, ops), buyers want augmentation. The agentic pitch is a category mismatch in those contexts."
   - q: What's the operator-builder lens on this question?
-    a: "I've sat on both sides: buying AI at Bedu and building AI at MatchWise. Both decisions converged on the same boundary — AI as advisor, never as owner. At Bedu, AI augmented strategy and ops without replacing anyone. At MatchWise, AI cleans the recruiting funnel without making hiring decisions. Buyers want the assistant; the product strategy follows the buyer."
+    a: "I've sat on both sides: buying AI at Bedu and building AI at MatchWise. Both decisions converged on the same boundary: AI as advisor, never as owner. At Bedu, AI augmented strategy and ops without replacing anyone. At MatchWise, AI cleans the recruiting funnel without making hiring decisions. Buyers want the assistant; the product strategy follows the buyer."
 featured: true
 draft: false
 ---
 
 ## TL;DR
 
-Most B2B buyers in 2026 don't want AI to choose for them. They want it to help them choose better. The fatigue is real — buyers have sat through enough agentic demos to know that autonomy in the demo doesn't mean reliability in production. The companies winning in 2026 aren't selling AI; they're selling outcomes that AI happens to power. My GTM thesis after sitting on both sides of the buy/build decision: **AI should never choose for you. It should help you choose better.** That's not just a product principle — it's the positioning that survives the next two years of category fatigue.
+Most B2B buyers in 2026 don't want AI to choose for them. They want it to help them choose better. The fatigue is real. Buyers have sat through enough agentic demos to know that autonomy in the demo doesn't mean reliability in production. The companies winning in 2026 aren't selling AI; they're selling outcomes that AI happens to power. My GTM thesis after sitting on both sides of the buy/build decision: **AI should never choose for you. It should help you choose better.** That's not just a product principle. It's the positioning that survives the next two years of category fatigue.
 
 ---
 
-I sold credit lines and corporate cards across LATAM as Head of Sales for Jeeves through the early-2020s. After I left, the team started building crypto rails for international payments — infrastructure, under research I'd started. None of it was sold as AI. As Director of Strategy & Operations at Bedu (Lottus Education), I owned a P&L that included six- and seven-figure SaaS contracts. Now, building MatchWise — an AI-native applicant tracking system — I'm on the build side of the same conversation.
+I sold credit lines and corporate cards across LATAM as Head of Sales for Jeeves through the early-2020s. After I left, the team started building crypto rails for international payments (infrastructure, under research I'd started). None of it was sold as AI. As Director of Strategy & Operations at Bedu (Lottus Education), I owned a P&L that included six- and seven-figure SaaS contracts. Now, building MatchWise (an AI-native applicant tracking system), I'm on the build side of the same conversation.
 
 Three vantage points, one converging conclusion: **B2B buyers in 2026 don't want AI in the driver's seat.** They want a tool. They want help. They want their team to make better calls faster. They do not want to outsource judgment to a model.
 
@@ -49,21 +49,23 @@ This is the GTM argument that follows.
 
 ## The fatigue is real
 
-The B2B buyers I talk to in 2026 have the same reflex. The vendor opens the demo with "we use AI to..." and the buyer's eyes glaze over. Not because they don't believe AI works — they do. They use ChatGPT every day, they've seen Claude write production code, they know the technology is real. The fatigue isn't about the technology. It's about three specific things the past three years have produced.
+The B2B buyers I talk to in 2026 have the same reflex. The vendor opens the demo with "we use AI to..." and the buyer's eyes glaze over. Not because they don't believe AI works. They do. They use ChatGPT every day, they've seen Claude write production code, they know the technology is real. The fatigue isn't about the technology. It's about three specific things the past three years have produced.
 
 The first is pricing pushback. Microsoft Copilot's $30/user/month launch in late 2023 priced AI as if it were a 30%+ productivity multiplier on top of a Microsoft 365 seat. The buyers I know spent 2024-25 measuring that promise and decided it didn't pencil out. Marginal productivity gains existed, but they didn't justify a 30-50% cost lift on already-expensive seats. By 2026, "Copilot expansion" is a discount-negotiation lever, not a budget line.
 
-The second is the agentic-demo gap. Every quarter from 2024 onward produced another autonomous-agent launch — browsing agents, coding agents, sales agents. The demos are impressive: the model books the meeting, writes the email, deploys the code. Production deployments are consistently less impressive: the agent stalls partway through a workflow, asks for help, and the buyer's team spends more time auditing the agent's work than they would have spent doing it. Buyers learned that demo autonomy and production reliability are different categories.
+The second is the agentic-demo gap. Every quarter from 2024 onward produced another autonomous-agent launch: browsing agents, coding agents, sales agents. The demos are impressive: the model books the meeting, writes the email, deploys the code. Production deployments are consistently less impressive: the agent stalls partway through a workflow, asks for help, and the buyer's team spends more time auditing the agent's work than they would have spent doing it. Buyers learned that demo autonomy and production reliability are different categories.
 
-The third is category fatigue. When every vendor at the trade show calls itself "AI-powered," the label stops differentiating. The default-skeptical buyer in 2026 — *"okay, but what does it actually do?"* — punishes vendors who lead with AI and rewards vendors who lead with outcomes.
+The third is category fatigue. When every vendor at the trade show calls itself "AI-powered," the label stops differentiating. The default-skeptical buyer in 2026, the one asking *"okay, but what does it actually do?"*, punishes vendors who lead with AI and rewards vendors who lead with outcomes.
 
 This is the buyer environment any AI-native B2B startup is selling into in 2026. It's the environment that makes "we do X faster" beat "we use AI to do X" almost every time.
+
+
 
 ## How I bought AI at Bedu
 
 When I owned strategy and operations at Bedu, I gave four corporate OpenAI seats to four people: strategy and operations analysts and managers in my area. Not the broader org. Not "AI for everyone." Four seats, four operators.
 
-The reason was specific. Those four people were the bottleneck on cross-functional problem-solving — they were the ones called in when a database query was slow, when a vendor integration was breaking, when a finance team needed an ad-hoc report. The work was 40% diagnosis and 60% glue: writing queries, editing legacy code, drafting one-off scripts, debugging app errors.
+The reason was specific. Those four people were the bottleneck on cross-functional problem-solving. They were the ones called in when a database query was slow, when a vendor integration was breaking, when a finance team needed an ad-hoc report. The work was 40% diagnosis and 60% glue: writing queries, editing legacy code, drafting one-off scripts, debugging app errors.
 
 AI as an assistant fit that work shape exactly. With ChatGPT in their hands, the four operators could write database queries faster, edit pieces of legacy code without escalating to engineering, and debug app issues by pasting the error and getting a workable hypothesis. Build, test, and ship cycles for the operations side of the business got materially faster.
 
@@ -77,7 +79,7 @@ If I'd bought autonomous agents that "independently solved cross-functional ops 
 
 The same boundary is the entire point on the build side.
 
-MatchWise is an AI-native ATS — applicant tracking software for recruiters. The AI does the work everyone hates: reading 400 CVs per requisition, scoring them against the job description, summarizing each candidate, extracting structured data. The screening time recruiters used to spend on each req drops by 80-90%.
+MatchWise is an AI-native ATS, applicant tracking software for recruiters. The AI does the work everyone hates: reading 400 CVs per requisition, scoring them against the job description, summarizing each candidate, extracting structured data. The screening time recruiters used to spend on each req drops by 80-90%.
 
 But here's the design choice that defines the product: **the recruiter never talks to the AI.** They don't write prompts. They don't see model output formatted as chat. They don't audit the model's reasoning chain.
 
@@ -91,11 +93,11 @@ This is the build-side proof of the same thesis. **AI should never choose for yo
 
 Here's a third data point from a different angle.
 
-When I left Jeeves, the team's next major investment was crypto rails for international payments — infrastructure under research I'd started. Not AI agents that approved loans. Not autonomous credit underwriting. Infrastructure.
+When I left Jeeves, the team's next major investment was crypto rails for international payments: infrastructure under research I'd started. Not AI agents that approved loans. Not autonomous credit underwriting. Infrastructure.
 
 This is worth pausing on, because it's a deliberate choice by a serious B2B fintech in 2025-26 about where the durable value sits. Jeeves had every option to bolt AI onto the pitch. The team is sophisticated; the technology is available; the venture pressure to "be an AI company" was real across all of fintech.
 
-They didn't. They built rails. The pitch to corporate clients stayed about cost, speed, and reliability of cross-border payments — not about AI in the underwriting layer.
+They didn't. They built rails. The pitch to corporate clients stayed about cost, speed, and reliability of cross-border payments, not about AI in the underwriting layer.
 
 The general pattern: the B2B fintech teams I watch making bets in 2025-26 are betting on infrastructure layers (rails, settlement, compliance plumbing) and on workflow layers (better tools for ops teams). They are not betting on agentic AI as the product wedge. The buyers don't want it; the seller margin doesn't justify the autonomy risk; the tech doesn't reliably ship at production grade for finance workflows.
 
@@ -111,13 +113,13 @@ That's the agency boundary. It's the line buyers want held. Crossing it costs yo
 
 Three concrete tests for whether your product is on the right side of the line:
 
-1. **Who owns the consequence of the decision?** If the AI's output triggers an action that affects revenue, headcount, customer experience, or money movement — and a human can't realistically audit every action before it ships — you've crossed the line. The buyer is being asked to delegate accountability to a system they can't fully observe.
+1. **Who owns the consequence of the decision?** If the AI's output triggers an action that affects revenue, headcount, customer experience, or money movement, and a human can't realistically audit every action before it ships, you've crossed the line. The buyer is being asked to delegate accountability to a system they can't fully observe.
 
-2. **What happens if the AI is confidently wrong?** Confident-wrong is the dangerous failure mode for assistive AI; for agentic AI it's the dangerous failure mode *plus* an action that's already been taken. The cost of a wrong recommendation is small. The cost of a wrong autonomous action — sent email, approved transaction, posted hire — can be unrecoverable.
+2. **What happens if the AI is confidently wrong?** Confident-wrong is the dangerous failure mode for assistive AI; for agentic AI it's the dangerous failure mode *plus* an action that's already been taken. The cost of a wrong recommendation is small. The cost of a wrong autonomous action (sent email, approved transaction, posted hire) can be unrecoverable.
 
-3. **Could this be marketed as "X faster" instead of "AI X"?** If yes, you're on the assistive side and the GTM is straightforward. If no — if the only way to describe what the product does requires "the AI does X autonomously" — you're selling agency, and you'd better have a buyer specifically asking for it.
+3. **Could this be marketed as "X faster" instead of "AI X"?** If yes, you're on the assistive side and the GTM is straightforward. If no, if the only way to describe what the product does requires "the AI does X autonomously," you're selling agency, and you'd better have a buyer specifically asking for it.
 
-Most B2B workflows fail the third test gracefully: recruiting *can* be marketed as "screening 400 candidates in minutes," sales prospecting *can* be marketed as "researching 50 accounts in an hour," ops automation *can* be marketed as "shipping integration scripts in a morning." The agentic positioning is almost always optional — and in 2026, it's almost always wrong.
+Most B2B workflows fail the third test gracefully: recruiting *can* be marketed as "screening 400 candidates in minutes," sales prospecting *can* be marketed as "researching 50 accounts in an hour," ops automation *can* be marketed as "shipping integration scripts in a morning." The agentic positioning is almost always optional. In 2026, it's almost always wrong.
 
 ## What this means for B2B GTM in 2026
 
@@ -125,11 +127,11 @@ If you're building or marketing an AI-native B2B product, here's the playbook th
 
 **Lead with the outcome, not the technology.** *"We screen 400 candidates in 6 minutes"* is a sentence a buyer can react to. *"We use AI to screen candidates"* is a sentence a buyer has heard a hundred times. The technology is implementation; the outcome is product. Make the headline of your homepage describe what the user gets, not what model you call.
 
-**Frame AI as the engine, not the driver.** When you do mention AI on the site or in a sales motion, frame it as behind-the-scenes — the workflow's plumbing, not its star. The buyer should feel that the human (their team) is in control. The AI is doing what tools are supposed to do: making the human faster.
+**Frame AI as the engine, not the driver.** When you do mention AI on the site or in a sales motion, frame it as behind-the-scenes: the workflow's plumbing, not its star. The buyer should feel that the human (their team) is in control. The AI is doing what tools are supposed to do: making the human faster.
 
 **Stop putting "AI" in the product name.** The 2024-25 era of "Acme AI" naming is closing. Buyers in 2026 read "AI" in the name and assume the product is shallow tooling around a model that the founders didn't actually build deep into the workflow. Naming the product after the outcome (or the workflow) is a cleaner long-term move.
 
-**Sell to the operator, not to the AI buyer.** Most B2B accounts in 2026 don't have an "AI buyer" — they have functional buyers (head of recruiting, head of sales, head of finance) who have specific problems. Sell to those problems. The AI is how you solve them; it's not the reason they're buying.
+**Sell to the operator, not to the AI buyer.** Most B2B accounts in 2026 don't have an "AI buyer." They have functional buyers (head of recruiting, head of sales, head of finance) who have specific problems. Sell to those problems. The AI is how you solve them; it's not the reason they're buying.
 
 **Be ready to defend the agency boundary on the demo call.** Buyers will ask, increasingly often, *"does this make decisions on its own, or does it help us decide?"* Have the answer ready. *"It helps you decide"* is the answer that wins in 2026.
 
@@ -137,8 +139,8 @@ If you're building or marketing an AI-native B2B product, here's the playbook th
 
 This thesis can break, and I'd watch for two specific signals.
 
-The first: a high-profile production deployment of agentic AI that ships reliably and saves a buyer real money on a workflow they don't have the headcount to do otherwise. Most likely candidates: 24/7 security alert triage, large-scale fraud detection, customer support tier-one resolution. If one of those produces a public ROI story buyers can defend in their boardroom, the agentic positioning gets a second chance — but only in those workflows.
+The first: a high-profile production deployment of agentic AI that ships reliably and saves a buyer real money on a workflow they don't have the headcount to do otherwise. Most likely candidates: 24/7 security alert triage, large-scale fraud detection, customer support tier-one resolution. If one of those produces a public ROI story buyers can defend in their boardroom, the agentic positioning gets a second chance, but only in those workflows.
 
-The second: a generation of model releases that crosses the reliability threshold buyers actually care about, which is *"wrong less than 1% of the time on the specific workflow we're paying for."* Today's frontier models cross that threshold for some workflows (structured extraction, summarization, simple classification) and don't cross it for many others (multi-step planning, novel reasoning, unstructured judgment). When the threshold gets crossed for harder categories, the agency principle relaxes — but buyers will need to see it crossed in production, not in demos.
+The second: a generation of model releases that crosses the reliability threshold buyers actually care about, which is *"wrong less than 1% of the time on the specific workflow we're paying for."* Today's frontier models cross that threshold for some workflows (structured extraction, summarization, simple classification) and don't cross it for many others (multi-step planning, novel reasoning, unstructured judgment). When the threshold gets crossed for harder categories, the agency principle relaxes, but buyers will need to see it crossed in production, not in demos.
 
 Until those signals fire, the playbook is the one above. AI as advisor, never as owner. Outcomes in the headline, technology in the footnotes. The buyer in the driver's seat, every time.

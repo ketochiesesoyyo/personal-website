@@ -4,7 +4,7 @@ const year = new Date().getFullYear();
 ---
 
 <footer class="border-t border-[color:var(--color-line)] mt-32">
-  <div class="mx-auto max-w-6xl px-6 py-12 grid gap-8 md:grid-cols-3 text-sm">
+  <div class="mx-auto max-w-6xl px-6 py-12 grid gap-8 md:grid-cols-4 text-sm">
     <div>
       <div class="font-display text-lg">{site.studio}</div>
       <p class="text-[color:var(--color-muted)] mt-2 max-w-xs">{site.bio}</p>
@@ -15,6 +15,11 @@ const year = new Date().getFullYear();
         {site.nav.map((item) => (
           <li><a href={item.href} class="hover:text-[color:var(--color-accent)]">{item.label}</a></li>
         ))}
+      </ul>
+    </div>
+    <div>
+      <div class="text-[color:var(--color-muted)] mb-3">Thoughts</div>
+      <ul class="space-y-2">
         <li><a href="/writing" class="hover:text-[color:var(--color-accent)]">Writing</a></li>
         <li><a href="/rss.xml" class="hover:text-[color:var(--color-accent)]">RSS</a></li>
       </ul>
@@ -29,9 +34,13 @@ const year = new Date().getFullYear();
     </div>
   </div>
   <div class="border-t border-[color:var(--color-line)]">
-    <div class="mx-auto max-w-6xl px-6 py-6 flex justify-between text-xs text-[color:var(--color-muted)]">
+    <div class="mx-auto max-w-6xl px-6 py-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-xs text-[color:var(--color-muted)]">
       <span>© {year} {site.studio}.</span>
-      <span>Built by {site.founder}.</span>
+      <div class="flex items-center gap-4">
+        <a href="/terms" class="hover:text-[color:var(--color-accent)]">Terms</a>
+        <a href="/privacy" class="hover:text-[color:var(--color-accent)]">Privacy</a>
+        <span>Built by {site.founder}.</span>
+      </div>
     </div>
   </div>
 </footer>
