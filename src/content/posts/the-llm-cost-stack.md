@@ -1,0 +1,185 @@
+---
+title: "The 6-Lever LLM Cost Stack: A Production Playbook (One Backfired, One I'd Reverse Today)"
+excerpt: "Most LLM cost advice is written by people who don't pay the bill. Here's the 6-lever framework I used to cut MatchWise's per-candidate AI cost roughly 10–20×, the lever that backfired (RAG), and the architectural choice I'd reverse today."
+publishedAt: 2026-04-29
+topic: AI
+sourceUrls:
+  - https://a16z.com/llmflation-llm-inference-cost
+  - https://www.anthropic.com/news/prompt-caching
+  - https://platform.openai.com/docs/guides/prompt-caching
+  - https://newsletter.pragmaticengineer.com
+keywords:
+  - llm cost optimization
+  - prompt caching
+  - model routing
+  - llm inference cost
+  - production ai pipeline
+  - gemini flash vs gpt-4 cost
+about:
+  - LLM cost optimization
+  - AI inference cost
+  - Production AI pipelines
+faqs:
+  - q: What's the single biggest lever for cutting LLM cost in production?
+    a: "Don't call the model when you don't need to. In MatchWise's CV screening pipeline, evaluating recruiter-flagged knockout questions deterministically in JavaScript instead of asking the LLM eliminated 30–60% of AI calls before they ever started. Model routing and prompt optimization save cents per call; eliminating the call saves the whole call."
+  - q: Should I use embeddings or RAG to reduce input tokens on shorter documents?
+    a: "Often no. On CV screening I tried chunking the CV, embedding JD requirements, and retrieving only the relevant chunks. The retrieval missed signals like 'five years at Google' in a one-line header or skills tucked into project descriptions that didn't lexically match the JD. The scoring model needed the whole narrative to weigh experience. RAG is the right answer for very long documents, not for single-page-equivalent context."
+  - q: Is GPT-4-class still the right default for production AI tasks?
+    a: "Almost never, by 2026. The per-task right answer is usually a smaller, cheaper model — Gemini 2.5 Flash for structured scoring with JSON mode, GPT-5-nano for summarization, Flash-Lite for cheap suggestions. Defaulting to GPT-4-class is a 10–20× cost mistake for most extraction, scoring, and summarization. Reserve top-tier reasoners for the parts that are irreducibly hard."
+  - q: How much can prompt caching save in a real production pipeline?
+    a: "If you have a stable prefix reused across many calls — a job description scored against hundreds of candidates, for example — prompt caching keyed by that prefix can deliver 3–5× savings on the cached portion at current Anthropic and OpenAI cache pricing. Hit rate is near 100% after the first call within the cache window."
+  - q: What's the biggest mistake teams make when optimizing LLM cost?
+    a: "Triggering on the wrong lever first. Teams jump to 'fine-tune a smaller model' or 'add RAG' before auditing which calls are unnecessary. The cheapest call is the one you don't make. Every production AI pipeline I've seen has 30%+ of calls that should have been deterministic pre-filters or could have been collapsed into a single multi-task call."
+  - q: When should I bundle multiple AI tasks into one call vs. split them?
+    a: "Bundle when the tasks share input context and have similar quality requirements — score plus summary plus extract on the same document. Split when the tasks have different model needs (scoring wants a strong reasoner; summarization wants throughput) or when caching opportunities differ. By 2026, splitting is usually winning because prompt caching on stable prefixes often beats round-trip savings."
+featured: true
+draft: false
+---
+
+## TL;DR
+
+Most LLM cost advice is written by infrastructure engineers selling infrastructure. The biggest savings don't come from fine-tuning or fancy retrieval — they come from not calling the model. In MatchWise's CV screening pipeline, six levers stacked on top of each other dropped the per-candidate cost from roughly $0.04–0.08 to $0.003–0.006: deterministic knockouts, model routing, call collapse, input bounding, delta detection, and structured output. One lever backfired (embeddings + RAG). One architectural choice I'd reverse today (the monolithic call) would unlock another 3–5× via prompt caching keyed by `job_id`.
+
+---
+
+I run MatchWise, an AI-native applicant tracking system. A year ago its CV screening pipeline was bleeding money. Single GPT-4-class call per candidate. Full CV in context. Knockout questions evaluated by the LLM. No pre-filter. Most candidates were never going to pass basic eligibility checks (work permit, location, license), and the model was scoring them anyway.
+
+I spent a few weeks rebuilding the pipeline. The result was a roughly 10–20× cost reduction depending on the job — and along the way, a clearer mental model for what actually moves LLM cost numbers in production. Most "how to reduce LLM cost" content I read while doing this was either generic ("use a smaller model"), infra-vendor pitch material, or written by someone who'd never paid an invoiced bill at scale. None of it ranked the levers by what actually moved the line.
+
+Here are the six that did.
+
+## A note on the numbers
+
+The cost figures below are engineering estimates from token math and published model pricing, not invoiced spend. I don't have hard $ telemetry in the repo — I have the build history, the edge functions, and the architectural decisions I shipped. Treat the magnitudes (10–20× total reduction, 30–60% volume cut from knockouts, ~15× per-call savings from model routing) as directional, not audited. The relative ranking of the levers is what matters; the absolute numbers will be off in either direction depending on month, model pricing, and CV length distribution.
+
+## The pipeline before
+
+The earliest screening flow was one prompt to one model on every applicant. A GPT-4-class call (we were on `gpt-4o` / `gpt-4-turbo`-tier through an AI gateway) handled everything: knockout evaluation, four-dimension scoring (skills, experience, industry, tools), per-dimension reasoning, executive summary in two languages, and structured extraction of work history and skills. One round trip, one giant response.
+
+The cost shape was ugly. Per-candidate token math worked out to roughly $0.04–0.08 depending on CV length. A typical posted job pulls 400 applicants; that's $16–32 per requisition just to score people, and most of those candidates were filtered out by recruiters in the next ten seconds because they didn't have the basic eligibility a one-question filter could have caught.
+
+The pipeline was paying GPT-4 to read the CVs of people who shouldn't have been in the funnel in the first place. That's where the rebuild started.
+
+## The 6-lever stack
+
+In rough order of impact:
+
+| # | Lever | Mechanism | Approx. impact |
+|---|---|---|---|
+| 1 | Knockouts evaluated locally | Deterministic JS pre-filter | 30–60% volume reduction |
+| 2 | Model routing per task | Off GPT-4-class for hot path | ~15× per-call cost |
+| 3 | Collapse calls | One JSON response instead of 2–3 | ~30% on remaining calls |
+| 4 | Truncate + sanitize | 50KB cap, prompt-injection strip | Long-tail token waste |
+| 5 | Delta detection | Skip re-score when JD barely changed | Recurring re-score spend |
+| 6 | Structured JSON schema | Strict schema, no preamble | Drop retries, kill rambling |
+
+The point of the table is that the levers compound. Knockouts cut volume; model routing cuts cost-per-call on what's left; call collapse cuts the per-event multiplier on what's left of *that*. By the time you reach lever 6, you're optimizing a pipeline that's already an order of magnitude cheaper than where it started.
+
+## Lever 1: Don't call the AI in the first place
+
+This is the only lever that matters if you only do one thing.
+
+In the old pipeline, knockout questions ("Do you have a work permit?", "Are you located in the country?", "Do you hold the required license?") were sent to the LLM as part of the scoring prompt. The model would dutifully evaluate them, generate reasoning about why a candidate without a work permit wasn't a fit, and return a low score with a paragraph of explanation. We were paying GPT-4 to write apologetic prose about ineligibility.
+
+The fix is embarrassingly obvious in hindsight. Knockouts are now binary Yes/No questions with a recruiter-flagged disqualifying answer. Evaluation is a deterministic JavaScript comparison — `if (candidate.answer === recruiter.disqualifyingAnswer) reject(); else continue;`. Zero AI calls for any candidate who fails a knockout.
+
+Across MatchWise's job mix, this kills 30–60% of AI volume before it ever starts. On reqs with strict eligibility (regulated industries, licensed roles, specific countries), it's closer to 70%. Every later lever gets more leverage because the population of candidates that reaches the AI step is already pre-filtered to people who could plausibly be hired.
+
+The general rule: every production AI pipeline I've audited has 20–40% of calls that should have been deterministic pre-filters. The cheapest call is the one you don't make.
+
+## Lever 2: Stop using GPT-4-class as your default
+
+The second-biggest lever was getting off GPT-4-tier on the per-candidate hot path. The way to think about it: GPT-4-class models are *general* — they handle reasoning, writing, coding, multimodal context, and edge cases gracefully. You pay for that generality on every call, including the calls that don't need it.
+
+Most production AI tasks aren't general. They're narrow: extract this field, score this dimension, summarize this text. For narrow tasks, a purpose-fit smaller model is usually 10–20× cheaper at imperceptibly different quality.
+
+The current MatchWise routing:
+
+| Function | Model | Why |
+|---|---|---|
+| `score-candidate` | `google/gemini-2.5-flash` | The expensive hot path — Flash is ~10–20× cheaper than GPT-4-tier and JSON-mode is reliable enough to drop retries |
+| `generate-cv-summary` | `openai/gpt-5-nano` | Nano-tier prose — the candidate summary doesn't need GPT-4 reasoning |
+| `suggest-job-fields` | `gemini-2.5-flash-lite` | Even cheaper for structured suggestions where wrong-but-editable is fine |
+| `parse-cv-contact`, `repair-cv-text` | `gemini-2.5-flash` | Pure extraction, no reasoning needed |
+
+The big move was the scoring function. Scoring is the per-candidate hot path and it ran on GPT-4-tier for historical reasons — that's what we built on. Once Gemini 2.5 Flash hit reliable JSON-mode, we swapped, and per-call cost dropped roughly 15× with no measurable quality regression on recruiter-rated outputs.
+
+The general rule: audit every distinct AI call in your pipeline. For each one, ask whether it's general (reasoning, edge cases, novel domains) or narrow (one task, well-defined output). Anything narrow probably belongs on a smaller model. The "default to GPT-4 because it works" reflex is the biggest single line item teams overpay for.
+
+## Lever 3: Collapse N calls into 1
+
+The original pipeline made two or three sequential calls per candidate: one to score, one to summarize, one to extract structured fields. Each call carried the full CV in context. That's the same expensive input tokens, paid two or three times.
+
+The current `score-candidate` prompt returns scores, per-dimension reasoning, the executive summary in English and Spanish, work-experience array, candidate skills, and candidate tools — all in a single JSON response. The model reads the CV once, does its work, and emits one structured payload.
+
+This collapsed roughly 30% of remaining cost after lever 2. The savings come from two places: input tokens are paid once instead of N times, and the per-call overhead (system prompt, tool definitions, response start tokens) compounds across fewer calls.
+
+The trade-off is response latency on the single combined call gets longer. For an asynchronous pipeline (candidate scores aren't blocking a UI), latency is fine. For a synchronous chat-style flow, you'd want to split — but you'd also want to evaluate whether you need both outputs at all in the synchronous path.
+
+## Lever 4: Truncate and sanitize before the model
+
+CV text in MatchWise is hard-capped at 50KB. The regenerate-summary path is capped tighter at 8KB. Both go through a sanitization layer that also strips known prompt-injection patterns.
+
+This isn't a huge lever in the median case — most CVs are 6–15KB — but the long tail is real. Some applicants paste 80-page consulting decks as PDFs; some upload "CVs" that are 200KB Word documents stuffed with skills lists in three languages. Without bounding, those candidates are 5–20× more expensive than the median for no quality benefit. The model can't actually use 80 pages of context to score one candidate; it gets confused, the score quality degrades, and you've paid for it.
+
+The general rule: bound your inputs. Pick the 95th percentile of your real distribution and truncate above it. The marginal information from rare oversize inputs is almost always negative — the model fixates on irrelevant content and the score gets worse, not better.
+
+## Lever 5: Detect when re-running is unnecessary
+
+Recruiters edit job descriptions. A typo correction here, a "five years" changed to "five-plus years" there. The old pipeline re-scored every candidate every time the JD changed, even when the change was cosmetic.
+
+The current pipeline computes Jaccard similarity between the old and new JD. If the change is below 10%, it caps re-score deltas at ±3% without re-firing the heavy reasoning path. The candidate score gets a small adjustment that reflects the cosmetic edit; the model doesn't get re-billed to discover that a typo correction didn't change anything.
+
+This is a smaller lever than the first four — it only kicks in on re-scores, and only when JD changes are minor — but it's high-ROI because it's pure savings. The candidates were already scored; we're just not paying to re-confirm the same answer.
+
+## Lever 6: Force structured JSON output
+
+The early scoring prompt asked the model to "respond in JSON format with the following fields…" and let the model figure it out. The model would routinely warm up with 200–400 tokens of "Sure! Here's my analysis of the candidate's fit for this role:" before the actual JSON started. Sometimes the JSON was malformed and we had to retry.
+
+The current prompt uses strict structured-output schemas. The model can't emit preamble; it returns valid JSON or fails closed. Two compounding wins: zero rambling tokens on every call, and we dropped almost all retry calls because parsing is now reliable.
+
+Cost impact is smaller than knockouts or model routing, but it's free — once you've written the schema, every call benefits.
+
+## The lever that backfired: embeddings + RAG
+
+The intuition was elegant. CVs are mostly noise for any specific scoring decision. Why send 10KB of text when 2KB of relevant chunks would do? Chunk the CV, embed JD requirements, retrieve the top-K relevant chunks, score on that. Cheaper input tokens, better signal-to-noise.
+
+It tanked score quality. Recruiters started flagging mis-scored candidates within days. Two failure modes accounted for most of it.
+
+The first was lexical mismatch. A candidate with five years at Google as a Senior PM might have that fact in a one-line header — `Senior PM, Google · 2019–2024`. The JD might say "experience scaling consumer products at large tech companies." The retrieval missed the connection because the lexical overlap was zero. The chunk got ranked low, didn't make it into context, and the scoring model — looking only at retrieved chunks — concluded the candidate had weak big-tech experience. Confidently. Wrong.
+
+The second was burying the lede. Strong candidates often write strong project descriptions ("Led the migration of a 200M-row Postgres database to..."). The relevant skill ("PostgreSQL", "database scaling") might be implicit in the prose, not listed in a skills section. Retrieval keyed on JD requirements like "PostgreSQL experience" would skip the project description because the lexical match was weak — and miss the strongest signal in the CV.
+
+We ripped out RAG and went back to whole-CV-in-context with truncation. The lesson generalized: the real win in the cost optimization was *not calling AI at all* (lever 1), not being clever about what to send. RAG is the right answer for very long documents (legal contracts, 200-page reports) where you genuinely can't fit the whole thing in context. For single-page-equivalent inputs, full context plus truncation beats clever retrieval almost every time, because the model needs the whole narrative to weigh implicit signal.
+
+## What I'd reverse today (April 2026)
+
+The architectural choice I'd undo: bundling scoring, summarization, and extraction into one monolithic edge function (`score-candidate`). It made sense in 2024 when the round-trip economics dominated and Flash-tier models were enough for everything. In April 2026 it's the wrong split.
+
+Scoring wants a strong reasoner. Sonnet 4.6 or GPT-5-mini handle four-dimension scoring with deterministic structured output and stable weights better than Flash does. The cost of running scoring on a top-tier reasoner is real, but it's offset by something the bundled architecture can't use: **prompt caching keyed by `job_id`**.
+
+The shape of the problem is perfect for caching. A single job description gets scored against hundreds of candidates over the lifetime of a req. The JD half of the prompt — system instructions, scoring rubric, knockout context, dimension definitions, the JD itself — is identical across every candidate. The candidate half (the CV) is the only part that changes. Cache the JD prefix once, hit it on every subsequent candidate, and the input-token cost on the cached portion drops 3–5× at current [Anthropic](https://www.anthropic.com/news/prompt-caching) and [OpenAI](https://platform.openai.com/docs/guides/prompt-caching) cache pricing. Cache hit rate after the first candidate is effectively 100% within the cache window.
+
+But you can't cache effectively when every call also stuffs in candidate-specific summary instructions and extraction schemas. The cacheable prefix gets contaminated. The architectural fix is two functions:
+
+- A **scoring function** on Sonnet 4.6 / GPT-5-mini, with a stable JD-prefix prompt, prompt caching enabled, returning only the scoring payload.
+- A **summarization + extraction function** on Haiku 4.5 / Gemini Flash-Lite for pure throughput, called only on candidates who passed scoring (so we're not even summarizing the bottom half).
+
+That's another 3–5× on scoring cost on top of what we already saved, and it would let us put scoring back on a top-tier reasoner without the bill spiking.
+
+Second-place reversal: kill the Jaccard-based delta-cap (lever 5). The current cap is a band-aid for the fact that the model isn't deterministic across re-runs. The right fix is to store the per-dimension scoring rationale and re-score only the dimensions whose JD inputs actually changed. Caching plus dimension-scoped re-scoring fixes the underlying problem (non-determinism, redundant work) instead of masking it.
+
+## A framework for any AI pipeline
+
+The six levers generalize. For any production LLM pipeline, in order:
+
+1. **Audit which calls shouldn't exist.** Every binary, deterministic, or rule-based decision in your prompt is a deterministic pre-filter waiting to be lifted out. Lift them. Don't pay GPT-4 to do `if/else`.
+2. **Audit which model each call is on.** GPT-4-class is rarely the right default in 2026. Map each call to the cheapest model that hits your quality bar. Run the regression eval. Don't trust the "general model is safer" reflex.
+3. **Audit your call count per work unit.** If two calls share most of their input, they're a single call wearing two hats. Collapse them, unless you have a clear reason to split (different model needs, latency budget, caching strategy).
+4. **Bound your inputs.** Pick the 95th-percentile size of your real distribution and truncate above it. The long-tail oversize inputs hurt quality and cost.
+5. **Detect when work is redundant.** If you re-score, re-summarize, or re-extract the same input under near-identical conditions, you should have a delta-detection layer skipping the re-call.
+6. **Force structured outputs.** Strict schemas eliminate preamble tokens, drop retries, and make downstream code reliable. Free win.
+
+And the trap to avoid: don't reach for embeddings + RAG before you've done 1–6. RAG is genuinely useful for documents that don't fit in context. It's a footgun for documents that do.
+
+The cheapest call is the one you don't make. The second cheapest is the one you make on the right model with a cached prefix and a tight schema. Everything else is a rounding error.
