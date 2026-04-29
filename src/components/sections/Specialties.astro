@@ -1,0 +1,93 @@
+---
+import SectionEyebrow from "~/components/SectionEyebrow.astro";
+
+const ICONS = {
+  sparkles: `<path d="m12 3-1.9 5.8a2 2 0 0 1-1.287 1.288L3 12l5.8 1.9a2 2 0 0 1 1.288 1.287L12 21l1.9-5.8a2 2 0 0 1 1.287-1.288L21 12l-5.8-1.9a2 2 0 0 1-1.288-1.287Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/>`,
+  layers: `<path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"/><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"/>`,
+  workflow: `<rect width="8" height="8" x="3" y="3" rx="2"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect width="8" height="8" x="13" y="13" rx="2"/>`,
+  message: `<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>`,
+  card: `<rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/>`,
+  package: `<path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/>`,
+};
+
+const specialties = [
+  {
+    title: "AI-native applications",
+    description:
+      "RAG-grounded assistants, agentic workflows, and AI-first product surfaces. Built end-to-end, with the prompt engineering and inference-cost optimization to make them economical at scale.",
+    evidence: "MatchWise · Findably · Mexico por el Clima",
+    icon: ICONS.sparkles,
+  },
+  {
+    title: "Custom internal tools, ERPs & CMSs",
+    description:
+      "When SaaS sprawl is the bottleneck — bespoke operational systems that replace five tools with one your team actually wants to use.",
+    evidence: "Rodada · Nova Realty · Mexico por el Clima",
+    icon: ICONS.layers,
+  },
+  {
+    title: "System-of-record integration",
+    description:
+      "iPaaS-based integration layers that connect payments, billing, ERPs, and CRMs into a single operable ledger. The hours-back-per-week kind of work.",
+    evidence: "Service Core",
+    icon: ICONS.workflow,
+  },
+  {
+    title: "WhatsApp-first conversion (LATAM)",
+    description:
+      "Conversion architectures designed around how Mexican and LATAM buyers actually transact — chat over forms, deep links over inboxes, SKU-aware messaging.",
+    evidence: "Nova Realty · Tivos v2",
+    icon: ICONS.message,
+  },
+  {
+    title: "Fintech & payments",
+    description:
+      "GTM, product, and integration work for venture-backed fintechs and payment-adjacent operations. Years across hyper-growth, consulting, and bank-side seats.",
+    evidence: "Jeeves · KoreFusion · BBVA · Service Core",
+    icon: ICONS.card,
+  },
+  {
+    title: "Inventory-driven platforms",
+    description:
+      "Multi-tenant inventory architectures with self-serve CMS and structural SEO — patterns that translate from real estate to commodities to any catalogue-driven business.",
+    evidence: "Nova Realty · Tivos · Rodada",
+    icon: ICONS.package,
+  },
+];
+---
+
+<section id="specialties" class="mx-auto max-w-6xl px-6 py-24 border-t border-[color:var(--color-line)]">
+  <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
+    <div>
+      <SectionEyebrow class="mb-3">Focus areas</SectionEyebrow>
+      <h2 class="font-display text-4xl md:text-5xl tracking-tight">Where I have real depth.</h2>
+    </div>
+    <p class="text-[color:var(--color-muted)] max-w-md">
+      Patterns I've shipped more than once and industries where I've operated long enough to know what actually moves the needle.
+    </p>
+  </div>
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {specialties.map((s) => (
+      <div class="p-8 flex flex-col">
+        <svg
+          width="28"
+          height="28"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.75"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="text-[color:var(--color-accent)] mb-5"
+          aria-hidden="true"
+          set:html={s.icon}
+        />
+        <div class="font-display text-2xl mb-3">{s.title}</div>
+        <p class="text-[color:var(--color-muted)] leading-relaxed flex-1">{s.description}</p>
+        <div class="mt-6 pt-4 border-t border-[color:var(--color-line)] text-xs text-[color:var(--color-muted)] uppercase tracking-wider">
+          {s.evidence}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

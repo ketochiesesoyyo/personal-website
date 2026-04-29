@@ -1,0 +1,57 @@
+---
+import SectionEyebrow from "~/components/SectionEyebrow.astro";
+
+const groups = [
+  {
+    title: "Building & AI",
+    items: [
+      "Claude Code / Codex",
+      "OpenAI / Claude APIs",
+      "RAG, agents, vector stores",
+      "n8n / workflow automation",
+      "TypeScript, React, Next.js, Astro",
+      "Python, Postgres, Supabase",
+    ],
+  },
+  {
+    title: "Revenue & operations",
+    items: [
+      "GTM strategy & launch",
+      "RevOps, sales enablement",
+      "B2B sales & business development",
+      "Pipeline & forecasting",
+      "HubSpot, Salesforce",
+      "ICP definition, pricing, unit economics",
+    ],
+  },
+  {
+    title: "Strategy & analysis",
+    items: [
+      "Market sizing & competitive intelligence",
+      "Customer discovery",
+      "P&L management",
+      "Scenario planning",
+      "Power BI",
+    ],
+  },
+];
+---
+
+<section id="skills" class="mx-auto max-w-6xl px-6 py-24 border-t border-[color:var(--color-line)]">
+  <div class="grid md:grid-cols-3 gap-12">
+    <div>
+      <SectionEyebrow class="mb-3">Toolkit</SectionEyebrow>
+      <h2 class="font-display text-4xl md:text-5xl tracking-tight">What I work with.</h2>
+    </div>
+    <div class="md:col-span-2 grid sm:grid-cols-2 gap-x-12 gap-y-10">
+      {groups.map((g) => (
+        <div>
+          <div class="font-display text-xl mb-4">{g.title}</div>
+          <ul class="space-y-2 text-[color:var(--color-muted)]">
+            {g.items.map((i) => <li>— {i}</li>)}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

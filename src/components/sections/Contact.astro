@@ -1,0 +1,30 @@
+---
+import { site } from "~/site.config";
+import SectionEyebrow from "~/components/SectionEyebrow.astro";
+---
+
+<section id="contact" class="mx-auto max-w-6xl px-6 py-24 border-t border-[color:var(--color-line)]">
+  <div class="rounded-3xl bg-[color:var(--color-fg)] text-[color:var(--color-bg)] p-10 md:p-16">
+    <SectionEyebrow class="mb-4">Get in touch</SectionEyebrow>
+    <h2 class="font-display text-4xl md:text-6xl tracking-tight max-w-3xl">
+      Have a problem worth solving? <span class="italic opacity-70">Let's talk.</span>
+    </h2>
+    <p class="mt-6 max-w-2xl opacity-70 text-lg leading-relaxed">
+      A short email or LinkedIn message is enough to start. Tell me what you're building, what's stuck, and when you'd want to ship by.
+    </p>
+    <div class="mt-10 flex flex-wrap gap-4">
+      <a
+        href={`mailto:${site.email}`}
+        class="px-6 py-3 rounded-full bg-[color:var(--color-bg)] text-[color:var(--color-fg)] hover:bg-[color:var(--color-accent)] hover:text-[color:var(--color-bg)] transition-colors"
+      >
+        {site.email}
+      </a>
+      <a
+        href={site.socials.linkedin}
+        class="px-6 py-3 rounded-full border border-[color:var(--color-bg)]/30 hover:border-[color:var(--color-bg)] transition-colors"
+      >
+        LinkedIn →
+      </a>
+    </div>
+  </div>
+</section>

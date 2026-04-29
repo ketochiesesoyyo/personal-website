@@ -1,0 +1,37 @@
+---
+import SectionEyebrow from "~/components/SectionEyebrow.astro";
+
+const steps = [
+  {
+    n: "01",
+    title: "Discover",
+    description: "A short call to map the problem, the constraints, and what success looks like. Free.",
+  },
+  {
+    n: "02",
+    title: "Plan",
+    description: "A written scope with milestones, timeline, and a fixed price. You decide whether to proceed.",
+  },
+  {
+    n: "03",
+    title: "Build & ship",
+    description: "Weekly demos, fast feedback, and a working product in your hands within weeks — not quarters.",
+  },
+];
+---
+
+<section id="process" class="mx-auto max-w-6xl px-6 py-24 border-t border-[color:var(--color-line)]">
+  <div class="mb-12">
+    <SectionEyebrow class="mb-3">Process</SectionEyebrow>
+    <h2 class="font-display text-4xl md:text-5xl tracking-tight">Three steps. No drama.</h2>
+  </div>
+  <div class="grid md:grid-cols-3 gap-8">
+    {steps.map((s) => (
+      <div>
+        <div class="font-display text-5xl text-[color:var(--color-accent)] mb-4">{s.n}</div>
+        <div class="font-display text-2xl mb-2">{s.title}</div>
+        <p class="text-[color:var(--color-muted)] leading-relaxed">{s.description}</p>
+      </div>
+    ))}
+  </div>
+</section>

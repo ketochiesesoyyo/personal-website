@@ -1,0 +1,29 @@
+---
+import { site } from "~/site.config";
+import SectionEyebrow from "~/components/SectionEyebrow.astro";
+---
+
+<section class="border-t border-[color:var(--color-line)]">
+  <div class="mx-auto max-w-6xl px-6 py-16 md:py-20">
+    <div class="text-center mb-4">
+      <SectionEyebrow>Experience</SectionEyebrow>
+    </div>
+    <h2 class="font-display text-3xl md:text-4xl tracking-tight text-center max-w-3xl mx-auto leading-tight">
+      Fast-paced, competitive environments.
+    </h2>
+    <p class="mt-4 text-center text-[color:var(--color-muted)] max-w-2xl mx-auto leading-relaxed">
+      From hyper-growth startups to some of LATAM's largest banks and search funds.
+    </p>
+    <div class="mt-10 flex flex-wrap items-center justify-center gap-x-10 gap-y-4 font-display text-xl md:text-2xl text-[color:var(--color-muted)]">
+      {site.trackRecord.companies.map((c, i) => (
+        <>
+          <span class="hover:text-[color:var(--color-fg)] transition-colors">{c}</span>
+          {i < site.trackRecord.companies.length - 1 && <span class="text-[color:var(--color-line)]">·</span>}
+        </>
+      ))}
+    </div>
+    <p class="mt-8 text-center text-sm text-[color:var(--color-muted)] max-w-2xl mx-auto">
+      Enterprise accounts at Lottus Education — Mexico's leading higher-education platform — included {site.trackRecord.enterpriseAccounts.join(" · ")}. Contributed to Jeeves' Series C — ~$180M raised at a $2.1B valuation.
+    </p>
+  </div>
+</section>

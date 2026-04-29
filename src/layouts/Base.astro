@@ -1,0 +1,117 @@
+---
+import "~/styles/global.css";
+import Nav from "~/components/Nav.astro";
+import Footer from "~/components/Footer.astro";
+import { site } from "~/site.config";
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  ogType?: "website" | "article";
+  noIndex?: boolean;
+  jsonLd?: object | object[];
+}
+
+const {
+  title,
+  description = site.bio,
+  ogImage = "/og-default.png",
+  ogType = "website",
+  noIndex = false,
+  jsonLd,
+} = Astro.props;
+
+const pageTitle = title
+  ? `${title} — ${site.studio}`
+  : `${site.studio} — Independent Product & AI Builder`;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
+const ogImageURL = new URL(ogImage, Astro.site).toString();
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: site.founder,
+  url: Astro.site?.toString(),
+  jobTitle: "Independent Product & AI Builder",
+  description: site.bio,
+  knowsAbout: [
+    "AI Automation",
+    "Product Engineering",
+    "GTM Strategy",
+    "Revenue Operations",
+    "B2B SaaS",
+    "Custom Application Development",
+  ],
+  alumniOf: [
+    { "@type": "EducationalOrganization", name: "IPADE Business School" },
+    { "@type": "EducationalOrganization", name: "Universidad Iberoamericana" },
+  ],
+  worksFor: { "@type": "Organization", name: "MatchWise" },
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: site.studio,
+  url: Astro.site?.toString(),
+  description: site.bio,
+  author: { "@type": "Person", name: site.founder },
+};
+
+const extraJsonLd = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
+const safeStringify = (data: object) =>
+  JSON.stringify(data).replace(/</g, "\\u003c");
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    {noIndex && <meta name="robots" content="noindex, nofollow" />}
+    <meta name="theme-color" content="#0a0a0a" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="author" content={site.founder} />
+
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:site_name" content={site.studio} />
+    <meta property="og:locale" content="en_US" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <script type="application/ld+json" set:html={safeStringify(personSchema)} />
+    <script type="application/ld+json" set:html={safeStringify(websiteSchema)} />
+    {extraJsonLd.map((schema) => (
+      <script type="application/ld+json" set:html={safeStringify(schema)} />
+    ))}
+  </head>
+  <body>
+    <Nav />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,33 @@
+---
+title: Findably
+tagline: AI content engine that ranks on Google and gets cited by AI.
+type: product
+role: Founder & Builder
+year: "2025"
+status: live
+url: https://findably.app
+stack: ["Next.js", "TypeScript", "OpenAI", "Google Search Console API", "WordPress / Ghost / Wix integrations"]
+metrics:
+  - { label: "Articles / month", value: "30" }
+  - { label: "Cost vs. freelance", value: "−95%" }
+featured: true
+order: 1
+---
+
+## The problem
+Content is still the most reliable channel for B2B and SMBs to win organic traffic — and increasingly, the channel that determines whether ChatGPT, Perplexity, and Gemini cite you when a prospect asks them a question. The catch: producing 30 quality articles a month at a freelance market rate is roughly $3,000. Most teams just don't ship the content, so they don't rank, so they don't compound. The teams that do ship usually fall back on either generic AI-spun text (which Google and AI engines are getting better at filtering) or a writer who can't keep up with their roadmap.
+
+## The approach
+Two non-obvious bets shaped the product.
+
+First, optimize for both classical SEO *and* GEO (generative-engine optimization) from day one. The content structure that gets you cited by an LLM is different from the one that gets you a Google ranking — Findably tunes for both, because the future of organic discovery is split between them.
+
+Second, treat agencies as a first-class customer, not an afterthought. Each workspace is fully isolated, so an agency can run 20 client blogs from one account without contamination — same product, dramatically larger TAM. Pricing is a single $150/month tier rather than a complicated ladder, so anyone — solo founder or 50-person agency — can adopt the same SKU.
+
+## What I built
+A 10-stage pipeline that runs end-to-end without manual intervention: keyword research → topic clustering → outline → draft → SEO + GEO optimization → AI-generated featured image (5 style options) → editorial review pass → scheduling → publish → ranking tracking. Outputs go directly into WordPress, Ghost, Wix, or any webhook — no copy-paste step.
+
+Beyond the pipeline: a dashboard that shows ranking movement via Google Search Console, a savings calculator that converts current freelance spend into projected ROI, multi-tenant workspace architecture for agencies, billing, free 30-day trial flow, and the marketing site itself. Designed and built end-to-end — product, infra, and brand.
+
+## Outcome
+$150/month flat-rate replaces ~$3,000/month of freelance content. Live SaaS in beta, supporting 40+ languages. Self-serve from signup to first published article. Honest 8–12-week timeline for ranking impact, communicated up-front in the marketing — because the alternative is churn from over-promising.

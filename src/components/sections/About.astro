@@ -1,0 +1,30 @@
+---
+import { site } from "~/site.config";
+import SectionEyebrow from "~/components/SectionEyebrow.astro";
+---
+
+<section id="about" class="mx-auto max-w-6xl px-6 py-24 border-t border-[color:var(--color-line)]">
+  <div class="grid md:grid-cols-3 gap-12">
+    <div>
+      <SectionEyebrow class="mb-3">About</SectionEyebrow>
+      <h2 class="font-display text-4xl md:text-5xl tracking-tight">Behind the work.</h2>
+      <img
+        src="/henrick.jpg"
+        alt="Portrait of Henrick F."
+        width="240"
+        height="240"
+        loading="lazy"
+        class="mt-8 w-40 h-40 md:w-56 md:h-56 rounded-full object-cover border border-[color:var(--color-line)]"
+      />
+    </div>
+    <div class="md:col-span-2 space-y-6 text-lg leading-relaxed">
+      <p>{site.longBio}</p>
+      <p class="text-[color:var(--color-muted)]">
+        Most AI builders don't have a $15M book of business in their past. Most GTM operators can't ship the tool that fixes the problem they just diagnosed. I sit in the overlap — and that's the angle I bring to every engagement.
+      </p>
+      <p class="text-[color:var(--color-muted)]">
+        If you're building or automating something interesting, I'd like to hear about it.
+      </p>
+    </div>
+  </div>
+</section>

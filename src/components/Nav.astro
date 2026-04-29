@@ -1,0 +1,97 @@
+---
+import { site } from "~/site.config";
+---
+
+<header class="sticky top-0 z-40 backdrop-blur bg-[color:var(--color-bg)]/80 border-b border-[color:var(--color-line)]">
+  <div class="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
+    <a href="/" class="font-display text-lg tracking-tight">
+      {site.studio}
+    </a>
+
+    <nav class="hidden md:flex items-center gap-8 text-sm">
+      {site.nav.map((item) => (
+        <a href={item.href} class="text-[color:var(--color-muted)] hover:text-[color:var(--color-fg)] transition-colors">
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <a
+        href="/#contact"
+        class="hidden sm:inline-flex text-sm px-4 py-2 rounded-full bg-[color:var(--color-fg)] text-[color:var(--color-bg)] hover:bg-[color:var(--color-accent)] transition-colors"
+      >
+        Work with us
+      </a>
+      <button
+        id="mobile-nav-toggle"
+        type="button"
+        class="md:hidden p-2 -mr-2 text-[color:var(--color-fg)]"
+        aria-label="Toggle menu"
+        aria-controls="mobile-nav"
+        aria-expanded="false"
+      >
+        <svg
+          class="block group-aria-expanded:hidden"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.75"
+          stroke-linecap="round"
+          aria-hidden="true"
+        >
+          <path d="M4 7h16" />
+          <path d="M4 12h16" />
+          <path d="M4 17h16" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div
+    id="mobile-nav"
+    class="md:hidden hidden border-t border-[color:var(--color-line)] bg-[color:var(--color-bg)]/95 backdrop-blur"
+  >
+    <nav class="mx-auto max-w-6xl px-6 py-3 flex flex-col">
+      {site.nav.map((item) => (
+        <a
+          href={item.href}
+          class="py-3 text-base text-[color:var(--color-fg)] border-b border-[color:var(--color-line)] last:border-0"
+        >
+          {item.label}
+        </a>
+      ))}
+      <a
+        href="/#contact"
+        class="mt-4 mb-2 inline-flex justify-center px-5 py-3 rounded-full bg-[color:var(--color-fg)] text-[color:var(--color-bg)] text-sm"
+      >
+        Work with us
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById("mobile-nav-toggle");
+  const panel = document.getElementById("mobile-nav");
+  if (btn && panel) {
+    const setOpen = (open: boolean) => {
+      btn.setAttribute("aria-expanded", String(open));
+      panel.classList.toggle("hidden", !open);
+    };
+    btn.addEventListener("click", () => {
+      const isOpen = btn.getAttribute("aria-expanded") === "true";
+      setOpen(!isOpen);
+    });
+    panel.addEventListener("click", (e) => {
+      const target = e.target as HTMLElement;
+      if (target.closest("a")) setOpen(false);
+    });
+    // Close on resize up to desktop
+    window.addEventListener("resize", () => {
+      if (window.matchMedia("(min-width: 768px)").matches) setOpen(false);
+    });
+  }
+</script>

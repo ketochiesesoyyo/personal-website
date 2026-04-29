@@ -1,0 +1,58 @@
+---
+import SectionEyebrow from "~/components/SectionEyebrow.astro";
+
+const faqs = [
+  {
+    q: "How do you price engagements?",
+    a: "Fixed price per milestone after a scoped plan. No surprise hourly bills. If something's out of scope, you'll know before any work starts.",
+  },
+  {
+    q: "How fast can you start?",
+    a: "Usually within 1–2 weeks. AI prototypes can go from kickoff to working demo in 2–4 weeks.",
+  },
+  {
+    q: "Do you work solo or with a team?",
+    a: "Solo by default. For larger engagements I bring in trusted collaborators (design, ops, specialized engineering). You'll always know who's on the project.",
+  },
+  {
+    q: "Will I own the code?",
+    a: "Yes. Code, designs, and infrastructure are yours. I keep nothing on the side.",
+  },
+  {
+    q: "What kinds of projects don't fit?",
+    a: "Pure marketing-site work without a product layer, or projects that need offshore-style continuous staffing. I'll point you to better-suited partners.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+const safeFaqSchema = JSON.stringify(faqSchema).replace(/</g, "\\u003c");
+---
+
+<section id="faq" class="mx-auto max-w-6xl px-6 py-24 border-t border-[color:var(--color-line)]">
+  <div class="grid md:grid-cols-3 gap-12">
+    <div>
+      <SectionEyebrow class="mb-3">Questions</SectionEyebrow>
+      <h2 class="font-display text-4xl md:text-5xl tracking-tight">Common asks.</h2>
+    </div>
+    <div class="md:col-span-2 space-y-1">
+      {faqs.map((f) => (
+        <details class="group border-b border-[color:var(--color-line)] py-5">
+          <summary class="cursor-pointer flex items-center justify-between gap-4 font-display text-lg list-none">
+            <span>{f.q}</span>
+            <span class="text-[color:var(--color-muted)] transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <p class="text-[color:var(--color-muted)] leading-relaxed mt-3">{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+  <script type="application/ld+json" set:html={safeFaqSchema} />
+</section>

@@ -1,0 +1,33 @@
+---
+title: Tivos
+tagline: Public site for a global commodity trader — about to get a major upgrade.
+type: client
+role: Lead Developer & Designer
+year: "2024"
+status: live
+url: https://tivos.com.mx
+stack: ["Wix (current)", "Next.js (in build)"]
+metrics:
+  - { label: "Product lines", value: "Fish meal · Chicken meal · Oils · More" }
+  - { label: "Reach", value: "Global, from Mexico City" }
+featured: false
+order: 7
+---
+
+## The problem
+Tivos commercializes feed-industry ingredients globally — fish meal, chicken meal, fish oil, and a growing catalogue serving aquaculture, pet food, and animal-feed manufacturers. Their buyers are sophisticated: procurement teams that vet a supplier on a single visit and decide in minutes whether the operator is credible enough to engage. Without a presentable public site, the calls don't happen. But committing to a heavy custom build before the brand and catalogue had stabilized would have been premature — and slow.
+
+## The approach
+Stage the build to match the business's actual maturity.
+
+Version 1: ship something credible in days, not weeks. Wix was the right call — a clean B2B presentation layer (positioning, product catalogue, mission, value pillars, contact) that gets the team in front of buyers without distracting from operations. Move on; come back when the catalogue, the buyer flows, and the brand are settled enough to justify the investment.
+
+Version 2 (now in build): apply the same pattern that's working for Nova Realty — Next.js, self-serve inventory CMS, structural SEO, WhatsApp-first contact flow — adapted to commodity ingredient sales. Buyers behave like real-estate buyers in the relevant ways: they vet quickly, they want concrete inventory data, they prefer chat over forms.
+
+## What I built
+The current Wix site: brand identity, product catalogue with detail pages, mission and value-pillar sections, newsletter capture, contact flow. Lean enough to ship in days and sturdy enough to land enterprise feed-industry buyers — which it has.
+
+The v2 build (in progress): a Next.js site with property-style inventory architecture, self-serve product/SKU management for the team, structurally SEO-optimized, with WhatsApp-first conversion patterns proven on the Nova Realty engagement.
+
+## Outcome
+The current site is live and operating. The v2 build will give the team direct ownership of the catalogue, dramatically more SEO surface area than a Wix template allows, and a contact flow tuned to how their buyers actually transact. A textbook case of "ship the right version of the site for the version of the business you're in."

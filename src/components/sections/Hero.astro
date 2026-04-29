@@ -1,0 +1,212 @@
+---
+---
+
+<section class="relative overflow-hidden">
+  <canvas
+    id="hero-particles"
+    class="absolute inset-0 w-full h-full pointer-events-none"
+    aria-hidden="true"
+  ></canvas>
+  <div class="relative z-10 mx-auto max-w-6xl px-6 pt-24 pb-32 md:pt-36 md:pb-44">
+    <div class="max-w-3xl">
+      <h1 class="font-display text-5xl md:text-7xl leading-[1.05] tracking-tight">
+        I build AI automations<br />and custom apps that<br />
+        <span class="italic text-[color:var(--color-accent)]">save B2B companies real money.</span>
+      </h1>
+      <p class="mt-10 text-lg text-[color:var(--color-muted)] max-w-2xl leading-relaxed">
+        6+ years scaling revenue at venture-backed fintech, edtech, and AI startups across LATAM — so I build the things you actually need, not the ones I'd find interesting in a vacuum.
+      </p>
+      <div class="mt-12 flex flex-wrap gap-4">
+        <a
+          href="#work"
+          class="px-6 py-3 rounded-full bg-[color:var(--color-fg)] text-[color:var(--color-bg)] hover:bg-[color:var(--color-accent)] transition-colors"
+        >
+          See the work
+        </a>
+        <a
+          href="#contact"
+          class="px-6 py-3 rounded-full border border-[color:var(--color-fg)] hover:bg-[color:var(--color-fg)] hover:text-[color:var(--color-bg)] transition-colors"
+        >
+          Start a project
+        </a>
+      </div>
+    </div>
+    <div class="mt-24 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl">
+      <div>
+        <div class="font-display text-3xl">6+</div>
+        <div class="text-xs text-[color:var(--color-muted)] uppercase tracking-wider mt-1">Years scaling revenue</div>
+      </div>
+      <div>
+        <div class="font-display text-3xl">$15M+</div>
+        <div class="text-xs text-[color:var(--color-muted)] uppercase tracking-wider mt-1">Credit lines managed</div>
+      </div>
+      <div>
+        <div class="font-display text-3xl">5</div>
+        <div class="text-xs text-[color:var(--color-muted)] uppercase tracking-wider mt-1">LATAM countries</div>
+      </div>
+      <div>
+        <div class="font-display text-3xl">100+</div>
+        <div class="text-xs text-[color:var(--color-muted)] uppercase tracking-wider mt-1">B2B clients served</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const canvas = document.getElementById("hero-particles") as HTMLCanvasElement | null;
+  if (
+    canvas &&
+    !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  ) {
+    const ctx = canvas.getContext("2d");
+    if (ctx) {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      let width = 0;
+      let height = 0;
+      let particles: { x: number; y: number; vx: number; vy: number }[] = [];
+      const mouse = { x: -10000, y: -10000, active: false };
+      let raf = 0;
+      let visible = true;
+
+      const REPEL_RADIUS = 130;
+      const LINK_DIST = 130;
+      const FRICTION = 0.96;
+      const DRIFT_SPEED = 0.25;
+
+      function resize() {
+        const rect = canvas.getBoundingClientRect();
+        width = rect.width;
+        height = rect.height;
+        canvas.width = Math.round(width * dpr);
+        canvas.height = Math.round(height * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+
+      function init() {
+        const count = Math.max(20, Math.min(90, Math.floor((width * height) / 14000)));
+        particles = [];
+        for (let i = 0; i < count; i++) {
+          particles.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            vx: (Math.random() - 0.5) * DRIFT_SPEED,
+            vy: (Math.random() - 0.5) * DRIFT_SPEED,
+          });
+        }
+      }
+
+      function tick() {
+        ctx.clearRect(0, 0, width, height);
+
+        for (const p of particles) {
+          if (mouse.active) {
+            const dx = p.x - mouse.x;
+            const dy = p.y - mouse.y;
+            const d2 = dx * dx + dy * dy;
+            if (d2 < REPEL_RADIUS * REPEL_RADIUS && d2 > 0.01) {
+              const d = Math.sqrt(d2);
+              const force = ((REPEL_RADIUS - d) / REPEL_RADIUS) * 0.7;
+              p.vx += (dx / d) * force;
+              p.vy += (dy / d) * force;
+            }
+          }
+
+          p.vx *= FRICTION;
+          p.vy *= FRICTION;
+
+          // Maintain a minimum drift so particles don't fully stall
+          const speed = Math.hypot(p.vx, p.vy);
+          if (speed < 0.05) {
+            p.vx += (Math.random() - 0.5) * 0.05;
+            p.vy += (Math.random() - 0.5) * 0.05;
+          }
+
+          p.x += p.vx;
+          p.y += p.vy;
+
+          if (p.x < 0) {
+            p.x = 0;
+            p.vx *= -1;
+          } else if (p.x > width) {
+            p.x = width;
+            p.vx *= -1;
+          }
+          if (p.y < 0) {
+            p.y = 0;
+            p.vy *= -1;
+          } else if (p.y > height) {
+            p.y = height;
+            p.vy *= -1;
+          }
+        }
+
+        ctx.lineWidth = 1;
+        for (let i = 0; i < particles.length; i++) {
+          const a = particles[i];
+          for (let j = i + 1; j < particles.length; j++) {
+            const b = particles[j];
+            const dx = a.x - b.x;
+            const dy = a.y - b.y;
+            const d2 = dx * dx + dy * dy;
+            if (d2 < LINK_DIST * LINK_DIST) {
+              const d = Math.sqrt(d2);
+              const alpha = (1 - d / LINK_DIST) * 0.22;
+              ctx.strokeStyle = `rgba(200, 85, 61, ${alpha})`;
+              ctx.beginPath();
+              ctx.moveTo(a.x, a.y);
+              ctx.lineTo(b.x, b.y);
+              ctx.stroke();
+            }
+          }
+        }
+
+        ctx.fillStyle = "rgba(200, 85, 61, 0.6)";
+        for (const p of particles) {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, 1.6, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        raf = requestAnimationFrame(tick);
+      }
+
+      function start() {
+        if (!raf) tick();
+      }
+      function stop() {
+        if (raf) cancelAnimationFrame(raf);
+        raf = 0;
+      }
+
+      window.addEventListener("resize", () => {
+        resize();
+        init();
+      });
+
+      window.addEventListener("mousemove", (e) => {
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+        mouse.active =
+          mouse.x >= 0 && mouse.x <= width && mouse.y >= 0 && mouse.y <= height;
+      });
+
+      window.addEventListener("mouseout", () => {
+        mouse.active = false;
+      });
+
+      const io = new IntersectionObserver((entries) => {
+        for (const entry of entries) {
+          visible = entry.isIntersecting;
+          if (visible) start();
+          else stop();
+        }
+      });
+      io.observe(canvas);
+
+      resize();
+      init();
+      start();
+    }
+  }
+</script>

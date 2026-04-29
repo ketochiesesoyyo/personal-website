@@ -1,0 +1,139 @@
+---
+import { getCollection, render } from "astro:content";
+import type { GetStaticPaths } from "astro";
+import Base from "~/layouts/Base.astro";
+import Favicon from "~/components/Favicon.astro";
+
+export const getStaticPaths = (async () => {
+  const projects = await getCollection("projects");
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}) satisfies GetStaticPaths;
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+const { data } = project;
+const typeLabel = data.type === "product" ? "Own product" : "Client work";
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: data.title,
+  description: data.tagline,
+  author: { "@type": "Person", name: "Henrick F." },
+  publisher: { "@type": "Person", name: "Henrick F." },
+  datePublished: `${data.year}-01-01`,
+  url: canonicalUrl,
+  mainEntityOfPage: canonicalUrl,
+  ...(data.url && { about: { "@type": "Thing", url: data.url, name: data.title } }),
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: new URL("/", Astro.site).toString() },
+    { "@type": "ListItem", position: 2, name: "Work", item: new URL("/#work", Astro.site).toString() },
+    { "@type": "ListItem", position: 3, name: data.title, item: canonicalUrl },
+  ],
+};
+---
+
+<Base
+  title={data.title}
+  description={data.tagline}
+  ogType="article"
+  jsonLd={[articleSchema, breadcrumbSchema]}
+>
+  <article class="mx-auto max-w-4xl px-6 pt-20 pb-32">
+    <a href="/#work" class="text-sm text-[color:var(--color-muted)] hover:text-[color:var(--color-accent)]">
+      ← Back to work
+    </a>
+
+    <header class="mt-12 pb-12 border-b border-[color:var(--color-line)]">
+      <div class="flex items-center gap-3 text-xs text-[color:var(--color-muted)] uppercase tracking-[0.2em] mb-6">
+        <span>{typeLabel}</span>
+        <span>·</span>
+        <span>{data.year}</span>
+        <span>·</span>
+        <span>{data.status}</span>
+      </div>
+      <h1 class="font-display text-5xl md:text-7xl tracking-tight leading-[1.05]">{data.title}</h1>
+      <p class="mt-6 text-xl text-[color:var(--color-muted)] max-w-2xl leading-relaxed">{data.tagline}</p>
+
+      <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div>
+          <div class="text-xs text-[color:var(--color-muted)] uppercase tracking-wider mb-2">Role</div>
+          <div>{data.role}</div>
+        </div>
+        <div>
+          <div class="text-xs text-[color:var(--color-muted)] uppercase tracking-wider mb-2">Year</div>
+          <div>{data.year}</div>
+        </div>
+        {data.url && (
+          <div>
+            <div class="text-xs text-[color:var(--color-muted)] uppercase tracking-wider mb-2">Live</div>
+            <a href={data.url} class="inline-flex items-center gap-2 hover:text-[color:var(--color-accent)] underline underline-offset-4">
+              <Favicon url={data.url} size={28} alt="" class="shrink-0" />
+              <span>Visit ↗</span>
+            </a>
+          </div>
+        )}
+        {data.stack.length > 0 && (
+          <div class="col-span-2 md:col-span-1">
+            <div class="text-xs text-[color:var(--color-muted)] uppercase tracking-wider mb-2">Stack</div>
+            <div class="text-sm">{data.stack.join(", ")}</div>
+          </div>
+        )}
+      </div>
+    </header>
+
+    {data.metrics.length > 0 && (
+      <section class="grid grid-cols-2 md:grid-cols-4 gap-8 py-12 border-b border-[color:var(--color-line)]">
+        {data.metrics.map((m) => (
+          <div>
+            <div class="font-display text-3xl md:text-4xl text-[color:var(--color-accent)]">{m.value}</div>
+            <div class="text-xs text-[color:var(--color-muted)] uppercase tracking-wider mt-2">{m.label}</div>
+          </div>
+        ))}
+      </section>
+    )}
+
+    <div class="prose-content mt-12 space-y-6 text-lg leading-relaxed">
+      <Content />
+    </div>
+
+    <div class="mt-20 pt-12 border-t border-[color:var(--color-line)] flex justify-between items-center">
+      <a href="/#work" class="text-sm text-[color:var(--color-muted)] hover:text-[color:var(--color-accent)]">
+        ← All work
+      </a>
+      <a
+        href="/#contact"
+        class="px-6 py-3 rounded-full bg-[color:var(--color-fg)] text-[color:var(--color-bg)] hover:bg-[color:var(--color-accent)] transition-colors"
+      >
+        Start a project
+      </a>
+    </div>
+  </article>
+</Base>
+
+<style is:global>
+  .prose-content h2 {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    letter-spacing: -0.02em;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+  }
+  .prose-content p {
+    color: var(--color-muted);
+    margin-bottom: 1.25rem;
+  }
+  .prose-content p:first-of-type {
+    color: var(--color-fg);
+  }
+</style>
