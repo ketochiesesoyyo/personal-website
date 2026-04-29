@@ -4,6 +4,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   site: "https://henrickf.com",
+  trailingSlash: "always",
   integrations: [
     sitemap({
       lastmod: new Date(),
