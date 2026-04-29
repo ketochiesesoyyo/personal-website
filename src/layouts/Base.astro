@@ -26,7 +26,8 @@ const pageTitle = title
   ? `${title} — ${site.studio}`
   : `${site.studio} — Independent Product & AI Builder`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
-const ogImageURL = ogImage ? new URL(ogImage, Astro.site).toString() : undefined;
+const resolvedOgImage = ogImage ?? "/henrick.jpg";
+const ogImageURL = new URL(resolvedOgImage, Astro.site).toString();
 
 const siteUrl = Astro.site?.toString().replace(/\/$/, "") ?? "";
 
@@ -38,6 +39,7 @@ const personSchema = {
   url: Astro.site?.toString(),
   jobTitle: "Independent Product & AI Builder",
   description: site.bio,
+  image: `${siteUrl}/henrick.jpg`,
   sameAs: [site.socials.linkedin, site.socials.github, "https://matchwise.app"],
   knowsAbout: [
     "AI Automation",
@@ -104,14 +106,14 @@ const safeStringify = (data: object) =>
     <meta property="og:description" content={description} />
     <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonicalURL} />
-    {ogImageURL && <meta property="og:image" content={ogImageURL} />}
+    <meta property="og:image" content={ogImageURL} />
     <meta property="og:site_name" content={site.studio} />
     <meta property="og:locale" content="en_US" />
 
-    <meta name="twitter:card" content={ogImageURL ? "summary_large_image" : "summary"} />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
-    {ogImageURL && <meta name="twitter:image" content={ogImageURL} />}
+    <meta name="twitter:image" content={ogImageURL} />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />

@@ -43,7 +43,7 @@ The rule is simpler than it looks: **rebuild only when at least three of four si
 
 ---
 
-I've watched both sides of this decision from inside fast-growing B2B companies. As Director of Strategy & Operations at Bedu (Lottus Education), I owned a P&L that included six- and seven-figure SaaS contracts: HubSpot, Salesforce, ATS platforms, learning management, accounting. As Head of Sales for Jeeves across LATAM, I sat through the same vendor pitches every fintech operator sees. And now, building MatchWise (an AI-native ATS), I'm on the other end, shipping the kind of product I used to evaluate and replace.
+I've watched both sides of this decision from inside fast-growing B2B companies. As Director of Strategy & Operations at Bedu (Lottus Education), I owned a P&L that included six- and seven-figure SaaS contracts: HubSpot, Salesforce, ATS platforms, learning management, accounting. As Head of Sales for Jeeves across LATAM, I sat through the same vendor pitches every fintech operator sees. And now, building [MatchWise](/projects/matchwise) (an AI-native ATS), I'm on the other end, shipping the kind of product I used to evaluate and replace.
 
 Three internal systems I've rebuilt from scratch in the last 24 months. One of them I had to do twice. Not because building was the wrong call, but because the scope I chose was.
 
@@ -89,7 +89,7 @@ Apply each as a yes/no test. Anything below three yeses is a configuration probl
 
 **The threshold:** When drift forces you to maintain a separate documentation layer that explains "what each field actually means in our process," the drift is real.
 
-I saw this most clearly at Service Core, where the operational stack spanned Sage (accounting), Celigo (iPaaS), and Recurly (billing). None of the three were wrong individually. But each named the same business object differently (*customer*, *account*, *subscriber*), and Service Core's workflow didn't match any of their native models. Every new connection required an entire field-mapping pass before it could go live, and the mapping doc became a parallel system of record that nobody owned. That's Signal 1 in production. The fix wasn't a better iPaaS. It was admitting the workflow had drifted past the vendors' models.
+I saw this most clearly at [Service Core](/projects/service-core), where the operational stack spanned Sage (accounting), Celigo (iPaaS), and Recurly (billing). None of the three were wrong individually. But each named the same business object differently (*customer*, *account*, *subscriber*), and Service Core's workflow didn't match any of their native models. Every new connection required an entire field-mapping pass before it could go live, and the mapping doc became a parallel system of record that nobody owned. That's Signal 1 in production. The fix wasn't a better iPaaS. It was admitting the workflow had drifted past the vendors' models.
 
 ### Signal 2: Vendor Lock-on-Data
 
@@ -148,7 +148,7 @@ The most-missed row is **single-engineer risk**. A built-from-scratch internal t
 
 Of the three internal systems I've built from scratch in the last two years, the build that taught me the most was the one I had to redo.
 
-The system was the Rodada backend OS: the inventory and operations layer behind a fleet of 2,000+ wrapped semi-trailers running OOH advertising across Mexican highways. The signal count was clearly four out of four: workflow drift (no off-the-shelf SaaS models OOH-on-trailers), vendor lock (none of the candidates exported in a useful shape), integration fan-out (campaign data, fleet telemetry, sales pipeline, finance), and cost-per-seat slope (more importantly, a value-per-seat slope that didn't justify enterprise SaaS for an operations team that small). The build was the right call.
+The system was the [Rodada](/projects/rodada) backend OS: the inventory and operations layer behind a fleet of 2,000+ wrapped semi-trailers running OOH advertising across Mexican highways. The signal count was clearly four out of four: workflow drift (no off-the-shelf SaaS models OOH-on-trailers), vendor lock (none of the candidates exported in a useful shape), integration fan-out (campaign data, fleet telemetry, sales pipeline, finance), and cost-per-seat slope (more importantly, a value-per-seat slope that didn't justify enterprise SaaS for an operations team that small). The build was the right call.
 
 The wrong call was inside the build. I scoped multi-language support into v1, Spanish *and* English, assuming that was a small lift. It wasn't. I couldn't get the i18n layer to cleanly translate every page and button without breaking state and routing across the app. The translation pass cascaded into bugs that turned into a near-total rewrite. The system that eventually shipped is Spanish-only, and that's the right answer: the operators who actually use it work in Spanish, the customer base is in Mexico, and English was never going to earn back the engineering weeks it cost me.
 

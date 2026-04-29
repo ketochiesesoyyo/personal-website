@@ -1,111 +1,159 @@
 ---
 import Base from "~/layouts/Base.astro";
+import SectionEyebrow from "~/components/SectionEyebrow.astro";
 import { site } from "~/site.config";
 
 const lastUpdated = "April 29, 2026";
+
+const sections = [
+  {
+    n: "01",
+    title: "What this site is",
+    body: [
+      "This is a personal portfolio and writing site. It exists to share work, essays, and contact information.",
+      "Nothing here is an offer of employment, a binding proposal, financial advice, or legal advice, unless you and I have signed a separate written agreement that says so.",
+    ],
+  },
+  {
+    n: "02",
+    title: "Content ownership",
+    body: [
+      `All original content on this site (essays, case studies, copy, images, code samples) is the intellectual property of ${site.founder}, except where third-party material is clearly attributed.`,
+    ],
+    youCan: [
+      "Read, share, and link to anything published here.",
+      "Quote short passages with attribution and a link back to the source page.",
+    ],
+    youCant: [
+      "Republish full essays or substantial excerpts without written permission.",
+      "Use any content to train machine learning models without written permission.",
+      "Pass the work off as your own.",
+    ],
+  },
+  {
+    n: "03",
+    title: "No warranties",
+    body: [
+      "The content here is provided as-is. I aim for accuracy and pull from real operating experience, but writing on a fast-moving topic like AI ages quickly.",
+      "Don't make irreversible business, financial, or technical decisions based solely on something you read on this site. Verify, get advice, run your own numbers.",
+    ],
+  },
+  {
+    n: "04",
+    title: "Limitation of liability",
+    body: [
+      `To the fullest extent permitted by applicable law, ${site.founder} is not liable for any direct, indirect, incidental, consequential, or special damages arising from your use of this site or any content on it.`,
+      "If you choose to act on something you read here and it doesn't work for your situation, that's on you, not on me.",
+    ],
+  },
+  {
+    n: "05",
+    title: "Third-party links",
+    body: [
+      "Posts and pages may link to third-party sites (sources, references, tools). I don't control those sites and I'm not responsible for their content, accuracy, or privacy practices.",
+      "Linking isn't an endorsement.",
+    ],
+  },
+  {
+    n: "06",
+    title: "Contact and consulting",
+    body: [
+      "If you reach out via the email address on this site to discuss a project, that initial conversation is not a binding engagement.",
+      "Any consulting, build, or advisory work is governed by a separate written agreement signed by both parties.",
+    ],
+  },
+  {
+    n: "07",
+    title: "Changes",
+    body: [
+      "I may update these terms from time to time. The Last updated date at the top reflects the most recent revision.",
+      "Continued use of the site after a revision means you accept the new terms.",
+    ],
+  },
+  {
+    n: "08",
+    title: "Governing law",
+    body: [
+      "These terms are governed by the laws of Mexico, without regard to conflict-of-law rules.",
+      "If you're using the site from another jurisdiction, you're responsible for complying with your local laws.",
+    ],
+  },
+];
 ---
 
 <Base
   title="Terms of Use"
-  description="Terms of use for henrickf.com — the personal site of Henrick F."
-  noIndex={false}
+  description={`Terms of use for henrickf.com, the personal site of ${site.founder}.`}
 >
-  <article class="mx-auto max-w-3xl px-6 pt-20 pb-32">
-    <a href="/" class="text-sm text-[color:var(--color-muted)] hover:text-[color:var(--color-accent)]">
-      ← Home
-    </a>
-
-    <header class="mt-12 pb-10 border-b border-[color:var(--color-line)]">
-      <div class="text-xs text-[color:var(--color-muted)] uppercase tracking-[0.2em] mb-6">
-        Last updated · {lastUpdated}
+  <section class="mx-auto max-w-6xl px-6 pt-32 pb-16">
+    <div class="grid md:grid-cols-3 gap-12">
+      <div>
+        <SectionEyebrow class="mb-4">Terms</SectionEyebrow>
+        <div class="text-xs text-[color:var(--color-muted)] uppercase tracking-[0.2em]">
+          Last updated · {lastUpdated}
+        </div>
       </div>
-      <h1 class="font-display text-4xl md:text-6xl tracking-tight leading-[1.05]">
-        Terms of Use
-      </h1>
-      <p class="mt-6 text-xl text-[color:var(--color-muted)] leading-relaxed">
-        The rules for using this website. Plain language, no surprises.
-      </p>
-    </header>
-
-    <div class="prose-essay mt-12 text-lg leading-[1.75]">
-      <p>
-        This site (<a href={site.url}>henrickf.com</a>) is the personal website of {site.founder}.
-        By accessing or using it, you agree to the terms below. If you don't agree, please don't use the site.
-      </p>
-
-      <h2>1. What this site is</h2>
-      <p>
-        This is a personal portfolio and writing site. It exists to share work, essays, and contact information.
-        Nothing on this site is an offer of employment, a binding proposal, financial advice, legal advice, or a contract,
-        unless you and I have signed a separate written agreement that says so.
-      </p>
-
-      <h2>2. Content ownership</h2>
-      <p>
-        All original content on this site (essays, case studies, copy, images, code samples) is the intellectual property of {site.founder}, except where third-party material is clearly attributed.
-        You're welcome to:
-      </p>
-      <ul>
-        <li>Read, share, and link to anything published here.</li>
-        <li>Quote short passages with attribution and a link back to the source page.</li>
-      </ul>
-      <p>You may not:</p>
-      <ul>
-        <li>Republish full essays or substantial excerpts without written permission.</li>
-        <li>Use any content to train machine learning models without written permission.</li>
-        <li>Pass the work off as your own.</li>
-      </ul>
-
-      <h2>3. No warranties</h2>
-      <p>
-        The content here is provided as-is. I aim for accuracy and pull from real operating experience, but writing on a fast-moving topic like AI ages quickly.
-        Don't make irreversible business, financial, or technical decisions based solely on something you read on this site. Verify, get advice, run your own numbers.
-      </p>
-
-      <h2>4. Limitation of liability</h2>
-      <p>
-        To the fullest extent permitted by applicable law, {site.founder} is not liable for any direct, indirect, incidental, consequential, or special damages
-        arising from your use of this site or any content on it. If you choose to act on something you read here and it doesn't work for your situation,
-        that's on you, not on me.
-      </p>
-
-      <h2>5. Third-party links</h2>
-      <p>
-        Posts and pages may link to third-party sites (sources, references, tools). I don't control those sites and I'm not responsible for their content,
-        accuracy, or privacy practices. Linking isn't an endorsement.
-      </p>
-
-      <h2>6. Contact and consulting</h2>
-      <p>
-        If you reach out via the email address on this site to discuss a project, that initial conversation is not a binding engagement.
-        Any consulting, build, or advisory work is governed by a separate written agreement signed by both parties.
-      </p>
-
-      <h2>7. Changes</h2>
-      <p>
-        I may update these terms from time to time. The "Last updated" date at the top reflects the most recent revision.
-        Continued use of the site after a revision means you accept the new terms.
-      </p>
-
-      <h2>8. Governing law</h2>
-      <p>
-        These terms are governed by the laws of Mexico, without regard to conflict-of-law rules.
-        If you're using the site from another jurisdiction, you're responsible for complying with your local laws.
-      </p>
-
-      <h2>9. Contact</h2>
-      <p>
-        Questions about these terms: <a href={`mailto:${site.email}`}>{site.email}</a>.
-      </p>
+      <div class="md:col-span-2">
+        <h1 class="font-display text-5xl md:text-6xl tracking-tight leading-[1.05]">
+          Terms of Use
+        </h1>
+        <p class="mt-6 text-lg md:text-xl text-[color:var(--color-muted)] leading-relaxed max-w-2xl">
+          The rules for using this website. Plain language, no surprises.
+        </p>
+        <p class="mt-6 text-lg leading-relaxed max-w-2xl">
+          This site (<a href={site.url} class="text-[color:var(--color-accent)] underline underline-offset-4">henrickf.com</a>) is the personal website of {site.founder}.
+          By accessing or using it, you agree to the terms below. If you don't agree, please don't use the site.
+        </p>
+      </div>
     </div>
+  </section>
 
-    <div class="mt-20 pt-12 border-t border-[color:var(--color-line)] flex justify-between items-center">
-      <a href="/" class="text-sm text-[color:var(--color-muted)] hover:text-[color:var(--color-accent)]">
-        ← Home
-      </a>
-      <a href="/privacy" class="text-sm text-[color:var(--color-muted)] hover:text-[color:var(--color-accent)]">
-        Privacy Policy →
-      </a>
+  {sections.map((s) => (
+    <section class="mx-auto max-w-6xl px-6 py-16 border-t border-[color:var(--color-line)]">
+      <div class="grid md:grid-cols-3 gap-12">
+        <div>
+          <div class="font-display text-5xl text-[color:var(--color-accent)] mb-4">{s.n}</div>
+          <h2 class="font-display text-3xl md:text-4xl tracking-tight">{s.title}</h2>
+        </div>
+        <div class="md:col-span-2 space-y-6 text-lg leading-relaxed text-[color:var(--color-muted)]">
+          {s.body.map((p) => <p>{p}</p>)}
+          {s.youCan && (
+            <div>
+              <p class="text-[color:var(--color-fg)] font-medium mb-3">You're welcome to:</p>
+              <ul class="space-y-2 list-disc pl-6">
+                {s.youCan.map((item) => <li>{item}</li>)}
+              </ul>
+            </div>
+          )}
+          {s.youCant && (
+            <div>
+              <p class="text-[color:var(--color-fg)] font-medium mb-3">You may not:</p>
+              <ul class="space-y-2 list-disc pl-6">
+                {s.youCant.map((item) => <li>{item}</li>)}
+              </ul>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <section class="mx-auto max-w-6xl px-6 py-16 border-t border-[color:var(--color-line)]">
+    <div class="grid md:grid-cols-3 gap-12">
+      <div>
+        <SectionEyebrow class="mb-3">Contact</SectionEyebrow>
+        <h2 class="font-display text-3xl md:text-4xl tracking-tight">Questions?</h2>
+      </div>
+      <div class="md:col-span-2 space-y-6 text-lg leading-relaxed text-[color:var(--color-muted)]">
+        <p>
+          Questions about these terms: <a href={`mailto:${site.email}`} class="text-[color:var(--color-accent)] underline underline-offset-4">{site.email}</a>.
+        </p>
+      </div>
     </div>
-  </article>
+  </section>
+
+  <div class="mx-auto max-w-6xl px-6 py-12 border-t border-[color:var(--color-line)] flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-sm">
+    <a href="/" class="text-[color:var(--color-muted)] hover:text-[color:var(--color-accent)]">← Home</a>
+    <a href="/privacy" class="text-[color:var(--color-muted)] hover:text-[color:var(--color-accent)]">Privacy Policy →</a>
+  </div>
 </Base>
