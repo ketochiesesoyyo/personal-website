@@ -2,8 +2,8 @@
 title: Service Core
 tagline: Accounting automation that saves 20+ hours a week of transaction matching.
 type: client
-role: Automation Architect (with partner)
-year: "2025"
+role: Automation Architect (with Clearframe Labs)
+year: "2026"
 status: live
 stack: ["iPaaS integration layer", "Payments APIs", "Subscription billing", "ERP / accounting system"]
 metrics:
@@ -23,7 +23,7 @@ Don't replace the stack — connect it. The systems they were running were the r
 Two practical calls. First, **iPaaS as the integration backbone**, not custom middleware. The finance team needed something they could observe, audit, and extend without depending on us forever — a managed integration platform fit that better than a bespoke pipeline. Second, **identifier-driven batch matching** instead of one-by-one reconciliation. The unlock was finding the common keys that link a payment authorization → its settlement → its invoice → its ledger entry, and using those keys to group transactions into batches that match together rather than transaction-by-transaction.
 
 ## What I built
-With a partner, I architected and shipped the integration layer connecting the four systems end-to-end. The pipeline pulls transaction data from each source, normalizes against shared identifiers, and surfaces grouped batches into the ERP where the finance team can match them in bulk instead of one at a time. Error handling and audit trails so finance can trust — and verify — what the automation did.
+With [Clearframe Labs](https://clearframelabs.co/), I architected and shipped the integration layer connecting the four systems end-to-end. The pipeline pulls transaction data from each source, normalizes against shared identifiers, and surfaces grouped batches into the ERP where the finance team can match them in bulk instead of one at a time. Error handling and audit trails so finance can trust — and verify — what the automation did.
 
 ## Outcome
 **20+ hours per week** of manual ledger matching eliminated. The finance team's reconciliation work shifted from line-by-line hunting to batch review and exception handling. The integration scales with the business instead of taxing it — an extra million dollars of monthly volume no longer means an extra hour of weekly reconciliation. A clean case of operational leverage: same stack, same team, fundamentally different throughput.

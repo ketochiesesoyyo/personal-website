@@ -3,7 +3,7 @@ title: Findably
 tagline: AI content engine that ranks on Google and gets cited by AI.
 type: product
 role: Founder & Builder
-year: "2025"
+year: "2026"
 status: live
 url: https://findably.app
 stack: ["Next.js", "TypeScript", "OpenAI", "Google Search Console API", "WordPress / Ghost / Wix integrations"]
@@ -26,6 +26,8 @@ Second, treat agencies as a first-class customer, not an afterthought. Each work
 
 ## What I built
 A 10-stage pipeline that runs end-to-end without manual intervention: keyword research → topic clustering → outline → draft → SEO + GEO optimization → AI-generated featured image (5 style options) → editorial review pass → scheduling → publish → ranking tracking. Outputs go directly into WordPress, Ghost, Wix, or any webhook — no copy-paste step.
+
+The GEO layer is where Findably goes deeper than typical content tools. Most products treat AI-search visibility as a checkbox bolted onto SEO. Findably treats it as its own optimization pass, with its own rubric. Each draft is shaped against the patterns that actually trigger LLM citations: self-contained answer passages a model can lift without context-collapse, question-shaped headings that map to how people prompt, entity and source signals retrieval layers index against, structured-data markup so AI engines attribute the publisher cleanly, and freshness cues that survive Perplexity-style real-time grounding. The pipeline scores each draft against that rubric before publish. The bar isn't "reads well to a human and a Googlebot." It's "is this chunk something ChatGPT, Perplexity, or Gemini would actually quote in an answer." That posture — and the tooling around it — is the same work I now apply when auditing and rebuilding sites for AI-search visibility outside of Findably itself.
 
 Beyond the pipeline: a dashboard that shows ranking movement via Google Search Console, a savings calculator that converts current freelance spend into projected ROI, multi-tenant workspace architecture for agencies, billing, free 30-day trial flow, and the marketing site itself. Designed and built end-to-end — product, infra, and brand.
 

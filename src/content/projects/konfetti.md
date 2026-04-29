@@ -3,7 +3,7 @@ title: Konfetti
 tagline: Online dating, designed exclusively for wedding guests.
 type: product
 role: Founder & Builder
-year: "2024"
+year: "2025"
 status: live
 url: https://konfetti.app
 stack: ["React Native", "TypeScript", "Supabase", "Stripe"]

@@ -3,7 +3,7 @@ title: Rodada
 tagline: The backend OS behind an out-of-home advertising fleet — inventory, campaigns, and operations on one truth.
 type: client
 role: Lead Developer
-year: "2024"
+year: "2025"
 status: live
 url: https://tryrodada.com
 stack: ["Next.js", "Postgres", "Supabase"]

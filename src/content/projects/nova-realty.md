@@ -3,7 +3,7 @@ title: Nova Realty Cocoyoc
 tagline: WhatsApp-first real estate for one of Mexico's premier weekend destinations.
 type: client
 role: Lead Developer & Designer
-year: "2024"
+year: "2026"
 status: live
 url: https://novarealtycocoyoc.com
 stack: ["Next.js", "TypeScript", "Tailwind", "Custom CMS"]
