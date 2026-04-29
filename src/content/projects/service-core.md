@@ -2,7 +2,7 @@
 title: Service Core
 tagline: Accounting automation that saves 20+ hours a week of transaction matching.
 type: client
-role: Automation Architect (with Clearframe Labs)
+role: Automation Architect (with Quantfi · Clearframe Labs)
 year: "2026"
 status: live
 stack: ["iPaaS integration layer", "Payments APIs", "Subscription billing", "ERP / accounting system"]
