@@ -9,6 +9,7 @@ const ICONS = {
   card: `<rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/>`,
   package: `<path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/>`,
   compass: `<circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>`,
+  globe: `<circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/>`,
 };
 
 const specialties = [
@@ -53,6 +54,13 @@ const specialties = [
       "Multi-tenant inventory architectures with self-serve CMS and structural SEO — patterns that translate from real estate to commodities to any catalogue-driven business.",
     evidence: "Nova Realty · Tivos · Rodada",
     icon: ICONS.package,
+  },
+  {
+    title: "Production web platforms",
+    description:
+      "Every build ships as a web product in the end. Marketing surface, product app, admin tooling, all engineered together. Modern stack (Next.js, TypeScript, Postgres, Supabase), with SSR and performance wired in from day one rather than retrofitted at launch.",
+    evidence: "MatchWise · Findably · Nova Realty · Rodada",
+    icon: ICONS.globe,
   },
   {
     title: "GEO & AI-search visibility",
