@@ -1,63 +1,19 @@
 ---
 import SectionEyebrow from "~/components/SectionEyebrow.astro";
-
-const roles = [
-  {
-    year: "2026 — Present",
-    title: "Partner",
-    company: "Clearframe Labs",
-    description:
-      "Partner at the AI/product studio behind several joint builds shown on this site. Own client-facing scoping and engagement structuring (translating founder problems into the right build, not the most interesting one), plus delivery oversight on joint engagements. Recent: Service Core (finance integration layer), Mexico por el Clima (multi-module climate platform).",
-  },
-  {
-    year: "2025 — Present",
-    title: "Director of Operations & GTM",
-    company: "MatchWise",
-    description:
-      "Designed and launched full GTM for an early-stage AI ATS. 25+ customer interviews to nail ICP and pricing. Built AI-powered recruiting workflows that cut candidate evaluation time by 90% while reducing inference costs by 60%.",
-  },
-  {
-    year: "2023 — 2025",
-    title: "Director of Strategy & Operations",
-    company: "Bedu (Lottus Education)",
-    description:
-      "Owned B2B P&L for the edtech arm of Mexico's leading higher-education group. Managed enterprise accounts worth $300K+ each (HSBC, Santander, Novartis, Accenture). Lifted B2C retention +20pts to 70%; cut opex 15% without sacrificing quality.",
-  },
-  {
-    year: "2021 — 2023",
-    title: "BDM → Head of Sales, Mexico",
-    company: "Jeeves (a16z · YC)",
-    description:
-      "Led GTM across 5 LATAM countries. Built and managed a 12-person team (+25% sales/rep in two quarters). Owned a portfolio of 100+ clients and $15M+ in credit lines; +30% revenue/account through structured cross-sell. Contributed customer-data analysis and research to the Series C deck — ~$180M raised at a $2.1B valuation.",
-  },
-  {
-    year: "2020 — 2021",
-    title: "Senior Consultant",
-    company: "KoreFusion (Mexico & Singapore)",
-    description:
-      "Market sizing and GTM strategy for fintech and payments clients across LATAM, EMEA, and the US. Researched and advised on 100+ fintechs.",
-  },
-  {
-    year: "Summer 2019",
-    title: "MBA Summer Associate, Operations",
-    company: "BBVA",
-    description:
-      "Operations rotation during the IPADE MBA. Process work inside one of LATAM's largest banks — useful exposure to how scale and regulation shape execution at a different order of magnitude than startups.",
-  },
-];
+import career from "~/content/homepage/career.json";
 ---
 
 <section id="career" class="mx-auto max-w-6xl px-6 py-24 border-t border-[color:var(--color-line)]">
   <div class="grid md:grid-cols-3 gap-12">
     <div>
-      <SectionEyebrow class="mb-3">Career</SectionEyebrow>
-      <h2 class="font-display text-4xl md:text-5xl tracking-tight">Where the depth comes from.</h2>
+      <SectionEyebrow class="mb-3">{career.eyebrow}</SectionEyebrow>
+      <h2 class="font-display text-4xl md:text-5xl tracking-tight">{career.heading}</h2>
       <p class="mt-6 text-[color:var(--color-muted)] leading-relaxed">
-        MBA, IPADE Business School. BS Industrial Engineering, Universidad Iberoamericana.
+        {career.education}
       </p>
     </div>
     <div class="md:col-span-2 space-y-8">
-      {roles.map((r) => (
+      {career.roles.map((r) => (
         <div class="grid grid-cols-[120px_1fr] md:grid-cols-[160px_1fr] gap-6 pb-8 border-b border-[color:var(--color-line)] last:border-0">
           <div class="text-sm text-[color:var(--color-muted)]">{r.year}</div>
           <div>

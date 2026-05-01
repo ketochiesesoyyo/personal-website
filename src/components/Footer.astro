@@ -1,5 +1,6 @@
 ---
 import { site } from "~/site.config";
+import footerCopy from "~/content/homepage/footer.json";
 const year = new Date().getFullYear();
 ---
 
@@ -7,7 +8,7 @@ const year = new Date().getFullYear();
   <div class="mx-auto max-w-6xl px-6 py-12 grid gap-8 md:grid-cols-4 text-sm">
     <div>
       <div class="font-display text-lg">{site.studio}</div>
-      <p class="text-[color:var(--color-muted)] mt-2 max-w-xs">{site.bio}</p>
+      <p class="text-[color:var(--color-muted)] mt-2 max-w-xs">{footerCopy.bio}</p>
     </div>
     <div>
       <div class="text-[color:var(--color-muted)] mb-3">Site</div>
@@ -36,7 +37,7 @@ const year = new Date().getFullYear();
   <div class="border-t border-[color:var(--color-line)]">
     <div class="mx-auto max-w-6xl px-6 py-6 grid grid-cols-1 sm:grid-cols-3 items-center gap-3 text-xs text-[color:var(--color-muted)]">
       <span class="sm:justify-self-start">© {year} {site.studio}.</span>
-      <span class="sm:justify-self-center">Proud supporter of 🍉</span>
+      <span class="sm:justify-self-center">{footerCopy.solidarity}</span>
       <div class="flex items-center gap-4 sm:justify-self-end">
         <a href="/terms/" class="hover:text-[color:var(--color-accent)]">Terms</a>
         <a href="/privacy/" class="hover:text-[color:var(--color-accent)]">Privacy</a>

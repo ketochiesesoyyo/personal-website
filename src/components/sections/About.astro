@@ -1,16 +1,16 @@
 ---
-import { site } from "~/site.config";
 import SectionEyebrow from "~/components/SectionEyebrow.astro";
+import about from "~/content/homepage/about.json";
 ---
 
 <section id="about" class="mx-auto max-w-6xl px-6 py-24 border-t border-[color:var(--color-line)]">
   <div class="grid md:grid-cols-3 gap-12">
     <div>
-      <SectionEyebrow class="mb-3">About</SectionEyebrow>
-      <h2 class="font-display text-4xl md:text-5xl tracking-tight">Behind the work.</h2>
+      <SectionEyebrow class="mb-3">{about.eyebrow}</SectionEyebrow>
+      <h2 class="font-display text-4xl md:text-5xl tracking-tight">{about.heading}</h2>
       <img
-        src="/henrick.jpg"
-        alt="Portrait of Henrick F."
+        src={about.portrait}
+        alt={about.portraitAlt}
         width="240"
         height="240"
         loading="lazy"
@@ -18,13 +18,9 @@ import SectionEyebrow from "~/components/SectionEyebrow.astro";
       />
     </div>
     <div class="md:col-span-2 space-y-6 text-lg leading-relaxed">
-      <p>{site.longBio}</p>
-      <p class="text-[color:var(--color-muted)]">
-        Most AI builders don't have a $15M book of business in their past. Most GTM operators can't ship the tool that fixes the problem they just diagnosed. I sit in the overlap, and that's the angle I bring to every engagement.
-      </p>
-      <p class="text-[color:var(--color-muted)]">
-        If you're building or automating something interesting, I'd like to hear about it.
-      </p>
+      {about.paragraphs.map((p, i) => (
+        <p class={i === 0 ? "" : "text-[color:var(--color-muted)]"}>{p}</p>
+      ))}
     </div>
   </div>
 </section>

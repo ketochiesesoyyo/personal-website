@@ -81,6 +81,8 @@ The trap is that one big complaint *feels* like a sufficient reason. It isn't. T
 
 Apply each as a yes/no test. Anything below three yeses is a configuration problem.
 
+A note on the thresholds below. The percentages and time windows ("more than 30% of ops eng time," "within 30% of cost," "5% breakage per quarter") are calibrations from the rebuilds I've shipped and the SaaS contracts I've owned, not industry benchmarks. Treat them as the order-of-magnitude lines I use to pull the trigger, not as audited numbers. Your distribution will differ; the signals themselves should still hold.
+
 ### Signal 1: Workflow Drift
 
 **What it is:** Your operational workflow has drifted so far from the SaaS vendor's model that you're using the tool against itself: fields renamed, statuses repurposed, automations bolted on through Zapier to translate between what the system expects and what your team actually does.
@@ -124,10 +126,12 @@ The clearest version of this I dealt with at Bedu was Notion. Forty-plus seats, 
 **Build only when ≥3 of the 4 signals fire.**
 
 - **Two signals:** configure or replace.
-- **Three signals:** build, but scope tightly to the signals firing.
-- **Four signals:** build, and scope to the whole stack.
+- **Three signals:** build, scope tightly to the signals firing.
+- **Four signals:** build, *still* scope tightly to the signals firing. The temptation is to rebuild the whole stack because every signal is screaming. Resist it. The Rodada post-mortem below is the reason.
 
 The reason the threshold is three, not two: any two signals are usually solvable inside the existing vendor with a hard 90-day project: data model cleanup, workspace re-architecture, integration consolidation. At three, you're rebuilding the workflow inside the vendor anyway. You're just paying a license fee while you do it.
+
+The reason both 3-signal and 4-signal cases collapse to the same scoping rule: signal count tells you whether the build is justified. It does not tell you how much of the workflow to rebuild. Those are two decisions, and the second one kills more builds than the first.
 
 ## Rebuild vs Configure vs Replace
 

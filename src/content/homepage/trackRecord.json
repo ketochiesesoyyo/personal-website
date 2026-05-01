@@ -1,0 +1,13 @@
+{
+  "eyebrow": "Experience",
+  "heading": "Fast-paced, competitive environments.",
+  "intro": "From hyper-growth startups to some of LATAM's largest banks and search funds.",
+  "companies": [
+    { "name": "Jeeves (a16z · YC)", "url": "https://tryjeeves.com" },
+    { "name": "Lottus Education", "url": "https://www.lottus.com" },
+    { "name": "MatchWise", "url": "https://matchwise.app" },
+    { "name": "BBVA", "url": "https://www.bbva.mx" },
+    { "name": "KoreFusion", "url": "https://www.korefusion.com" }
+  ],
+  "footnote": "Enterprise accounts at Lottus Education — Mexico's leading higher-education platform — included HSBC · Santander · Novartis · Accenture. Contributed to Jeeves' Series C — ~$180M raised at a $2.1B valuation."
+}

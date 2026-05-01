@@ -1,0 +1,33 @@
+{
+  "eyebrow": "Services",
+  "heading": "Ways to work together.",
+  "intro": "Four engagement formats. Pick the one that matches the shape of your problem — or tell me you need something custom.",
+  "items": [
+    {
+      "icon": "hammer",
+      "format": "Fixed-scope · milestone-based",
+      "title": "Build engagement",
+      "description": "End-to-end product, automation, or integration work shipped to production. Custom AI apps, internal tools, ERPs, CMSs — designed, engineered, and deployed under one roof. Priced per milestone after a scoped plan."
+    },
+    {
+      "icon": "zap",
+      "format": "2–4 weeks · fixed price",
+      "title": "Prototype sprint",
+      "description": "A short engagement to pressure-test an AI idea before you commit to a full build. You walk away with a working demo, an honest read on whether to keep going, and the architecture brief for what comes next."
+    },
+    {
+      "icon": "compass",
+      "format": "Monthly · recurring",
+      "title": "Advisory retainer",
+      "description": "GTM and RevOps work at a leadership cadence. ICP, pricing, sales process, pipeline, the playbook to run it. Standalone, or layered onto a build engagement when the strategy and the system need to ship together."
+    },
+    {
+      "icon": "searchCheck",
+      "format": "One-time · fixed deliverable",
+      "title": "Audit & assessment",
+      "description": "A focused review of one surface area — your AI roadmap, your ops stack, your GTM motion — with concrete recommendations and a build plan. Useful before committing to a larger engagement."
+    }
+  ],
+  "ctaText": "Not sure which fits? Let's scope it together.",
+  "ctaButton": { "label": "Let's work together →", "href": "#contact" }
+}

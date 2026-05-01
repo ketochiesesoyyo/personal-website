@@ -93,7 +93,7 @@ The second-biggest lever was getting off GPT-4-tier on the per-candidate hot pat
 
 Most production AI tasks aren't general. They're narrow: extract this field, score this dimension, summarize this text. For narrow tasks, a purpose-fit smaller model is usually 10–20× cheaper at imperceptibly different quality.
 
-The current MatchWise routing:
+The current MatchWise routing (as of April 2026; specific model names will rotate as new releases land, the routing logic is what generalizes):
 
 | Function | Model | Why |
 |---|---|---|
@@ -103,6 +103,8 @@ The current MatchWise routing:
 | `parse-cv-contact`, `repair-cv-text` | `gemini-2.5-flash` | Pure extraction, no reasoning needed |
 
 The big move was the scoring function. Scoring is the per-candidate hot path and it ran on GPT-4-tier for historical reasons (that's what we built on). Once Gemini 2.5 Flash hit reliable JSON-mode, we swapped, and per-call cost dropped roughly 15× with no measurable quality regression on recruiter-rated outputs.
+
+How "no measurable regression" was actually measured, since this sentence is doing a lot of work: {{TODO: sample size of candidates re-scored on both models}} on {{TODO: number of reqs}} active jobs, with recruiters rating the shortlists side-by-side on {{TODO: rating criteria, e.g. "would interview / would not"}}. Not a formal A/B with statistical power, more of an operator-grade smoke test. I'd treat the 15× cost win as well-supported and the quality-parity claim as directional. If you're swapping models on a hot path, run the same shape of comparison before and after.
 
 The general rule: audit every distinct AI call in your pipeline. For each one, ask whether it's general (reasoning, edge cases, novel domains) or narrow (one task, well-defined output). Anything narrow probably belongs on a smaller model. The "default to GPT-4 because it works" reflex is the biggest single line item teams overpay for.
 
@@ -132,6 +134,8 @@ The current pipeline computes Jaccard similarity between the old and new JD. If 
 
 This is a smaller lever than the first four (it only kicks in on re-scores, and only when JD changes are minor), but it's high-ROI because it's pure savings. The candidates were already scored; we're just not paying to re-confirm the same answer.
 
+Caveat I owe up front: I now think this lever is a band-aid for non-determinism, not a real architectural fix. It's saving money against the wrong baseline. The right fix is dimension-scoped re-scoring with a cached JD prefix, which I unpack in "what I'd reverse today" below. Lever 5 ships today; the reversal is what I'd do next.
+
 ## Lever 6: Force structured JSON output
 
 The early scoring prompt asked the model to "respond in JSON format with the following fields…" and let the model figure it out. The model would routinely warm up with 200–400 tokens of "Sure! Here's my analysis of the candidate's fit for this role:" before the actual JSON started. Sometimes the JSON was malformed and we had to retry.
@@ -150,7 +154,9 @@ The first was lexical mismatch. A candidate with five years at Google as a Senio
 
 The second was burying the lede. Strong candidates often write strong project descriptions ("Led the migration of a 200M-row Postgres database to..."). The relevant skill ("PostgreSQL", "database scaling") might be implicit in the prose, not listed in a skills section. Retrieval keyed on JD requirements like "PostgreSQL experience" would skip the project description because the lexical match was weak, missing the strongest signal in the CV.
 
-We ripped out RAG and went back to whole-CV-in-context with truncation. The lesson generalized: the real win in the cost optimization was *not calling AI at all* (lever 1), not being clever about what to send. RAG is the right answer for very long documents (legal contracts, 200-page reports) where you genuinely can't fit the whole thing in context. For single-page-equivalent inputs, full context plus truncation beats clever retrieval almost every time, because the model needs the whole narrative to weigh implicit signal.
+We ripped out RAG and went back to whole-CV-in-context with truncation. The lesson generalized: the real win in the cost optimization was *not calling AI at all* (lever 1), not being clever about what to send.
+
+To narrow the claim before someone narrows it for me: this was naive single-vector retrieval against documents that fit in context. Hybrid retrieval (BM25 plus dense embeddings) addresses the lexical-mismatch failure mode and would have caught more of the "Senior PM, Google" type signals. The deeper point still holds: when the document fits in context, retrieval is solving a problem you don't have, and the rerank quality has to be near-perfect to beat just sending the whole thing. RAG is the right answer for documents that genuinely don't fit (legal contracts, multi-hundred-page reports). For single-page-equivalent inputs, full context plus truncation almost always wins.
 
 ## What I'd reverse today (April 2026)
 
@@ -180,6 +186,6 @@ The six levers generalize. For any production LLM pipeline, in order:
 5. **Detect when work is redundant.** If you re-score, re-summarize, or re-extract the same input under near-identical conditions, you should have a delta-detection layer skipping the re-call.
 6. **Force structured outputs.** Strict schemas eliminate preamble tokens, drop retries, and make downstream code reliable. Free win.
 
-And the trap to avoid: don't reach for embeddings + RAG before you've done 1–6. RAG is genuinely useful for documents that don't fit in context. It's a footgun for documents that do.
+And the trap to avoid: don't reach for naive single-vector RAG on documents that fit in context before you've done 1–6. Hybrid retrieval (BM25 + dense) closes some of the failure modes, but the real heuristic is simpler: if your document fits in context, retrieval is solving a problem you don't have. RAG is genuinely useful for documents that don't fit (long contracts, multi-hundred-page reports). It's a footgun for documents that do.
 
 The cheapest call is the one you don't make. The second cheapest is the one you make on the right model with a cached prefix and a tight schema. Everything else is a rounding error.

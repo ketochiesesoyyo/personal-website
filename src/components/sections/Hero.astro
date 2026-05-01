@@ -1,4 +1,5 @@
 ---
+import hero from "~/content/homepage/hero.json";
 ---
 
 <section class="relative overflow-hidden">
@@ -10,44 +11,34 @@
   <div class="relative z-10 mx-auto max-w-6xl px-6 pt-24 pb-32 md:pt-36 md:pb-44">
     <div class="max-w-3xl">
       <h1 class="font-display text-5xl md:text-7xl leading-[1.05] tracking-tight">
-        I build AI automations<br />and custom apps that<br />
-        <span class="italic text-[color:var(--color-accent)]">save B2B companies real money.</span>
+        {hero.headlineLine1}<br />{hero.headlineLine2}<br />
+        <span class="italic text-[color:var(--color-accent)]">{hero.headlineAccent}</span>
       </h1>
       <p class="mt-10 text-lg text-[color:var(--color-muted)] max-w-2xl leading-relaxed">
-        6+ years scaling revenue at venture-backed fintech, edtech, and AI startups across LATAM — so I build the things you actually need, not the ones I'd find interesting in a vacuum.
+        {hero.subheadline}
       </p>
       <div class="mt-12 flex flex-wrap gap-4">
         <a
-          href="#work"
+          href={hero.primaryCta.href}
           class="px-6 py-3 rounded-full bg-[color:var(--color-fg)] text-[color:var(--color-bg)] hover:bg-[color:var(--color-accent)] transition-colors"
         >
-          See the work
+          {hero.primaryCta.label}
         </a>
         <a
-          href="#contact"
+          href={hero.secondaryCta.href}
           class="px-6 py-3 rounded-full border border-[color:var(--color-fg)] hover:bg-[color:var(--color-fg)] hover:text-[color:var(--color-bg)] transition-colors"
         >
-          Start a project
+          {hero.secondaryCta.label}
         </a>
       </div>
     </div>
     <div class="mt-24 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl">
-      <div>
-        <div class="font-display text-3xl">6+</div>
-        <div class="text-xs text-[color:var(--color-muted)] uppercase tracking-wider mt-1">Years scaling revenue</div>
-      </div>
-      <div>
-        <div class="font-display text-3xl">$15M+</div>
-        <div class="text-xs text-[color:var(--color-muted)] uppercase tracking-wider mt-1">Credit lines managed</div>
-      </div>
-      <div>
-        <div class="font-display text-3xl">5</div>
-        <div class="text-xs text-[color:var(--color-muted)] uppercase tracking-wider mt-1">LATAM countries</div>
-      </div>
-      <div>
-        <div class="font-display text-3xl">8</div>
-        <div class="text-xs text-[color:var(--color-muted)] uppercase tracking-wider mt-1">Systems shipped</div>
-      </div>
+      {hero.stats.map((stat) => (
+        <div>
+          <div class="font-display text-3xl">{stat.value}</div>
+          <div class="text-xs text-[color:var(--color-muted)] uppercase tracking-wider mt-1">{stat.label}</div>
+        </div>
+      ))}
     </div>
   </div>
 </section>
