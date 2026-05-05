@@ -3,21 +3,31 @@ title: MatchWise
 tagline: Structured recruitment, clearer decisions — AI-assisted, human-controlled.
 type: product
 role: Director of Operations & GTM
-year: "2025"
+year: '2025'
 status: live
 url: https://matchwise.app
-stack: ["Next.js", "Python", "OpenAI", "Postgres", "Embeddings"]
+stack:
+  - Next.js
+  - Python
+  - OpenAI
+  - Postgres
+  - Embeddings
+categories:
+  - app
 metrics:
-  - { label: "Screening time", value: "−80–90%" }
-  - { label: "Inference cost", value: "−60%" }
+  - label: Screening time
+    value: −80–90%
+  - label: Inference cost
+    value: −60%
 featured: true
 order: 3
 ---
-
 ## The problem
+
 Hiring breaks at scale. A team that works fine recruiting one role at a time becomes chaotic at five — context bleeds between candidates, CVs become impossible to compare, and decisions get made on whichever interview fragment someone happened to remember. Most ATSs in the market solve filing, not deciding. They store data; they don't help you reach a conclusion. AI tools that *do* try to help usually overreach, hand-wave the scoring, and make recruiters feel like the decision was taken away from them.
 
 ## The approach
+
 Three calls shaped the product.
 
 First, be explainable, not magical. Every score is a transparent breakdown — skills, experience, industry fit, tools — so a recruiter sees exactly *why* a candidate ranked where they did. Black-box AI in hiring is a non-starter; it's unsellable to legal, and it's wrong on its merits.
@@ -27,9 +37,11 @@ Second, design for two distinct ICPs from day one: internal HR teams, and recrui
 Third, treat inference cost like a real engineering constraint, not an afterthought. Naive prompting is fine until you're scoring 10,000 CVs a week, at which point you can't break even. Retrieval-first design, prompt compression, and disciplined model-selection brought inference cost down 60% vs. baseline without measurable quality loss.
 
 ## What I built
+
 A complete ATS surface area: AI-powered CV parsing (PDF, Word, image), bulk upload (up to 100 CVs at once), 0–100 candidate scoring with category breakdown, knockout questions, configurable Kanban pipelines per role, custom interview forms with weighted criteria, secure external links for client-side hiring managers in agency setups, automated email cadences, smart reminders, task management, candidate document management, and a global comparison view across jobs. Plus the operations layer agencies need: client CRM, multi-org workspaces, analytics dashboards, GDPR-compliant data handling, and a complete audit trail.
 
 Beyond the platform, I designed and launched the full GTM: 25+ customer interviews to define ICP and pricing, the onboarding flow, the AI workflows, and the unit-economics thresholds that govern when to use which model and how often.
 
 ## Outcome
+
 80–90% reduction in screening time across early pilots. 60% reduction in inference cost vs. naive prompting. In early access with internal HR teams, headhunters, and agencies — picking up the customers who tried generic ATSs and bounced because they couldn't trust the AI layer.

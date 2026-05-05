@@ -4,8 +4,8 @@ import SectionEyebrow from "~/components/SectionEyebrow.astro";
 const steps = [
   {
     n: "01",
-    title: "Discover",
-    description: "A short call to map the problem, the constraints, and what success looks like. Free.",
+    title: "Scope",
+    description: "A working session to pressure-test the problem, the constraints, and what success actually looks like. Free.",
   },
   {
     n: "02",
@@ -17,15 +17,20 @@ const steps = [
     title: "Build & ship",
     description: "Weekly demos, fast feedback, and a working product in your hands within weeks, not quarters.",
   },
+  {
+    n: "04",
+    title: "Operate",
+    description: "Optional ongoing partnership once it's live. Monitoring, iteration, new features, AI cost tuning. Monthly, cancel anytime.",
+  },
 ];
 ---
 
 <section id="process" class="mx-auto max-w-6xl px-6 py-24 border-t border-[color:var(--color-line)]">
   <div class="mb-12">
     <SectionEyebrow class="mb-3">Process</SectionEyebrow>
-    <h2 class="font-display text-4xl md:text-5xl tracking-tight">Three steps. No drama.</h2>
+    <h2 class="font-display text-4xl md:text-5xl tracking-tight">Four steps. No drama.</h2>
   </div>
-  <div class="grid md:grid-cols-3 gap-8">
+  <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
     {steps.map((s) => (
       <div>
         <div class="font-display text-5xl text-[color:var(--color-accent)] mb-4">{s.n}</div>

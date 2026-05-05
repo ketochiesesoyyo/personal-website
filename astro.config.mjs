@@ -11,6 +11,9 @@ export default defineConfig({
   trailingSlash: "ignore",
   output: "static",
   adapter: vercel(),
+  redirects: {
+    "/admin": "/keystatic",
+  },
   integrations: [
     react(),
     markdoc(),

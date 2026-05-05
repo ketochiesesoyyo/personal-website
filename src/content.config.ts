@@ -13,6 +13,7 @@ const projects = defineCollection({
     url: z.string().url().optional(),
     cover: z.string().optional(),
     stack: z.array(z.string()).default([]),
+    categories: z.array(z.string()).default([]),
     metrics: z
       .array(z.object({ label: z.string(), value: z.string() }))
       .default([]),

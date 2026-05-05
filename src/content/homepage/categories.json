@@ -1,0 +1,21 @@
+{
+  "allLabel": "All",
+  "items": [
+    {
+      "value": "website",
+      "label": "Websites"
+    },
+    {
+      "value": "platform",
+      "label": "Business Platforms"
+    },
+    {
+      "value": "app",
+      "label": "App and Webapps"
+    },
+    {
+      "value": "automation",
+      "label": "AI Processes & Automations"
+    }
+  ]
+}

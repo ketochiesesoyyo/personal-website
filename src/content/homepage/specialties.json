@@ -16,22 +16,16 @@
       "evidence": "Rodada · Nova Realty · Mexico por el Clima"
     },
     {
-      "icon": "workflow",
-      "title": "System-of-record integration",
-      "description": "iPaaS-based integration layers that connect payments, billing, ERPs, and CRMs into a single operable ledger. The hours-back-per-week kind of work.",
-      "evidence": "Service Core"
-    },
-    {
-      "icon": "message",
-      "title": "WhatsApp-first conversion (LATAM)",
-      "description": "Conversion architectures designed around how Mexican and LATAM buyers actually transact — chat over forms, deep links over inboxes, SKU-aware messaging.",
-      "evidence": "Nova Realty · Tivos v2"
-    },
-    {
       "icon": "card",
       "title": "Fintech & payments",
       "description": "GTM, product, and integration work for venture-backed fintechs and payment-adjacent operations. Years across hyper-growth, consulting, and bank-side seats.",
       "evidence": "Jeeves · KoreFusion · BBVA · Service Core"
+    },
+    {
+      "icon": "compass",
+      "title": "GEO & AI-search visibility",
+      "description": "Generative-engine optimization end-to-end — from content architecture and citability scoring to building the tooling that gets sites cited by ChatGPT, Perplexity, and Gemini. Where most teams are still treating LLM traffic as an afterthought.",
+      "evidence": "Findably · this site"
     },
     {
       "icon": "package",
@@ -46,10 +40,16 @@
       "evidence": "MatchWise · Findably · Nova Realty · Rodada"
     },
     {
-      "icon": "compass",
-      "title": "GEO & AI-search visibility",
-      "description": "Generative-engine optimization end-to-end — from content architecture and citability scoring to building the tooling that gets sites cited by ChatGPT, Perplexity, and Gemini. Where most teams are still treating LLM traffic as an afterthought.",
-      "evidence": "Findably · this site"
+      "icon": "workflow",
+      "title": "System-of-record integration",
+      "description": "iPaaS-based integration layers that connect payments, billing, ERPs, and CRMs into a single operable ledger. The hours-back-per-week kind of work.",
+      "evidence": "Service Core"
+    },
+    {
+      "icon": "message",
+      "title": "WhatsApp-first conversion (LATAM)",
+      "description": "Conversion architectures designed around how Mexican and LATAM buyers actually transact — chat over forms, deep links over inboxes, SKU-aware messaging.",
+      "evidence": "Nova Realty · Tivos v2"
     }
   ]
 }

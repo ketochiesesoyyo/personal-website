@@ -1,13 +1,27 @@
 ---
 import { getCollection } from "astro:content";
 import SectionEyebrow from "~/components/SectionEyebrow.astro";
+import categoriesConfig from "~/content/homepage/categories.json";
 
 const all = await getCollection("projects");
 const projects = all.sort((a, b) => a.data.order - b.data.order);
+
+// Only show chips for categories that at least one project uses, so removing
+// the last project for a category doesn't leave a dead chip.
+const usedTags = new Set<string>(
+  projects.flatMap((p) => p.data.categories ?? [])
+);
+
+const FILTERS = [
+  { value: "all", label: categoriesConfig.allLabel || "All" },
+  ...categoriesConfig.items
+    .filter((item) => usedTags.has(item.value))
+    .map((item) => ({ value: item.value, label: item.label })),
+];
 ---
 
 <section id="work" class="mx-auto max-w-6xl px-6 py-24 border-t border-[color:var(--color-line)]">
-  <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
+  <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
     <div>
       <SectionEyebrow class="mb-3">Selected work</SectionEyebrow>
       <h2 class="font-display text-4xl md:text-5xl tracking-tight">Products & case studies</h2>
@@ -16,12 +30,35 @@ const projects = all.sort((a, b) => a.data.order - b.data.order);
       A mix of products I own and client engagements. Click through for the full story behind each.
     </p>
   </div>
-  <ul class="border-t border-[color:var(--color-line)]">
+
+  <div
+    class="work-filters flex flex-wrap gap-2 mb-10"
+    role="tablist"
+    aria-label="Filter projects by category"
+  >
+    {FILTERS.map((f, i) => (
+      <button
+        type="button"
+        class="work-filter-chip"
+        data-filter={f.value}
+        aria-pressed={i === 0 ? "true" : "false"}
+        role="tab"
+      >
+        {f.label}
+      </button>
+    ))}
+  </div>
+
+  <ul id="work-list" class="border-t border-[color:var(--color-line)]">
     {projects.map((project) => {
       const { data, id } = project;
       const typeLabel = data.type === "product" ? "Own product" : "Client work";
+      const cats = JSON.stringify(data.categories ?? []);
       return (
-        <li>
+        <li
+          class="work-item"
+          data-categories={cats}
+        >
           <a
             href={`/projects/${id}/`}
             class="group block py-7 md:py-8 border-b border-[color:var(--color-line)]"
@@ -47,4 +84,77 @@ const projects = all.sort((a, b) => a.data.order - b.data.order);
       );
     })}
   </ul>
+
+  <p
+    id="work-empty"
+    class="hidden text-[color:var(--color-muted)] py-10 text-center border-b border-[color:var(--color-line)]"
+  >
+    No projects in this category yet.
+  </p>
 </section>
+
+<style>
+  .work-filter-chip {
+    font-size: 0.8125rem;
+    letter-spacing: 0.04em;
+    padding: 0.4rem 0.85rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-line);
+    color: var(--color-muted);
+    background: transparent;
+    cursor: pointer;
+    transition: color 120ms ease, border-color 120ms ease, background 120ms ease;
+  }
+  .work-filter-chip:hover {
+    color: var(--color-fg);
+    border-color: var(--color-fg);
+  }
+  .work-filter-chip[aria-pressed="true"] {
+    color: var(--color-bg);
+    background: var(--color-fg);
+    border-color: var(--color-fg);
+  }
+</style>
+
+<script>
+  const root = document.currentScript?.previousElementSibling;
+  // Scope queries to the document — Astro's view transitions can re-run scripts.
+  const init = () => {
+    const chips = document.querySelectorAll<HTMLButtonElement>(".work-filter-chip");
+    const items = document.querySelectorAll<HTMLLIElement>(".work-item");
+    const empty = document.getElementById("work-empty");
+    if (!chips.length || !items.length) return;
+
+    const parseCats = (raw: string | undefined): string[] => {
+      if (!raw) return [];
+      try {
+        const parsed = JSON.parse(raw);
+        return Array.isArray(parsed) ? parsed.map(String) : [];
+      } catch {
+        return [];
+      }
+    };
+
+    const apply = (filter: string) => {
+      let visible = 0;
+      items.forEach((li) => {
+        const cats = parseCats(li.dataset.categories);
+        const match = filter === "all" || cats.includes(filter);
+        li.classList.toggle("hidden", !match);
+        if (match) visible += 1;
+      });
+      if (empty) empty.classList.toggle("hidden", visible !== 0);
+    };
+
+    chips.forEach((chip) => {
+      chip.addEventListener("click", () => {
+        chips.forEach((c) => c.setAttribute("aria-pressed", "false"));
+        chip.setAttribute("aria-pressed", "true");
+        apply(chip.dataset.filter ?? "all");
+      });
+    });
+  };
+
+  init();
+  document.addEventListener("astro:page-load", init);
+</script>

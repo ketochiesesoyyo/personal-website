@@ -1,0 +1,8 @@
+---
+import KeystaticAdmin from "~/components/KeystaticAdmin";
+
+export const prerender = false;
+---
+
+<KeystaticAdmin client:only="react" />
+<script src="/admin-toolbar.js" is:inline defer></script>

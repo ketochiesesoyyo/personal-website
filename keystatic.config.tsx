@@ -1,4 +1,15 @@
 import { config, fields, collection, singleton } from "@keystatic/core";
+import categoriesData from "./src/content/homepage/categories.json";
+
+// Read the master list at config-load time so the project picker is populated
+// from the same source that drives the homepage filter chips. Adding a brand-
+// new category requires adding it to the Categories singleton and reloading
+// the admin (Keystatic doesn't support truly dynamic field options).
+const CATEGORY_OPTIONS = (
+  Array.isArray(categoriesData?.items) && categoriesData.items.length > 0
+    ? categoriesData.items
+    : [{ value: "category", label: "Category" }]
+).map((it) => ({ value: String(it.value), label: String(it.label) }));
 
 const SERVICE_ICON_OPTIONS = [
   { label: "Hammer (build)", value: "hammer" },
@@ -259,6 +270,52 @@ export default config({
       },
     }),
 
+    categories: singleton({
+      label: "Categories",
+      path: "src/content/homepage/categories",
+      format: { data: "json" },
+      schema: {
+        allLabel: fields.text({
+          label: "\"All\" chip label",
+          description: "Text on the first chip (the one that shows every project).",
+          defaultValue: "All",
+          validation: { length: { min: 1 } },
+        }),
+        items: fields.array(
+          fields.object({
+            label: fields.text({
+              label: "Display label",
+              description:
+                "Shown on the homepage filter chip and on the per-project picker. Safe to rename anytime.",
+              validation: { length: { min: 1 } },
+            }),
+            value: fields.text({
+              label: "Slug (permanent ID — do not change)",
+              description:
+                "Stable identifier saved into project frontmatter. Lowercase, no spaces (e.g. website, app, platform). Renaming this AFTER you have tagged any project will break those tags. Only edit when first creating the entry.",
+              validation: {
+                length: { min: 1 },
+                pattern: {
+                  regex: /^[a-z0-9][a-z0-9-]*$/,
+                  message:
+                    "Use lowercase letters, digits, and hyphens only (no spaces). Treat this as a permanent ID.",
+                },
+              },
+            }),
+          }),
+          {
+            label: "Categories",
+            description:
+              "Master list of project categories. To rename a chip, change its label only — never the slug.",
+            itemLabel: (props) =>
+              props.fields.label.value && props.fields.value.value
+                ? `${props.fields.label.value}  ·  ${props.fields.value.value}`
+                : "Category",
+          }
+        ),
+      },
+    }),
+
     footerCopy: singleton({
       label: "Footer copy",
       path: "src/content/homepage/footer",
@@ -394,7 +451,10 @@ export default config({
       path: "src/content/projects/*",
       format: { contentField: "content" },
       entryLayout: "content",
-      columns: ["title", "year", "status"],
+      // @ts-expect-error — Keystatic's column type formally rejects array fields,
+      // but at runtime arrays render via String(value) (comma-joined). Works as a
+      // read-only summary column; clicking the row opens the detail editor.
+      columns: ["title", "year", "status", "categories"],
       schema: {
         title: fields.slug({
           name: { label: "Project name", validation: { length: { min: 1 } } },
@@ -443,6 +503,13 @@ export default config({
             itemLabel: (props) => props.value || "Tech",
           }
         ),
+        categories: fields.multiselect({
+          label: "Categories",
+          description:
+            "Tick the categories that apply. To add a brand-new category, edit the Categories singleton in the sidebar and reload the admin.",
+          options: CATEGORY_OPTIONS,
+          defaultValue: [],
+        }),
         metrics: fields.array(
           fields.object({
             label: fields.text({

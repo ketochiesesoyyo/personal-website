@@ -25,9 +25,12 @@
       "icon": "searchCheck",
       "format": "One-time · fixed deliverable",
       "title": "Audit & assessment",
-      "description": "A focused review of one surface area — your AI roadmap, your ops stack, your GTM motion — with concrete recommendations and a build plan. Useful before committing to a larger engagement."
+      "description": "A focused review of one surface area, your AI roadmap, your ops stack, your GTM motion; with concrete recommendations and a build plan. Useful before committing to a larger engagement."
     }
   ],
   "ctaText": "Not sure which fits? Let's scope it together.",
-  "ctaButton": { "label": "Let's work together →", "href": "#contact" }
+  "ctaButton": {
+    "label": "Let's work together →",
+    "href": "#contact"
+  }
 }

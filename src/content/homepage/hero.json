@@ -2,13 +2,31 @@
   "headlineLine1": "I build AI automations",
   "headlineLine2": "and custom apps that",
   "headlineAccent": "save B2B companies real money.",
-  "subheadline": "6+ years scaling revenue at venture-backed fintech, edtech, and AI startups across LATAM — so I build the things you actually need, not the ones I'd find interesting in a vacuum.",
-  "primaryCta": { "label": "See the work", "href": "#work" },
-  "secondaryCta": { "label": "Start a project", "href": "#contact" },
+  "subheadline": "6+ years scaling revenue at venture-backed fintech, edtech, and AI startups across LATAM, so I build the things you actually need, not the ones I'd find interesting in a vacuum.",
+  "primaryCta": {
+    "label": "See the work",
+    "href": "#work"
+  },
+  "secondaryCta": {
+    "label": "Start a project",
+    "href": "#contact"
+  },
   "stats": [
-    { "value": "6+", "label": "Years scaling revenue" },
-    { "value": "$15M+", "label": "Credit lines managed" },
-    { "value": "5", "label": "LATAM countries" },
-    { "value": "8", "label": "Systems shipped" }
+    {
+      "value": "6+",
+      "label": "Years scaling revenue"
+    },
+    {
+      "value": "$15M+",
+      "label": "Credit lines managed"
+    },
+    {
+      "value": "5",
+      "label": "LATAM countries"
+    },
+    {
+      "value": "8",
+      "label": "Systems shipped"
+    }
   ]
 }
