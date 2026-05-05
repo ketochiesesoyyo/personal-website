@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://henrickf.com/sitemap-index.xml
+Sitemap: https://www.henrickf.com/sitemap-index.xml

@@ -1,7 +1,7 @@
 export const site = {
   studio: "Henrick F.",
   founder: "Henrick F.",
-  url: "https://henrickf.com",
+  url: "https://www.henrickf.com",
   bio: "I build AI automations and custom apps that save B2B companies real money.",
   longBio:
     "I'm Henrick — an independent product and AI builder. I build AI automations and custom apps for B2B companies, with the operational depth to know which problems are actually worth solving. The last 6+ years: scaling revenue and operations at venture-backed fintech, edtech, and AI startups across LATAM — running enterprise accounts at Bedu, leading sales for Jeeves (a16z-backed), advising fintechs at KoreFusion, and now operating MatchWise, an AI ATS. Building is what I love most. The GTM/ops background just means I build the right things.",

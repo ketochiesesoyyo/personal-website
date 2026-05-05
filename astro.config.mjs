@@ -7,7 +7,7 @@ import markdoc from "@astrojs/markdoc";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
-  site: "https://henrickf.com",
+  site: "https://www.henrickf.com",
   trailingSlash: "ignore",
   output: "static",
   adapter: vercel(),
