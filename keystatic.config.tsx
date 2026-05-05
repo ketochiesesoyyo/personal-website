@@ -270,6 +270,52 @@ export default config({
       },
     }),
 
+    locations: singleton({
+      label: "Client locations",
+      path: "src/content/homepage/locations",
+      format: { data: "json" },
+      schema: {
+        eyebrow: fields.text({ label: "Eyebrow", validation: { length: { min: 1 } } }),
+        heading: fields.text({ label: "Heading", validation: { length: { min: 1 } } }),
+        intro: fields.text({
+          label: "Intro paragraph",
+          multiline: true,
+          validation: { length: { min: 1 } },
+        }),
+        items: fields.array(
+          fields.object({
+            label: fields.text({
+              label: "City",
+              validation: { length: { min: 1 } },
+            }),
+            country: fields.text({
+              label: "Country",
+              validation: { length: { min: 1 } },
+            }),
+            lat: fields.number({
+              label: "Latitude",
+              description: "Decimal degrees, -90 to 90 (positive = north).",
+              validation: { isRequired: true, min: -90, max: 90 },
+            }),
+            lng: fields.number({
+              label: "Longitude",
+              description: "Decimal degrees, -180 to 180 (positive = east).",
+              validation: { isRequired: true, min: -180, max: 180 },
+            }),
+          }),
+          {
+            label: "Locations",
+            description:
+              "City markers on the world map. Coordinates beyond the rendered region (lat > 71 or < -56) won't draw.",
+            itemLabel: (props) =>
+              props.fields.label.value && props.fields.country.value
+                ? `${props.fields.label.value}, ${props.fields.country.value}`
+                : props.fields.label.value || "Location",
+          }
+        ),
+      },
+    }),
+
     categories: singleton({
       label: "Categories",
       path: "src/content/homepage/categories",

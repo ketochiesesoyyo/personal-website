@@ -1,0 +1,31 @@
+{
+  "eyebrow": "Client locations",
+  "heading": "Global by default.",
+  "intro": "I take on projects from anywhere. The markers below are my current engagements, not the limit.",
+  "items": [
+    {
+      "label": "New York",
+      "country": "USA",
+      "lat": 40.7128,
+      "lng": -74.006
+    },
+    {
+      "label": "Denver",
+      "country": "USA",
+      "lat": 39.7392,
+      "lng": -104.9903
+    },
+    {
+      "label": "Mexico City",
+      "country": "Mexico",
+      "lat": 19.4326,
+      "lng": -99.1332
+    },
+    {
+      "label": "Basel",
+      "country": "Switzerland",
+      "lat": 47.3769,
+      "lng": 8.5417
+    }
+  ]
+}
