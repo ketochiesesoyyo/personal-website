@@ -1,30 +1,41 @@
 ---
 title: Service Core
-tagline: Accounting automation that saves 20+ hours a week of transaction matching.
+tagline: Accounting automation that saves 20+ hours a month of transaction matching.
 type: client
 role: Automation Architect (with Quantfi · Clearframe Labs)
-year: "2026"
+year: '2026'
 status: live
-stack: ["iPaaS integration layer", "Payments APIs", "Subscription billing", "ERP / accounting system"]
-categories: ["automation"]
+stack:
+  - iPaaS integration layer
+  - Payments APIs
+  - Subscription billing
+  - ERP / accounting system
+categories:
+  - automation
 metrics:
-  - { label: "Hours saved / week", value: "20+" }
-  - { label: "Systems connected", value: "4 — payments, settlement, billing, ERP" }
-  - { label: "Bottleneck removed", value: "Manual ledger matching" }
+  - label: Hours saved / week
+    value: 20+
+  - label: Systems connected
+    value: 4 — payments, settlement, billing, ERP
+  - label: Bottleneck removed
+    value: Manual ledger matching
 featured: false
 order: 8
 ---
-
 ## The problem
+
 Service Core was running a textbook mid-market finance stack: a payment processor, a card-settlement provider, a subscription billing platform, and an ERP as the system of record. Each tool was doing its job. The pain was in the seams. Someone on the finance team had to spend hours every week reconciling transactions across systems — pulling data from each platform, hunting for the common identifier that would let them match a payment to its invoice to its ledger entry, and reconciling line by line. At their volume that was a 20+ hour-a-week task that scaled linearly with the business and pulled the finance team away from actual finance work.
 
 ## The approach
+
 Don't replace the stack — connect it. The systems they were running were the right ones. The problem was orchestration, not tooling. Build the integration layer that lets the existing stack behave like a single ledger.
 
 Two practical calls. First, **iPaaS as the integration backbone**, not custom middleware. The finance team needed something they could observe, audit, and extend without depending on us forever — a managed integration platform fit that better than a bespoke pipeline. Second, **identifier-driven batch matching** instead of one-by-one reconciliation. The unlock was finding the common keys that link a payment authorization → its settlement → its invoice → its ledger entry, and using those keys to group transactions into batches that match together rather than transaction-by-transaction.
 
 ## What I built
+
 With [Quantfi](https://quantfi.us/) and [Clearframe Labs](https://clearframelabs.co/), I architected and shipped the integration layer connecting the four systems end-to-end. The pipeline pulls transaction data from each source, normalizes against shared identifiers, and surfaces grouped batches into the ERP where the finance team can match them in bulk instead of one at a time. Error handling and audit trails so finance can trust — and verify — what the automation did.
 
 ## Outcome
+
 **20+ hours per week** of manual ledger matching eliminated. The finance team's reconciliation work shifted from line-by-line hunting to batch review and exception handling. The integration scales with the business instead of taxing it — an extra million dollars of monthly volume no longer means an extra hour of weekly reconciliation. A clean case of operational leverage: same stack, same team, fundamentally different throughput.
