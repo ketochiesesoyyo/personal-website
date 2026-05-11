@@ -1,6 +1,12 @@
 ---
-title: "When LLM Cost-Saving Automation Backfires: 6 Patterns I've Watched Burn Production Pipelines"
-excerpt: "Most LLM cost-saving automations make sense on a whiteboard and break in production. Here are the six failure modes I've seen most often, why they backfire, and the pre-flight checklist I use before automating any LLM cost lever."
+title: >-
+  When LLM Cost-Saving Automation Backfires: 6 Patterns I've Watched Burn
+  Production Pipelines
+excerpt: >-
+  Most LLM cost-saving automations make sense on a whiteboard and break in
+  production. Here are the six failure modes I've seen most often, why they
+  backfire, and the pre-flight checklist I use before automating any LLM cost
+  lever.
 publishedAt: 2026-05-11
 topic: AI
 sourceUrls:
@@ -20,28 +26,64 @@ about:
   - AI engineering pitfalls
 faqs:
   - q: Why do LLM cost-saving automations backfire so often?
-    a: "Because they optimize against the wrong baseline. The automation looks correct against a static benchmark and breaks in production where inputs are non-stationary, quality signals lag billing by weeks, and the failure mode is silent (a wrong answer served cheaply) instead of loud (a call that costs more than expected). Cost-saving automation rarely fails by raising the bill. It usually fails by lowering quality in a way you only catch through customer complaints or downstream churn."
+    a: >-
+      Because they optimize against the wrong baseline. The automation looks
+      correct against a static benchmark and breaks in production where inputs
+      are non-stationary, quality signals lag billing by weeks, and the failure
+      mode is silent (a wrong answer served cheaply) instead of loud (a call
+      that costs more than expected). Cost-saving automation rarely fails by
+      raising the bill. It usually fails by lowering quality in a way you only
+      catch through customer complaints or downstream churn.
   - q: What's the most common LLM cost-saving automation that backfires?
-    a: "Naive RAG on documents that fit in context. The intuition (send less, pay less) is correct in isolation, but single-vector retrieval misses lexically distant signals that the scoring model needs. I tore RAG out of MatchWise's CV screening for exactly this reason. The deeper rule: if your document fits in context, retrieval is solving a problem you don't have."
+    a: >-
+      Naive RAG on documents that fit in context. The intuition (send less, pay
+      less) is correct in isolation, but single-vector retrieval misses
+      lexically distant signals that the scoring model needs. I tore RAG out of
+      MatchWise's CV screening for exactly this reason. The deeper rule: if your
+      document fits in context, retrieval is solving a problem you don't have.
   - q: Is semantic response caching safe to deploy?
-    a: "Only with a strict similarity threshold and a human-verified ground-truth set. Naive semantic caching serves cached responses to inputs that are 'close enough' by embedding distance but semantically different in ways that change the right answer. The wins are real (free responses on true duplicates); the failure mode is wrong answers served confidently and cheaply, which is worse than a slow correct answer."
+    a: >-
+      Only with a strict similarity threshold and a human-verified ground-truth
+      set. Naive semantic caching serves cached responses to inputs that are
+      'close enough' by embedding distance but semantically different in ways
+      that change the right answer. The wins are real (free responses on true
+      duplicates); the failure mode is wrong answers served confidently and
+      cheaply, which is worse than a slow correct answer.
   - q: How do I know if my model auto-routing is silently degrading quality?
-    a: "You don't, unless you instrument it. Most teams ship auto-routing keyed on prompt length or token budget, then declare victory on the cost dashboard without an equivalent quality dashboard. The fix is to log routing decisions and re-run a sampled 1–5% on the higher-tier model in shadow mode, comparing outputs on a structured rubric. If you can't afford that overhead, you can't afford auto-routing."
+    a: >-
+      You don't, unless you instrument it. Most teams ship auto-routing keyed on
+      prompt length or token budget, then declare victory on the cost dashboard
+      without an equivalent quality dashboard. The fix is to log routing
+      decisions and re-run a sampled 1–5% on the higher-tier model in shadow
+      mode, comparing outputs on a structured rubric. If you can't afford that
+      overhead, you can't afford auto-routing.
   - q: When does aggressive input compression hurt more than it helps?
-    a: "When the compression step uses an LLM. Pre-summarizing a 10KB document with a cheap model to feed a 2KB summary into an expensive model looks like a win on input tokens. In practice the summary loses the exact signal the downstream model needed (a buried date, a one-line credential, a numeric detail), and the downstream answer regresses. You also pay for two calls instead of one. Cheap truncation beats AI compression for documents that aren't huge."
+    a: >-
+      When the compression step uses an LLM. Pre-summarizing a 10KB document
+      with a cheap model to feed a 2KB summary into an expensive model looks
+      like a win on input tokens. In practice the summary loses the exact signal
+      the downstream model needed (a buried date, a one-line credential, a
+      numeric detail), and the downstream answer regresses. You also pay for two
+      calls instead of one. Cheap truncation beats AI compression for documents
+      that aren't huge.
   - q: What's the one cost-saving automation I should always deploy?
-    a: "Deterministic pre-filters. Anything binary, rule-based, or recruiter/operator-configurable should be evaluated in plain code before the LLM is called. This is the only cost lever that has no quality downside and no failure mode worth worrying about. Every production pipeline I've audited has 20–40% of calls that should have been a JavaScript if-statement."
+    a: >-
+      Deterministic pre-filters. Anything binary, rule-based, or
+      recruiter/operator-configurable should be evaluated in plain code before
+      the LLM is called. This is the only cost lever that has no quality
+      downside and no failure mode worth worrying about. Every production
+      pipeline I've audited has 20–40% of calls that should have been a
+      JavaScript if-statement.
 featured: true
 draft: false
 ---
-
 ## TL;DR
 
 LLM cost-saving automations rarely fail by raising the bill. They fail by lowering quality in ways that take weeks to surface, by which point the savings have already been booked and the regression has been blamed on something else. The six patterns I've watched burn production pipelines: naive RAG on documents that fit in context, semantic response caching, auto-routing keyed on token length, LLM-based input compression, retry loops without circuit breakers, and aggressive prompt-prefix sharing across tenants. The pattern behind all six is the same: the automation optimizes against a static benchmark and the production failure mode is silent. The one cost-saving automation that has no real downside is the one teams reach for last: deterministic pre-filters that prevent the LLM call from happening at all.
 
 ---
 
-I rebuilt [MatchWise's](/projects/matchwise) CV screening pipeline last year and dropped per-candidate AI cost roughly 10–20×. I wrote about that build in detail in [The 6-Lever LLM Cost Stack](/writing/the-llm-cost-stack). The shorter version: the wins came from levers that compounded (deterministic knockouts, model routing, call collapse, input bounding, delta detection, structured output), and the loudest single mistake was reaching for naive RAG before I'd done the boring work.
+I rebuilt [MatchWise's](/projects/matchwise) CV screening pipeline last year and dropped per-candidate AI cost roughly 10–20x. I wrote about that build in detail in [The 6-Lever LLM Cost Stack](/writing/the-llm-cost-stack). The shorter version: the wins came from levers that compounded (deterministic knockouts, model routing, call collapse, input bounding, delta detection, structured output), and the loudest single mistake was reaching for naive RAG before I'd done the boring work.
 
 That post focused on the levers that worked. This one is the negative space around it. Most of the LLM cost-saving automations I've watched teams deploy in 2025–26 are technically correct in isolation and quietly catastrophic in production. The pattern repeats often enough that I now have a pre-flight checklist before automating any cost lever.
 
@@ -140,11 +182,11 @@ The same logic applies in reverse. The two cost levers that have no real downsid
 Before I ship any cost-saving automation, I run through this list:
 
 1. **What's the failure mode?** Specifically: if this automation produces a wrong answer, who sees the wrong answer first? If the answer is "the customer," the automation needs a guardrail that runs before the customer.
-2. **Is the savings paid in tokens or paid in calls?** Saving tokens on the same call is usually safe. Saving entire calls (by caching, by skipping, by routing away) is usually where the quality risk lives.
-3. **Do I have a quality signal that updates faster than the cost signal?** Cost shows up daily. Quality often shows up in weekly customer feedback. If quality lags cost, the automation can dig a deep hole before anyone notices.
-4. **Can I shadow it?** For routing, caching, and compression automations, run the automation on 100% of traffic and run the un-automated path on 1–5% in shadow mode. Compare outputs. Alert on divergence.
-5. **Do I have a kill switch?** Every cost-saving automation needs a per-tenant or per-route disable that operates faster than a re-deploy. Daily spend caps, error-rate triggers, manual flip.
-6. **Have I done the boring work first?** Deterministic pre-filters, structured output, input truncation, and call collapse are the levers with no real downside. Reach for them before you reach for the clever ones.
+1. **Is the savings paid in tokens or paid in calls?** Saving tokens on the same call is usually safe. Saving entire calls (by caching, by skipping, by routing away) is usually where the quality risk lives.
+1. **Do I have a quality signal that updates faster than the cost signal?** Cost shows up daily. Quality often shows up in weekly customer feedback. If quality lags cost, the automation can dig a deep hole before anyone notices.
+1. **Can I shadow it?** For routing, caching, and compression automations, run the automation on 100% of traffic and run the un-automated path on 1–5% in shadow mode. Compare outputs. Alert on divergence.
+1. **Do I have a kill switch?** Every cost-saving automation needs a per-tenant or per-route disable that operates faster than a re-deploy. Daily spend caps, error-rate triggers, manual flip.
+1. **Have I done the boring work first?** Deterministic pre-filters, structured output, input truncation, and call collapse are the levers with no real downside. Reach for them before you reach for the clever ones.
 
 The general rule that holds across every backfire I've watched: **cost-saving automation only pays out when the quality observability is at least as good as the cost observability.** If you can see your bill drop but you can't see your quality drift, you've installed a leak in your product that pays you to ignore it.
 
