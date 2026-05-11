@@ -27,7 +27,8 @@ function formatDate(d: Date) {
 
 const articleSchema: Record<string, unknown> = {
   "@context": "https://schema.org",
-  "@type": "Article",
+  "@type": "BlogPosting",
+  "@id": `${canonicalUrl}#article`,
   headline: data.title,
   description: data.excerpt,
   datePublished: data.publishedAt.toISOString(),
@@ -35,7 +36,14 @@ const articleSchema: Record<string, unknown> = {
   author: { "@id": `${siteUrl}/#person` },
   publisher: { "@id": `${siteUrl}/#studio` },
   mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl },
+  isPartOf: { "@id": `${siteUrl}/writing#blog` },
   inLanguage: "en",
+  url: canonicalUrl,
+  articleSection: data.topic,
+  speakable: {
+    "@type": "SpeakableSpecification",
+    cssSelector: ["article header h1", "article header p"],
+  },
 };
 if (data.coverImage) {
   articleSchema.image = new URL(data.coverImage, Astro.site).toString();
@@ -122,7 +130,7 @@ const jsonLd = [articleSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema] : [
         ← All writing
       </a>
       <a
-        href="/#contact"
+        href="/contact"
         class="px-6 py-3 rounded-full bg-[color:var(--color-fg)] text-[color:var(--color-bg)] hover:bg-[color:var(--color-accent)] transition-colors"
       >
         Start a project

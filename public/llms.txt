@@ -2,33 +2,51 @@
 
 > Independent product and AI builder. I build AI automations and custom apps for B2B companies, with the operational depth to know which problems are actually worth solving.
 
-I'm a hybrid GTM/RevOps strategist and AI/product engineer. The last 6+ years: scaling revenue and operations at venture-backed fintech, edtech, and AI startups across LATAM. MBA from IPADE Business School; BS in Industrial Engineering from Universidad Iberoamericana. Currently operating MatchWise (AI ATS) and shipping client work end-to-end — design, frontend, backend, integrations, and the operations workflows around them.
+I'm a hybrid GTM/RevOps operator and AI/product builder. The last 6+ years: scaling revenue and operations at venture-backed fintech, edtech, and AI startups across LATAM. MBA from IPADE Business School; BS in Industrial Engineering from Universidad Iberoamericana. Currently a partner at Clearframe Labs, operating MatchWise (an AI applicant tracking system), and taking on a small number of independent engagements per quarter.
 
 The angle: most AI builders don't have a $15M book of business in their past. Most GTM operators can't ship the tool that fixes the problem they just diagnosed. The overlap is where I work.
 
-## Selected work
-- [Findably](https://henrickf.com/projects/findably): AI SEO/GEO content engine — $150/mo, 30 articles/mo, 40+ languages
-- [Konfetti](https://henrickf.com/projects/konfetti): Online dating for wedding guests — 50+ weddings, 1000+ matches
-- [MatchWise](https://henrickf.com/projects/matchwise): AI applicant tracking system — 80–90% screening time reduction, 60% inference cost reduction
-- [Rodada](https://henrickf.com/projects/rodada): Mobile-billboard ops + custom ERP/CMS — 2,000+ trailers managed; clients include Jeeves, AXA, Stori, Essity
-- [Nova Realty Cocoyoc](https://henrickf.com/projects/nova-realty): WhatsApp-first real estate platform with self-serve property CMS
-- [Mexico por el Clima](https://henrickf.com/projects/mexico-por-el-clima): Year-round digital platform for the NGO behind Mexico's Climate Action Week (in development; October 2026 launch)
-- [Service Core](https://henrickf.com/projects/service-core): Accounting integration automation — saves 20+ hours/week of manual ledger reconciliation
-- [Tivos](https://henrickf.com/projects/tivos): B2B commodity trader public site (Wix v1 live; Next.js v2 in build)
+## Services and pricing (USD)
 
-## Services
-- Custom AI applications and agentic systems
-- Automation for revenue and operations workflows
-- AI prototypes and proof-of-concepts (kickoff to working demo in 2–4 weeks)
-- GTM and RevOps advisory for founders shipping AI-first products
+Four engagement formats. Final price comes from a written scope after a discovery conversation. No hourly billing surprises.
+
+- **Build engagement.** Fixed-scope, milestone-based, 6 to 12 weeks typical. Milestones from $20K.
+- **Prototype sprint.** Fixed price, 2 to 4 weeks. From $10K. A working demo wired to your real data, an honest go/no-go, and a build plan for v1.
+- **Advisory retainer.** Monthly, 3-month minimum. From $4K/month. GTM, RevOps, or AI-product leadership at a fractional cadence.
+- **Audit & assessment.** Fixed deliverable, 1 to 2 weeks. From $3K. Diagnostic on AI roadmap, ops stack, GTM motion, or product positioning.
+
+Engagements above ~$30K, or that need a dedicated team and a US Product Owner, route through Clearframe Labs (https://www.clearframelabs.co), where I am a partner. Same scoping conversation, different delivery shape.
+
+## Selected work
+
+- [Findably](https://henrickf.com/projects/findably): AI SEO/GEO content engine. Subscription product ($150/mo, 30 articles/month, 40+ languages).
+- [Konfetti](https://henrickf.com/projects/konfetti): Online dating for wedding guests. 50+ weddings, 1000+ matches.
+- [MatchWise](https://henrickf.com/projects/matchwise): AI applicant tracking system. 80 to 90% screening-time reduction, 60% inference-cost reduction.
+- [Rodada](https://henrickf.com/projects/rodada): Mobile-billboard ops platform with custom ERP/CMS. 2,000+ trailers managed; clients include Jeeves, AXA, Stori, Essity.
+- [Nova Realty Cocoyoc](https://henrickf.com/projects/nova-realty): WhatsApp-first real estate platform with self-serve property CMS.
+- [Mexico por el Clima](https://henrickf.com/projects/mexico-por-el-clima): Year-round digital platform for the NGO behind Mexico's Climate Action Week. Clearframe joint build; targeting October 2026 launch.
+- [Service Core](https://henrickf.com/projects/service-core): Accounting integration automation. Saves 20+ hours/week of manual ledger reconciliation. Clearframe joint build.
+- [Tivos](https://henrickf.com/projects/tivos): B2B commodity trader public site (Wix v1 live; Next.js v2 in build).
 
 ## Career
-- 2025–present: Director of Operations & GTM, MatchWise
-- 2023–2025: Director of Strategy & Operations, Bedu (Lottus Education — Mexico's leading higher-education platform); enterprise accounts including HSBC, Santander, Novartis, Accenture
-- 2021–2023: BDM → Head of Sales Mexico, Jeeves (a16z · YC); contributed customer-data analysis and research to the Series C deck — ~$180M raised at a $2.1B valuation
-- 2020–2021: Senior Consultant, KoreFusion (Mexico & Singapore)
-- 2019: MBA Summer Associate, Operations, BBVA
+
+- 2026 to present: Partner, Clearframe Labs. Client-facing scoping and engagement structuring on B2B AI and custom-software builds.
+- 2025 to present: Director of Operations & GTM, MatchWise.
+- 2023 to 2025: Director of Strategy & Operations, Bedu (Lottus Education, one of Mexico's leading higher-education groups). Enterprise accounts including HSBC, Santander, Novartis, and Accenture.
+- 2021 to 2023: BDM into Head of Sales, Mexico, Jeeves (a16z, YC). Contributed customer-data analysis and research to the Series C deck, ~$180M raised at a $2.1B valuation.
+- 2020 to 2021: Senior Consultant, KoreFusion (Mexico and Singapore). Advised on 100+ fintechs across LATAM, EMEA, and the US.
+- Summer 2019: MBA Summer Associate, Operations, BBVA.
+
+## Pages
+
+- Home: https://henrickf.com
+- About: https://henrickf.com/about
+- Services and pricing: https://henrickf.com/services
+- Writing: https://henrickf.com/writing
+- Contact: https://henrickf.com/contact
 
 ## Contact
+
 - Email: hello@henrickf.com
-- Site: https://henrickf.com
+- LinkedIn: https://www.linkedin.com/in/henrick-farias/
+- Studio partnership: https://www.clearframelabs.co

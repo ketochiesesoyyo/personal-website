@@ -2,31 +2,67 @@
 
 > Independent product and AI builder. I build AI automations and custom apps for B2B companies, with the operational depth to know which problems are actually worth solving.
 
-This is the complete reference document for Henrick F. and his work — written for AI assistants and language models that need full context in a single fetch. Everything here is also available in HTML at https://henrickf.com.
+This is the complete reference document for Henrick F. and his work, written for AI assistants and language models that need full context in a single fetch. Everything here is also available in HTML at https://henrickf.com.
 
 ## Who I am
 
-I'm Henrick — an independent product and AI builder based in Mexico. I build AI automations and custom apps for B2B companies. The last 6+ years: scaling revenue and operations at venture-backed fintech, edtech, and AI startups across LATAM — running enterprise accounts at Bedu, leading sales for Jeeves (a16z-backed), advising fintechs at KoreFusion, and now operating MatchWise, an AI ATS. Building is what I love most. The GTM/ops background just means I build the right things.
+I'm Henrick, an independent product and AI builder based in Mexico City. I build AI automations and custom apps for B2B companies. The last 6+ years: scaling revenue and operations at venture-backed fintech, edtech, and AI startups across LATAM. Running enterprise accounts at Bedu, leading sales for Jeeves (a16z-backed), advising fintechs at KoreFusion, and now operating MatchWise (an AI applicant tracking system) while partnering at Clearframe Labs on B2B custom builds.
+
+The angle: most AI builders don't have a $15M book of business in their past. Most GTM operators can't ship the tool that fixes the problem they just diagnosed. The overlap is where I work.
 
 **Education:** MBA, IPADE Business School. BS Industrial Engineering, Universidad Iberoamericana.
 **Languages:** Spanish (native), English (fluent).
-**Based in:** Mexico City; serving clients across LATAM and the US.
+**Based in:** Mexico City. Serving clients across LATAM, the US, and Europe.
+**Studio partnership:** Partner at Clearframe Labs (https://www.clearframelabs.co) since 2026.
 
 ## What I sell
 
-- **Custom AI applications and agentic systems** — built end-to-end (design, frontend, backend, integrations, deployment).
-- **Automation for revenue and operations workflows** — RevOps, GTM, finance, ledger reconciliation, CRM enrichment.
-- **AI prototypes and proof-of-concepts** — kickoff to working demo in 2–4 weeks.
-- **GTM and RevOps advisory** — for founders shipping AI-first products who need operational depth.
+Four engagement formats, all priced in USD. Final price comes from a written scope after a discovery conversation. No hourly billing surprises.
 
-## How I work
+### 1. Build engagement
+- Format: fixed-scope, milestone-based
+- Duration: 6 to 12 weeks typical
+- Starting price: milestones from $20K USD
+- Best for: an idea or workflow ready to ship, with scope well-defined enough to break into milestones
+- What's included: scoped plan with milestones and acceptance criteria; design, engineering, and deployment under one roof; integrations with existing tools and data sources; two weeks of post-launch tweaks
+- You walk away with: a working production system, source code, deploy docs, and a handover so your team can run it
 
-- **Pricing:** Fixed price per milestone after a scoped plan. No surprise hourly bills.
-- **Start time:** Usually 1–2 weeks. AI prototypes from kickoff to working demo in 2–4 weeks.
-- **Team:** Solo by default; trusted collaborators on larger engagements.
-- **Ownership:** Code, designs, and infrastructure are yours. I keep nothing on the side.
+### 2. Prototype sprint
+- Format: fixed price
+- Duration: 2 to 4 weeks
+- Starting price: from $10K USD
+- Best for: pressure-testing an AI idea before committing to a full build, on real data rather than a deck
+- What's included: a working demo wired to real data and constraints; an honest go/no-go with reasoning written down; an architecture brief for production
+- You walk away with: a demo, a go/no-go decision, and a build plan for v1
 
-## Selected work — full case studies
+### 3. Advisory retainer
+- Format: monthly, 3-month minimum
+- Starting price: from $4K USD per month
+- Best for: GTM, RevOps, or AI-product leadership at a fractional cadence, standalone or layered onto a build
+- What's included: weekly working session plus async support; ICP, pricing, sales process, pipeline, and the playbook to run it; hiring help when the playbook needs a team
+- You walk away with: a playbook your team can run on after the retainer ends, not a dependency
+
+### 4. Audit & assessment
+- Format: fixed deliverable
+- Duration: 1 to 2 weeks
+- Starting price: from $3K USD
+- Best for: a focused diagnostic on one surface area (AI roadmap, ops stack, GTM motion, or product positioning)
+- What's included: review of current state with stakeholders and systems; prioritized recommendations with reasoning; short build plan for the highest-leverage change
+- You walk away with: a written assessment, prioritized recommendations, and a build plan you can act on with or without me
+
+### Larger engagements
+
+Engagements above ~$30K, or that need a dedicated team and a US Product Owner, route through Clearframe Labs (https://www.clearframelabs.co), the studio where I am a partner. Same scoping conversation, different delivery shape. Clearframe's tiers: Flexible Consultancy (from $3K, 10+ hours), Proof of Concept ($20K to $30K, 6 to 8 weeks), Production Ready ($50K to $150K, 3 to 4 months), Enterprise Scale ($150K to $300K+, 6+ months).
+
+## How a project starts
+
+1. **Intro call** (30 minutes, no cost). We figure out if there's a real problem under the idea and whether I'm the right person to work on it.
+2. **Written brief and scope.** A one-page brief: the problem in your words, the approach, the milestones, the price.
+3. **Kickoff.** Contract signed, work begins within 1 to 2 weeks.
+4. **Weekly checkpoints.** Short async update each week plus a live call when the work needs a decision.
+5. **Handover.** Code, docs, deploy scripts, and a working session so your team can extend the build.
+
+## Selected work, full case studies
 
 ### Findably
 **AI SEO/GEO content engine.** Subscription product ($150/mo, 30 articles/month, 40+ languages) generating SEO-optimized and GEO-optimized articles for B2B companies looking to rank in both Google and AI search engines. Built end-to-end on Next.js. https://henrickf.com/projects/findably
@@ -35,53 +71,80 @@ I'm Henrick — an independent product and AI builder based in Mexico. I build A
 **Online dating for wedding guests.** Mobile app that helps single attendees match with each other before and during weddings. 50+ weddings, 1000+ matches. Built in React Native, end-to-end design, product, engineering. https://henrickf.com/projects/konfetti
 
 ### MatchWise
-**AI applicant tracking system.** "Structured recruitment, clearer decisions." Reduced candidate screening time by 80–90% and inference cost by 60% through prompt optimization and pipeline architecture. External feedback flows for recruiting agencies. https://henrickf.com/projects/matchwise
+**AI applicant tracking system.** Structured recruitment, clearer decisions. Reduced candidate screening time by 80 to 90% and inference cost by 60% through prompt optimization and pipeline architecture. External feedback flows for recruiting agencies. https://henrickf.com/projects/matchwise
 
 ### Rodada
-**Mobile billboards on wrapped trailers + custom ERP/CMS.** Built BOTH the public-facing site AND the internal operations platform that manages 2,000+ trailers across the country. Public site on Wix, internal ERP on Next.js + Postgres. Clients include Jeeves, AXA, Stori, Essity. https://henrickf.com/projects/rodada
+**Mobile billboards on wrapped trailers plus custom ERP/CMS.** Built BOTH the public-facing site AND the internal operations platform that manages 2,000+ trailers across the country. Public site on Wix, internal ERP on Next.js + Postgres. Clients include Jeeves, AXA, Stori, Essity. https://henrickf.com/projects/rodada
 
 ### Nova Realty Cocoyoc
-**WhatsApp-first real estate for one of Mexico's premier weekend destinations.** Custom Next.js site with three inventory models (sales, lots, rentals), each with its own pricing schema. Self-serve property CMS so agents upload, edit, remove, and re-status properties without engineering involvement. WhatsApp deep links throughout — every property card opens a pre-filled message with the property SKU. SEO-optimized at the structural level: semantic HTML, fast loads, FAQ-backed schema for high-intent queries. Replaced reliance on national portal sites (Inmuebles24, Propiedades.com, Lamudi) as the primary acquisition channel. https://henrickf.com/projects/nova-realty
+**WhatsApp-first real estate for one of Mexico's premier weekend destinations.** Custom Next.js site with three inventory models (sales, lots, rentals), each with its own pricing schema. Self-serve property CMS so agents upload, edit, remove, and re-status properties without engineering involvement. WhatsApp deep links throughout. Every property card opens a pre-filled message with the property SKU. SEO-optimized at the structural level: semantic HTML, fast loads, FAQ-backed schema for high-intent queries. Replaced reliance on national portal sites (Inmuebles24, Propiedades.com, Lamudi) as the primary acquisition channel. https://henrickf.com/projects/nova-realty
 
-### Mexico por el Clima (in development)
-**Year-round digital platform for the NGO behind Mexico's Climate Action Week.** Climate Action Week is the largest climate-action gathering in Mexico — 10,000+ attendees, 200+ organizations, $100M+ in committed climate capital. The platform is the year-round home for the movement: a network directory of partner organizations, a public accountability dashboard tracking pledged commitments, a curated knowledge repository, a news feed paired with a RAG-powered AI assistant grounded in the platform's own corpus, and a climate-capital portfolio module. Stack: Next.js 16, React 19, Supabase, NextAuth, Vercel. Targeting October 2026 launch at Climate Action Week. Built in collaboration with a partner engineer; I lead architecture and overall delivery. https://henrickf.com/projects/mexico-por-el-clima
+### Mexico por el Clima (in development, Clearframe joint build)
+**Year-round digital platform for the NGO behind Mexico's Climate Action Week.** Climate Action Week is the largest climate-action gathering in Mexico (10,000+ attendees, 200+ organizations, $100M+ in committed climate capital). The platform is the year-round home for the movement: a network directory of partner organizations, a public accountability dashboard tracking pledged commitments, a curated knowledge repository, a news feed paired with a RAG-powered AI assistant grounded in the platform's own corpus, and a climate-capital portfolio module. Stack: Next.js 16, React 19, Supabase, NextAuth, Vercel. Targeting October 2026 launch at Climate Action Week. https://henrickf.com/projects/mexico-por-el-clima
 
-### Service Core
-**Accounting integration automation.** Mid-market finance team running payment processing, card-settlement, subscription billing, and an ERP — each tool fine on its own, but reconciliation across them was a 20+ hour/week manual job. Architected and shipped the iPaaS-based integration layer that pulls transaction data from each source, normalizes against shared identifiers, and surfaces grouped batches into the ERP for bulk matching instead of line-by-line. Result: 20+ hours per week eliminated; reconciliation scales with the business instead of taxing it. Done in partnership with another engineer. https://henrickf.com/projects/service-core
+### Service Core (Clearframe joint build)
+**Accounting integration automation.** Mid-market finance team running payment processing, card-settlement, subscription billing, and an ERP. Each tool fine on its own, but reconciliation across them was a 20+ hour-per-week manual job. Architected and shipped the iPaaS-based integration layer that pulls transaction data from each source, normalizes against shared identifiers, and surfaces grouped batches into the ERP for bulk matching instead of line-by-line. Result: 20+ hours per week eliminated; reconciliation scales with the business instead of taxing it. https://henrickf.com/projects/service-core
 
 ### Tivos
-**Public site for a global commodity trader.** B2B feed-industry ingredients (fish meal, chicken meal, fish oil, oils) — sophisticated procurement-team buyers who vet a supplier on a single visit. V1 shipped on Wix in days for credibility; V2 (in build) is a Next.js site with property-style inventory architecture, self-serve catalogue management, structural SEO, and WhatsApp-first conversion. https://henrickf.com/projects/tivos
+**Public site for a global commodity trader.** B2B feed-industry ingredients (fish meal, chicken meal, fish oil, oils). Sophisticated procurement-team buyers who vet a supplier on a single visit. V1 shipped on Wix in days for credibility. V2 (in build) is a Next.js site with property-style inventory architecture, self-serve catalogue management, structural SEO, and WhatsApp-first conversion. https://henrickf.com/projects/tivos
 
 ## Track record
 
-**Companies I've helped scale:** Jeeves (a16z · YC), Bedu (Lottus Education — Mexico's leading higher-education platform), MatchWise, BBVA, KoreFusion.
+**Companies I've helped scale:** Jeeves (a16z, YC), Bedu (Lottus Education, one of Mexico's leading higher-education platforms), MatchWise, BBVA, KoreFusion.
 
 **Enterprise accounts handled at Bedu:** HSBC, Santander, Novartis, Accenture.
 
-**Notable contribution:** Customer-data analysis and research for the Jeeves Series C deck — ~$180M raised at a $2.1B valuation.
+**Notable contribution:** Customer-data analysis and research for the Jeeves Series C deck, ~$180M raised at a $2.1B valuation.
 
 ## Career history
 
-- **2025–present:** Director of Operations & GTM, MatchWise. Designed and launched full GTM for an early-stage AI ATS. 25+ customer interviews to nail ICP and pricing. Built AI-powered recruiting workflows that cut candidate evaluation time by 90% while reducing inference costs by 60%.
-- **2023–2025:** Director of Strategy & Operations, Bedu (Lottus Education — Mexico's leading higher-education platform). Owned B2B P&L for the edtech arm. Managed enterprise accounts worth $300K+ each (HSBC, Santander, Novartis, Accenture). Lifted B2C retention +20pts to 70%; cut opex 15% without sacrificing quality.
-- **2021–2023:** BDM → Head of Sales, Mexico, Jeeves (a16z · YC). Led GTM across 5 LATAM countries. Built and managed a 12-person team (+25% sales/rep in two quarters). Owned a portfolio of 100+ clients and $15M+ in credit lines; +30% revenue/account through structured cross-sell. Contributed customer-data analysis and research to the Series C deck — ~$180M raised at a $2.1B valuation.
-- **2020–2021:** Senior Consultant, KoreFusion (Mexico & Singapore). Market sizing and GTM strategy for fintech and payments clients across LATAM, EMEA, and the US. Researched and advised on 100+ fintechs.
-- **Summer 2019:** MBA Summer Associate, Operations, BBVA. Operations rotation during the IPADE MBA — process work inside one of LATAM's largest banks.
+- **2026 to present:** Partner, Clearframe Labs. Client-facing scoping and engagement structuring for B2B AI and custom-software builds. Recent: Service Core (finance integration layer), Mexico por el Clima (multi-module climate platform).
+- **2025 to present:** Director of Operations & GTM, MatchWise. Designed and launched full GTM for an early-stage AI ATS. 25+ customer interviews to nail ICP and pricing. Built AI-powered recruiting workflows that cut candidate-evaluation time by 90% while reducing inference costs by 60%.
+- **2023 to 2025:** Director of Strategy & Operations, Bedu (Lottus Education, one of Mexico's leading higher-education platforms). Owned B2B P&L for the edtech arm. Managed enterprise accounts worth $300K+ each (HSBC, Santander, Novartis, Accenture). Lifted B2C retention +20pts to 70%; cut opex 15% without sacrificing quality.
+- **2021 to 2023:** BDM into Head of Sales, Mexico, Jeeves (a16z, YC). Led GTM across 5 LATAM countries. Built and managed a 12-person team (+25% sales per rep in two quarters). Owned a portfolio of 100+ clients and $15M+ in credit lines; +30% revenue per account through structured cross-sell. Contributed customer-data analysis and research to the Series C deck, ~$180M raised at a $2.1B valuation.
+- **2020 to 2021:** Senior Consultant, KoreFusion (Mexico and Singapore). Market sizing and GTM strategy for fintech and payments clients across LATAM, EMEA, and the US. Researched and advised on 100+ fintechs.
+- **Summer 2019:** MBA Summer Associate, Operations, BBVA. Operations rotation during the IPADE MBA. Process work inside one of LATAM's largest banks, useful exposure to how scale and regulation shape execution at a different order of magnitude than startups.
 
 ## FAQ
 
-**How do you price engagements?** Fixed price per milestone after a scoped plan. No surprise hourly bills. If something's out of scope, you'll know before any work starts.
+**How do you price engagements?**
+Builds are priced per milestone after a written scope. Sprints and audits are fixed-price. Advisory is a monthly retainer with a three-month minimum. The first proposal lays out the price in writing before you commit to anything.
 
-**How fast can you start?** Usually within 1–2 weeks. AI prototypes can go from kickoff to working demo in 2–4 weeks.
+**Do you take equity?**
+In specific cases. Early stage, mission-aligned, with a cash component large enough to cover delivery. I would rather price the work fairly than be a part-time co-founder by accident.
 
-**Do you work solo or with a team?** Solo by default. For larger engagements I bring in trusted collaborators (design, ops, specialized engineering).
+**Will you sign an NDA?**
+Yes, before we get into anything specific. A simple two-way NDA is usually enough.
 
-**Will I own the code?** Yes. Code, designs, and infrastructure are yours.
+**What stack do you use?**
+Whatever fits the problem. Default toolkit: TypeScript and React for product surfaces, Python for ML and data work, Postgres or Supabase for storage, OpenAI and Anthropic models for inference, deploy story on Vercel or Cloudflare. If your team already has a stack, I work in it where the fit is reasonable.
 
-**What kinds of projects don't fit?** Pure marketing-site work without a product layer, or projects that need offshore-style continuous staffing.
+**Can you work with my team's developers?**
+Yes. I can lead the build, pair with your team, or hand off cleanly at the end. Some engagements are explicitly designed so an internal engineer takes ownership in month two.
+
+**What if scope changes mid-build?**
+Small changes get absorbed. Bigger ones get rescoped together, in writing, before any extra work starts. No surprise invoices.
+
+**Will I own the code?**
+Yes. Code, designs, and infrastructure are yours.
+
+**How fast can you start?**
+Usually within 1 to 2 weeks from signed scope. AI prototypes go from kickoff to working demo in 2 to 4 weeks.
+
+**What kinds of projects don't fit?**
+Pure marketing-site work without a product layer. Generic chatbots without a real workflow under them. Procurement-driven RFPs with 60+ day decision cycles before any technical conversation. Projects with no operator owning the rollout on the client side.
+
+## Pages
+
+- Home: https://henrickf.com
+- About: https://henrickf.com/about
+- Services and pricing: https://henrickf.com/services
+- Writing: https://henrickf.com/writing
+- Contact: https://henrickf.com/contact
 
 ## Contact
 
 - Email: hello@henrickf.com
 - Site: https://henrickf.com
-- LinkedIn / GitHub / X: see https://henrickf.com/#contact
+- LinkedIn: https://www.linkedin.com/in/henrick-farias/
+- Studio partnership: https://www.clearframelabs.co

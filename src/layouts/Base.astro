@@ -58,18 +58,42 @@ const personSchema = {
 
 const studioSchema = {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
+  "@type": ["Organization", "ProfessionalService"],
   "@id": `${siteUrl}/#studio`,
   name: site.studio,
   url: Astro.site?.toString(),
   description: site.bio,
+  logo: {
+    "@type": "ImageObject",
+    "@id": `${siteUrl}/#logo`,
+    url: `${siteUrl}/henrick.jpg`,
+    contentUrl: `${siteUrl}/henrick.jpg`,
+    caption: site.studio,
+  },
+  image: `${siteUrl}/henrick.jpg`,
   founder: { "@id": `${siteUrl}/#person` },
+  founders: [{ "@id": `${siteUrl}/#person` }],
+  email: site.email,
   areaServed: "Worldwide",
   knowsLanguage: ["en", "es"],
   serviceType: [
     "AI Automation",
     "Custom Application Development",
     "GTM & Revenue Operations Consulting",
+  ],
+  sameAs: [
+    site.socials.linkedin,
+    site.socials.github,
+    "https://matchwise.app",
+  ],
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      contactType: "customer support",
+      email: site.email,
+      availableLanguage: ["English", "Spanish"],
+      areaServed: "Worldwide",
+    },
   ],
 };
 

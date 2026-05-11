@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import Base from "~/layouts/Base.astro";
 import SectionEyebrow from "~/components/SectionEyebrow.astro";
+import { site } from "~/site.config";
 
 const all = await getCollection("posts", ({ data }) => !data.draft);
 const posts = all.sort(
@@ -15,11 +16,66 @@ function formatDate(d: Date) {
     day: "numeric",
   });
 }
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, "") ?? "";
+const writingUrl = `${siteUrl}/writing`;
+const description = "Long-form essays and case studies on AI, engineering, and where things are going.";
+
+const blogSchema = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "@id": `${writingUrl}#blog`,
+  url: writingUrl,
+  name: `${site.studio} — Writing`,
+  description,
+  inLanguage: "en",
+  author: { "@id": `${siteUrl}/#person` },
+  publisher: { "@id": `${siteUrl}/#studio` },
+  isPartOf: { "@id": `${siteUrl}/#website` },
+  blogPost: posts.map((post) => ({
+    "@type": "BlogPosting",
+    "@id": `${siteUrl}/writing/${post.id}/#article`,
+    headline: post.data.title,
+    description: post.data.excerpt,
+    url: `${siteUrl}/writing/${post.id}/`,
+    datePublished: post.data.publishedAt.toISOString(),
+    dateModified: (post.data.updatedAt ?? post.data.publishedAt).toISOString(),
+    articleSection: post.data.topic,
+    author: { "@id": `${siteUrl}/#person` },
+  })),
+};
+
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "@id": `${writingUrl}#itemlist`,
+  name: `${site.studio} — Writing index`,
+  itemListOrder: "https://schema.org/ItemListOrderDescending",
+  numberOfItems: posts.length,
+  itemListElement: posts.map((post, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    url: `${siteUrl}/writing/${post.id}/`,
+    name: post.data.title,
+  })),
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: `${siteUrl}/` },
+    { "@type": "ListItem", position: 2, name: "Writing", item: `${writingUrl}/` },
+  ],
+};
+
+const jsonLd = [blogSchema, itemListSchema, breadcrumbSchema];
 ---
 
 <Base
   title="Writing"
-  description="Long-form essays and case studies on AI, engineering, and where things are going."
+  description={description}
+  jsonLd={jsonLd}
 >
   <section class="mx-auto max-w-4xl px-6 pt-20 pb-32">
     <header class="mb-16">

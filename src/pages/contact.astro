@@ -1,0 +1,176 @@
+---
+import Base from "~/layouts/Base.astro";
+import SectionEyebrow from "~/components/SectionEyebrow.astro";
+import { site } from "~/site.config";
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, "") ?? "";
+
+const contactPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "@id": `${siteUrl}/contact#page`,
+  url: `${siteUrl}/contact`,
+  name: `Contact — ${site.studio}`,
+  description: `Get in touch with ${site.founder}. Independent product and AI builder working with B2B companies.`,
+  about: { "@id": `${siteUrl}/#studio` },
+  isPartOf: { "@id": `${siteUrl}/#website` },
+  mainEntity: {
+    "@type": "Organization",
+    "@id": `${siteUrl}/#studio`,
+    name: site.studio,
+    email: site.email,
+    url: site.url,
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        contactType: "new business",
+        email: site.email,
+        availableLanguage: ["English", "Spanish"],
+        areaServed: "Worldwide",
+      },
+    ],
+  },
+};
+
+const channels = [
+  {
+    label: "Email",
+    value: site.email,
+    href: `mailto:${site.email}`,
+    note: "Best for project inquiries. Include what you're building, what's stuck, and a rough timeline.",
+  },
+  {
+    label: "LinkedIn",
+    value: "Henrick Farias",
+    href: site.socials.linkedin,
+    note: "Good for a quick intro, referrals, or to ask a single question before sending a longer email.",
+  },
+];
+
+const goodFitChecklist = [
+  "You're a B2B company (founder-led startup through mid-market).",
+  "There's a real revenue, cost, or operational problem under the AI/automation idea.",
+  "Someone on your side can answer questions and make decisions inside a 2-week sprint.",
+  "You'd rather ship a working thing in weeks than draft a roadmap for months.",
+];
+
+const notAFitChecklist = [
+  "Chatbot-as-a-product builds with no clear use case under them.",
+  "Generic content-generation pipelines with no proprietary data or distribution moat.",
+  "Procurement-led RFPs with 60+ day decision cycles before any technical conversation.",
+];
+---
+
+<Base
+  title="Contact"
+  description={`Get in touch with ${site.founder} — independent product and AI builder working with B2B companies. Email ${site.email}.`}
+  jsonLd={contactPageSchema}
+>
+  <section class="mx-auto max-w-6xl px-6 pt-32 pb-16">
+    <div class="grid md:grid-cols-3 gap-12">
+      <div>
+        <SectionEyebrow class="mb-4">Contact</SectionEyebrow>
+        <div class="text-xs text-[color:var(--color-muted)] uppercase tracking-[0.2em]">
+          Working globally · Based in Mexico City
+        </div>
+      </div>
+      <div class="md:col-span-2">
+        <h1 class="font-display text-5xl md:text-6xl tracking-tight leading-[1.05]">
+          Get in touch.
+        </h1>
+        <p class="mt-6 text-lg md:text-xl text-[color:var(--color-muted)] leading-relaxed max-w-2xl">
+          I take on a small number of engagements at a time so the ones I do take get real attention. The fastest way to start is a short email with the problem you're trying to solve.
+        </p>
+        <p class="mt-6 text-lg leading-relaxed max-w-2xl">
+          I usually reply within one business day. Mexico City time, in English or Spanish.
+        </p>
+        <div class="mt-10 flex flex-wrap gap-4">
+          <a
+            href={`mailto:${site.email}`}
+            class="px-6 py-3 rounded-full bg-[color:var(--color-fg)] text-[color:var(--color-bg)] hover:bg-[color:var(--color-accent)] hover:text-[color:var(--color-bg)] transition-colors"
+          >
+            {site.email}
+          </a>
+          <a
+            href={site.socials.linkedin}
+            class="px-6 py-3 rounded-full border border-[color:var(--color-line)] hover:border-[color:var(--color-fg)] transition-colors"
+          >
+            LinkedIn →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-6 py-16 border-t border-[color:var(--color-line)]">
+    <div class="grid md:grid-cols-3 gap-12">
+      <div>
+        <div class="font-display text-5xl text-[color:var(--color-accent)] mb-4">01</div>
+        <h2 class="font-display text-3xl md:text-4xl tracking-tight">Channels</h2>
+      </div>
+      <div class="md:col-span-2 space-y-8 text-lg leading-relaxed text-[color:var(--color-muted)]">
+        {channels.map((channel) => (
+          <div class="space-y-2">
+            <div class="flex flex-wrap items-baseline gap-x-4">
+              <span class="text-xs uppercase tracking-[0.2em] text-[color:var(--color-muted)]">{channel.label}</span>
+              <a
+                href={channel.href}
+                class="font-display text-xl text-[color:var(--color-fg)] underline underline-offset-4 decoration-[color:var(--color-line)] hover:decoration-[color:var(--color-accent)]"
+              >
+                {channel.value}
+              </a>
+            </div>
+            <p>{channel.note}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-6 py-16 border-t border-[color:var(--color-line)]">
+    <div class="grid md:grid-cols-3 gap-12">
+      <div>
+        <div class="font-display text-5xl text-[color:var(--color-accent)] mb-4">02</div>
+        <h2 class="font-display text-3xl md:text-4xl tracking-tight">When this is a fit</h2>
+      </div>
+      <div class="md:col-span-2 space-y-6 text-lg leading-relaxed text-[color:var(--color-muted)]">
+        <div>
+          <h3 class="font-display text-xl text-[color:var(--color-fg)] mb-3">Usually a good fit</h3>
+          <ul class="space-y-2 list-disc pl-6">
+            {goodFitChecklist.map((line) => <li>{line}</li>)}
+          </ul>
+        </div>
+        <div class="pt-4 border-t border-[color:var(--color-line)]">
+          <h3 class="font-display text-xl text-[color:var(--color-fg)] mb-3">Probably not the right person</h3>
+          <ul class="space-y-2 list-disc pl-6">
+            {notAFitChecklist.map((line) => <li>{line}</li>)}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-6 py-16 border-t border-[color:var(--color-line)]">
+    <div class="grid md:grid-cols-3 gap-12">
+      <div>
+        <div class="font-display text-5xl text-[color:var(--color-accent)] mb-4">03</div>
+        <h2 class="font-display text-3xl md:text-4xl tracking-tight">What to send</h2>
+      </div>
+      <div class="md:col-span-2 space-y-4 text-lg leading-relaxed text-[color:var(--color-muted)]">
+        <p>A short note beats a polished brief. The things that actually help me reply with something useful:</p>
+        <ul class="space-y-2 list-disc pl-6">
+          <li>The problem in one or two sentences — what's broken, slow, or expensive today.</li>
+          <li>How you've thought about solving it so far (even if you've ruled approaches out).</li>
+          <li>Roughly when you'd want something working — weeks, a quarter, no rush.</li>
+          <li>Any constraints worth naming early (stack you're locked into, data you can't move, etc.).</li>
+        </ul>
+        <p>If it's easier to talk it out, say so and we'll book a call.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-6xl px-6 py-12 border-t border-[color:var(--color-line)] flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-sm">
+    <a href="/" class="text-[color:var(--color-muted)] hover:text-[color:var(--color-accent)]">← Home</a>
+    <a href="/#work" class="text-[color:var(--color-muted)] hover:text-[color:var(--color-accent)]">See recent work →</a>
+  </div>
+</Base>

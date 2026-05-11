@@ -21,6 +21,12 @@ import about from "~/content/homepage/about.json";
       {about.paragraphs.map((p, i) => (
         <p class={i === 0 ? "" : "text-[color:var(--color-muted)]"}>{p}</p>
       ))}
+      <a
+        href="/about"
+        class="inline-flex items-center gap-1 text-[color:var(--color-muted)] hover:text-[color:var(--color-accent)] underline underline-offset-4 decoration-[color:var(--color-line)] hover:decoration-[color:var(--color-accent)]"
+      >
+        Read the full story →
+      </a>
     </div>
   </div>
 </section>

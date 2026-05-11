@@ -1,0 +1,387 @@
+---
+import Base from "~/layouts/Base.astro";
+import SectionEyebrow from "~/components/SectionEyebrow.astro";
+import services from "~/content/homepage/services.json";
+import { site } from "~/site.config";
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, "") ?? "";
+
+const offers = [
+  {
+    key: "build",
+    title: "Build engagement",
+    format: "Fixed-scope · milestone-based",
+    duration: "6 to 12 weeks, typical",
+    startsAt: "Milestones from $20K USD",
+    priceMin: 15000,
+    priceMax: 30000,
+    bestFor: "An idea or workflow you're ready to ship. Scope is well-defined enough to break into milestones.",
+    includes: [
+      "Scoped plan with milestones and acceptance criteria",
+      "Design, engineering, and deployment under one roof",
+      "Integrations with the tools and data sources you already run",
+      "Two weeks of post-launch tweaks included",
+    ],
+    walkAway: "A working production system, the source code, deploy docs, and a handover so your team can run it.",
+  },
+  {
+    key: "sprint",
+    title: "Prototype sprint",
+    format: "2 to 4 weeks · fixed price",
+    duration: "2 to 4 weeks",
+    startsAt: "Fixed price from $10K USD",
+    priceMin: 8000,
+    priceMax: 15000,
+    bestFor: "Pressure-testing an AI idea before committing to a full build. You want a demo against real data, not a deck.",
+    includes: [
+      "A working demo wired to your real data and constraints",
+      "An honest go/no-go with the reasoning written down",
+      "An architecture brief for what a production build would look like",
+    ],
+    walkAway: "A demo, a go/no-go, and a build plan for v1.",
+  },
+  {
+    key: "advisory",
+    title: "Advisory retainer",
+    format: "Monthly · 3-month minimum",
+    duration: "Monthly, ongoing",
+    startsAt: "Monthly retainer from $4K USD",
+    priceMin: 4000,
+    priceMax: 8000,
+    bestFor: "GTM, RevOps, or AI-product leadership at a fractional cadence. Standalone, or layered onto a build engagement.",
+    includes: [
+      "Weekly working session plus async support between",
+      "ICP, pricing, sales process, pipeline, and the playbook to run it",
+      "Hiring help when the playbook needs a team behind it",
+    ],
+    walkAway: "A playbook your team can run on after the retainer ends, not a dependency.",
+  },
+  {
+    key: "audit",
+    title: "Audit & assessment",
+    format: "1 to 2 weeks · fixed deliverable",
+    duration: "1 to 2 weeks",
+    startsAt: "Fixed price from $3K USD",
+    priceMin: 3000,
+    priceMax: 6000,
+    bestFor: "A focused diagnostic on one surface area: AI roadmap, ops stack, GTM motion, or product positioning.",
+    includes: [
+      "Review of current state with stakeholders and systems",
+      "Prioritized recommendations with the reasoning behind each",
+      "A short build plan for the highest-leverage change",
+    ],
+    walkAway: "A written assessment, prioritized recommendations, and a build plan you can act on with or without me.",
+  },
+];
+
+const process = [
+  {
+    label: "Intro call",
+    body: "30 minutes, no cost. We figure out if there's a real problem under the idea and whether I'm the right person to work on it. I'd rather tell you no in week one than waste your money in month two.",
+  },
+  {
+    label: "Written brief and scope",
+    body: "I send a one-page brief: the problem in your words, the approach, the milestones, the price. You either say yes, push back, or take it to a contractor you trust for a second opinion.",
+  },
+  {
+    label: "Kickoff",
+    body: "Contract signed, kickoff inside the next one to two weeks. We agree on the working cadence, the tools we'll share, and the decision-maker on your side.",
+  },
+  {
+    label: "Weekly checkpoints",
+    body: "Short async update each week and a live call when the work needs a decision. No status theater, no Gantt charts for their own sake.",
+  },
+  {
+    label: "Handover",
+    body: "Code, docs, deploy scripts, and a working session so your team can extend it. If the engagement ends without your team being able to run the thing, I didn't do my job.",
+  },
+];
+
+const inScope = [
+  "AI automations against real workflows where the bottleneck is human throughput.",
+  "Custom internal tools, dashboards, and admin surfaces adapted to your business.",
+  "ERP, CMS, and integration work against the systems you already run.",
+  "Lightweight client-facing applications when the off-the-shelf tools don't fit.",
+  "GTM and RevOps advisory layered onto builds so strategy and system ship together.",
+];
+
+const outOfScope = [
+  "Marketing sites and brand work (you want a design studio, not me).",
+  "Generic chatbots with no real workflow under them.",
+  "Procurement-driven RFPs with 60-plus day decision cycles before any technical conversation.",
+  "'Build it and they will come' projects with no operator owning the rollout on your side.",
+];
+
+const faqs = [
+  {
+    q: "How do you price?",
+    a: "Builds are priced per milestone after a written scope. Sprints and audits are fixed-price. Advisory is a monthly retainer with a three-month minimum. The first proposal lays out the price in writing before you commit to anything.",
+  },
+  {
+    q: "Do you take equity?",
+    a: "In specific cases. Early stage, mission-aligned, with a cash component large enough to cover delivery. I'd rather price the work fairly than be a part-time co-founder by accident.",
+  },
+  {
+    q: "Will you sign an NDA?",
+    a: "Yes, before we get into anything specific. A simple two-way NDA is usually enough.",
+  },
+  {
+    q: "What stack do you use?",
+    a: "Whatever fits the problem. Default toolkit: TypeScript and React for product surfaces, Python for ML and data work, Postgres or Supabase for storage, OpenAI and Anthropic models for inference, and a deploy story on Vercel or Cloudflare. If your team already has a stack, I'll work in it where the fit is reasonable.",
+  },
+  {
+    q: "Can you work with my team's developers?",
+    a: "Yes. I can lead the build, pair with your team, or hand off cleanly at the end. Some engagements are explicitly designed so an internal engineer takes ownership in month two.",
+  },
+  {
+    q: "What if scope changes mid-build?",
+    a: "Small changes get absorbed. Bigger ones get rescoped together, in writing, before any extra work starts. No surprise invoices.",
+  },
+];
+
+const servicesPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": `${siteUrl}/services#page`,
+  url: `${siteUrl}/services`,
+  name: `Services — ${site.studio}`,
+  description: `Engagement formats, scope, and pricing for working with ${site.founder}. Build engagements, prototype sprints, advisory retainers, and audits.`,
+  about: { "@id": `${siteUrl}/#studio` },
+  isPartOf: { "@id": `${siteUrl}/#website` },
+  publisher: { "@id": `${siteUrl}/#studio` },
+};
+
+const offerCatalogSchema = {
+  "@context": "https://schema.org",
+  "@type": "OfferCatalog",
+  "@id": `${siteUrl}/services#offers`,
+  name: `${site.studio} engagement formats`,
+  url: `${siteUrl}/services`,
+  provider: { "@id": `${siteUrl}/#studio` },
+  itemListElement: offers.map((offer, i) => ({
+    "@type": "Offer",
+    position: i + 1,
+    name: offer.title,
+    category: offer.format,
+    description: offer.bestFor,
+    eligibleDuration: offer.duration,
+    priceCurrency: "USD",
+    price: offer.priceMin,
+    priceSpecification: {
+      "@type": "PriceSpecification",
+      priceCurrency: "USD",
+      minPrice: offer.priceMin,
+      maxPrice: offer.priceMax,
+      description: offer.startsAt,
+    },
+    seller: { "@id": `${siteUrl}/#studio` },
+  })),
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": `${siteUrl}/services#faq`,
+  mainEntity: faqs.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+---
+
+<Base
+  title="Services"
+  description={`Engagement formats, scope, and pricing for working with ${site.founder}. Build engagements, prototype sprints, advisory retainers, and audits.`}
+  jsonLd={[servicesPageSchema, offerCatalogSchema, faqSchema]}
+>
+  <section class="mx-auto max-w-6xl px-6 pt-32 pb-16">
+    <div class="grid md:grid-cols-3 gap-12">
+      <div>
+        <SectionEyebrow class="mb-4">Services</SectionEyebrow>
+      </div>
+      <div class="md:col-span-2">
+        <h1 class="font-display text-5xl md:text-6xl tracking-tight leading-[1.05]">
+          Four ways to work together.
+        </h1>
+        <p class="mt-6 text-lg md:text-xl text-[color:var(--color-muted)] leading-relaxed max-w-2xl">
+          Each engagement is scoped around a real problem. Pick the format that matches the shape of yours, or write me about something custom. I take on a small number of engagements at a time so the ones I do take get real attention.
+        </p>
+        <div class="mt-10 flex flex-wrap gap-4">
+          <a
+            href="/contact"
+            class="px-6 py-3 rounded-full bg-[color:var(--color-fg)] text-[color:var(--color-bg)] hover:bg-[color:var(--color-accent)] hover:text-[color:var(--color-bg)] transition-colors"
+          >
+            Start a conversation
+          </a>
+          <a
+            href="#engagements"
+            class="px-6 py-3 rounded-full border border-[color:var(--color-line)] hover:border-[color:var(--color-fg)] transition-colors"
+          >
+            See engagement details ↓
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="engagements" class="mx-auto max-w-6xl px-6 py-16 border-t border-[color:var(--color-line)]">
+    <div class="max-w-2xl">
+      <div class="font-display text-5xl text-[color:var(--color-accent)] mb-4">01</div>
+      <h2 class="font-display text-3xl md:text-4xl tracking-tight">Engagement formats</h2>
+      <p class="mt-4 text-[color:var(--color-muted)] leading-relaxed">
+        Four formats. Prices below are starting anchors in USD. Final price comes from the written scope after we talk.
+      </p>
+      <p class="mt-4 text-sm text-[color:var(--color-muted)] italic leading-relaxed">
+        Engagements above ~$30K, or that need a dedicated team and US Product Owner, usually route through <a href="https://www.clearframelabs.co" target="_blank" rel="noopener noreferrer" class="underline underline-offset-4 decoration-[color:var(--color-line)] hover:decoration-[color:var(--color-accent)] not-italic">Clearframe Labs</a>, where I'm a partner. Same scoping conversation, different delivery shape.
+      </p>
+    </div>
+    <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
+      {offers.map((offer) => (
+        <article class="rounded-2xl border border-[color:var(--color-line)] bg-[color:var(--color-card)] p-6 md:p-8 transition-colors hover:border-[color:var(--color-fg)]/40">
+          <div class="text-xs uppercase tracking-[0.18em] text-[color:var(--color-muted)] mb-3">{offer.format}</div>
+          <h3 class="font-display text-2xl md:text-3xl tracking-tight">{offer.title}</h3>
+          <p class="mt-4 text-[color:var(--color-muted)] leading-relaxed">{offer.bestFor}</p>
+          <dl class="mt-6 space-y-3 text-sm">
+            <div class="flex flex-col sm:flex-row sm:gap-3">
+              <dt class="uppercase tracking-[0.18em] text-[color:var(--color-muted)] sm:w-28 shrink-0">Duration</dt>
+              <dd>{offer.duration}</dd>
+            </div>
+            <div class="flex flex-col sm:flex-row sm:gap-3">
+              <dt class="uppercase tracking-[0.18em] text-[color:var(--color-muted)] sm:w-28 shrink-0">Starts at</dt>
+              <dd>{offer.startsAt}</dd>
+            </div>
+          </dl>
+          <div class="mt-6 pt-6 border-t border-[color:var(--color-line)]">
+            <div class="text-xs uppercase tracking-[0.18em] text-[color:var(--color-muted)] mb-3">What's included</div>
+            <ul class="space-y-2 text-[color:var(--color-muted)]">
+              {offer.includes.map((item) => (
+                <li class="flex gap-2">
+                  <span aria-hidden="true" class="text-[color:var(--color-accent)] shrink-0">→</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="mt-6 pt-6 border-t border-[color:var(--color-line)]">
+            <div class="text-xs uppercase tracking-[0.18em] text-[color:var(--color-muted)] mb-2">You walk away with</div>
+            <p class="text-[color:var(--color-muted)]">{offer.walkAway}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-6 py-16 border-t border-[color:var(--color-line)]">
+    <div class="grid md:grid-cols-3 gap-12">
+      <div>
+        <div class="font-display text-5xl text-[color:var(--color-accent)] mb-4">02</div>
+        <h2 class="font-display text-3xl md:text-4xl tracking-tight">How a project starts</h2>
+        <p class="mt-4 text-[color:var(--color-muted)] leading-relaxed">
+          From first email to handover, in five steps.
+        </p>
+      </div>
+      <div class="md:col-span-2 space-y-8 text-lg leading-relaxed text-[color:var(--color-muted)]">
+        {process.map((step, i) => (
+          <div class="space-y-2">
+            <div class="flex items-baseline gap-4">
+              <span class="font-display text-2xl text-[color:var(--color-accent)] shrink-0">{String(i + 1).padStart(2, "0")}</span>
+              <h3 class="font-display text-xl text-[color:var(--color-fg)]">{step.label}</h3>
+            </div>
+            <p class="pl-10">{step.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-6 py-16 border-t border-[color:var(--color-line)]">
+    <div class="grid md:grid-cols-3 gap-12">
+      <div>
+        <div class="font-display text-5xl text-[color:var(--color-accent)] mb-4">03</div>
+        <h2 class="font-display text-3xl md:text-4xl tracking-tight">In scope, out of scope</h2>
+        <p class="mt-4 text-[color:var(--color-muted)] leading-relaxed">
+          The fastest way to know if this is a fit.
+        </p>
+      </div>
+      <div class="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-6">
+        <article class="rounded-2xl border border-[color:var(--color-line)] bg-[color:var(--color-bg)] p-6 md:p-7">
+          <h3 class="font-display text-xl text-[color:var(--color-fg)] mb-4">Usually a good fit</h3>
+          <ul class="space-y-3 text-[color:var(--color-muted)]">
+            {inScope.map((line) => (
+              <li class="flex gap-2">
+                <span aria-hidden="true" class="text-[color:var(--color-accent)] shrink-0">+</span>
+                <span>{line}</span>
+              </li>
+            ))}
+          </ul>
+        </article>
+        <article class="rounded-2xl border border-[color:var(--color-line)] bg-[color:var(--color-bg)] p-6 md:p-7">
+          <h3 class="font-display text-xl text-[color:var(--color-fg)] mb-4">Probably not the right person</h3>
+          <ul class="space-y-3 text-[color:var(--color-muted)]">
+            {outOfScope.map((line) => (
+              <li class="flex gap-2">
+                <span aria-hidden="true" class="text-[color:var(--color-muted)] shrink-0">−</span>
+                <span>{line}</span>
+              </li>
+            ))}
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-6 py-16 border-t border-[color:var(--color-line)]">
+    <div class="grid md:grid-cols-3 gap-12">
+      <div>
+        <div class="font-display text-5xl text-[color:var(--color-accent)] mb-4">04</div>
+        <h2 class="font-display text-3xl md:text-4xl tracking-tight">Common questions</h2>
+        <p class="mt-4 text-[color:var(--color-muted)] leading-relaxed">
+          The stuff that usually comes up before we even start scoping.
+        </p>
+      </div>
+      <div class="md:col-span-2 divide-y divide-[color:var(--color-line)]">
+        {faqs.map((item) => (
+          <details class="group py-6">
+            <summary class="flex cursor-pointer items-start justify-between gap-6 text-lg font-medium text-[color:var(--color-fg)]">
+              <span>{item.q}</span>
+              <span aria-hidden="true" class="text-[color:var(--color-accent)] transition-transform group-open:rotate-45 shrink-0">+</span>
+            </summary>
+            <p class="mt-3 text-[color:var(--color-muted)] leading-relaxed">{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-6 py-16 border-t border-[color:var(--color-line)]">
+    <div class="rounded-3xl bg-[color:var(--color-fg)] text-[color:var(--color-bg)] p-10 md:p-16">
+      <SectionEyebrow class="mb-4">Get in touch</SectionEyebrow>
+      <h2 class="font-display text-4xl md:text-6xl tracking-tight max-w-3xl">
+        Ready to talk through one of these? <span class="italic opacity-70">Or something custom.</span>
+      </h2>
+      <p class="mt-6 max-w-2xl opacity-70 text-lg leading-relaxed">
+        A short email is enough to start. Tell me what you're building, what's stuck, and roughly when you'd want to ship by.
+      </p>
+      <div class="mt-10 flex flex-wrap gap-4">
+        <a
+          href="/contact"
+          class="px-6 py-3 rounded-full bg-[color:var(--color-bg)] text-[color:var(--color-fg)] hover:bg-[color:var(--color-accent)] hover:text-[color:var(--color-bg)] transition-colors"
+        >
+          Contact
+        </a>
+        <a
+          href={`mailto:${site.email}`}
+          class="px-6 py-3 rounded-full border border-[color:var(--color-bg)]/30 hover:border-[color:var(--color-bg)] transition-colors"
+        >
+          {site.email}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-6xl px-6 py-12 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-sm">
+    <a href="/" class="text-[color:var(--color-muted)] hover:text-[color:var(--color-accent)]">← Home</a>
+    <a href="/about" class="text-[color:var(--color-muted)] hover:text-[color:var(--color-accent)]">About →</a>
+  </div>
+</Base>
