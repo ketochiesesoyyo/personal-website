@@ -1,0 +1,61 @@
+---
+title: ContaExpertos
+tagline: >-
+  Spanish-first accounting site with a custom admin panel — built to rank on
+  Google and get cited by AI search
+type: client
+role: Design, product & full-stack engineering
+year: '2026'
+status: in-development
+stack:
+  - >-
+    Next.js 15, React 19, TypeScript, Tailwind CSS v4, Wix Data (headless),
+    iron-session, bcrypt, Resend, Vercel
+categories:
+  - website
+metrics: []
+featured: false
+order: 0
+---
+## The problem
+
+A solo CDMX accountant — or any small Mexican firm — has two bad options for getting online. Pay an agency MX$80,000–150,000 for a custom site that takes three months\
+and still leaves you stuck inside a CMS dashboard you don't understand. Or spin up a Wix template that ranks for nothing, gets cited by no LLM, and forces you to manage leads in an interface designed for restaurants and yoga studios. The accountants who actually win clients in CDMX in 2026 aren't doing either — they're showing up in\
+Google for "contador en CDMX", in ChatGPT for "cómo facturar como RESICO", and in WhatsApp within an hour of a lead form hitting their inbox. None of that comes out of a template.
+
+## The approach
+
+### Two non-obvious bets shaped the build.
+
+First, structure the entire site for SEO and GEO from the very first commit — not as a post-launch SEO audit. The content patterns that rank on Google (AccountingService
+
+- LocalBusiness schema, semantic headings, sitemap, canonicals) overlap with — but aren't identical to — the patterns that get cited by ChatGPT, Perplexity, and AI Overviews (self-contained FAQ answers, definition blocks, citable stats, llms.txt, entity-clean JSON-LD). I treated GEO as its own optimization pass, with its own\
+  checklist: every service page ships with an FAQ that an LLM can lift verbatim, every blog post leads with a direct-answer paragraph, and /llms.txt is generated\
+  server-side from the live services and blog catalog so AI engines always have a clean ground-truth map of the site.
+
+Second, throw out the CMS entirely. The friend who'll actually run this site is an accountant, not a marketer. He doesn't need a 300-field Wix dashboard — he needs a\
+Spanish-language /admin with five screens (leads, servicios, blog, ajustes, usuarios) and nothing else. Wix is downgraded to a pure headless data store; the management UX is a custom panel I built on top of it. Same data durability, none of the cognitive overhead.
+
+## What I built
+
+A Next.js 15 + React 19 + Tailwind v4 site, fully Spanish (es-MX), with the public marketing surface and a purpose-built admin under one deploy:
+
+Public site. Home (hero, stats band, services grid, "cómo trabajamos" process, sobre nosotros, testimonios, FAQ, CTA), /servicios index + statically-generated detail\
+pages per service, /blog index + post pages, /contacto with a server-action lead form, /nosotros, custom 404. Every page is ISR-cached and re-validates when the admin edits content.
+
+SEO + GEO layer. <html lang="es-MX">, route-level Metadata API with canonicals, dynamic sitemap.xml and robots.txt (with explicit allow rules for OAI-SearchBot,\
+PerplexityBot, GPTBot, ClaudeBot, Google-Extended), /llms.txt generated from live data per the llmstxt.org spec, and a JSON-LD graph covering AccountingService, LocalBusiness with CDMX geo coordinates, WebSite, per-service Service, BreadcrumbList, and FAQPage. The homepage FAQ and per-service FAQ blocks are structured the way\
+LLM retrievers actually quote them — question as <h3>, direct answer in the first sentence, supporting context after.
+
+Custom admin. Sign-in at /admin/login using iron-session + bcrypt against a Wix AdminUsers collection (no Wix dashboard exposed to the client, ever). Inside: a lead\
+inbox (form submissions land here, with Resend-powered email notifications), a services CRUD with markdown editing and per-service FAQ management, a blog editor with image uploads via Wix Media, a settings screen for brand/contact/SEO defaults, a user management screen for adding additional editors, and an audit log of who changed\
+what. Bootstrapped via a one-time npm run seed:admin CLI — no public registration.
+
+Architecture decisions worth flagging. ISR over SSR for public pages so the site is fast and cheap regardless of traffic. Wix Data as the backing store (free tier, no\
+Postgres to maintain, friend's site survives me) but every Wix call is wrapped in lib/wix-admin.ts so swapping it for Supabase later is a one-file change. Admin updates merge into existing Wix records instead of overwriting them — a bug I caught and patched (commit a8c9f75) after admin saves were silently wiping unrelated fields.\
+Tailwind v4 with CSS-variable theming (no tailwind.config.js), buttons on a 12px radius (no pill rounding — deliberate, professional-services tone), single accent color over a neutral palette, inspired by Farias Process / Tivos / Nova Realty Cocoyoc.
+
+## Outcome
+
+A production-ready bilingual-accounting site that ships with the SEO + GEO scaffolding most CDMX firms pay an agency MX$50,000+ to retrofit later — and a Spanish admin\
+panel the accountant can actually use without ever logging into Wix. Built end-to-end in {N} weeks: product, infra, admin, and brand. Currently in placeholder-content mode pending the friend's confirmation of his real service catalog and contact details; once that's plugged into lib/site-config.ts and lib/services.ts, the site is one git push from launch.
