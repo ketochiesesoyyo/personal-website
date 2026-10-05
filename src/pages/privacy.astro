@@ -61,7 +61,7 @@ const yourRights = [
   title="Privacy Policy"
   description="How henrickf.com handles your data. Plain language, minimal collection, no tracking."
 >
-  <section class="mx-auto max-w-6xl px-6 pt-32 pb-16">
+  <section class="px-6 md:px-10 xl:px-16 pt-32 pb-16">
     <div class="grid md:grid-cols-3 gap-12">
       <div>
         <SectionEyebrow class="mb-4">Privacy</SectionEyebrow>
@@ -83,13 +83,13 @@ const yourRights = [
     </div>
   </section>
 
-  <section class="mx-auto max-w-6xl px-6 py-16 border-t border-[color:var(--color-line)]">
+  <section class="px-6 md:px-10 xl:px-16 py-16 border-t border-[color:var(--color-line)]">
     <div class="grid md:grid-cols-3 gap-12">
       <div>
         <div class="font-display text-5xl text-[color:var(--color-accent)] mb-4">01</div>
         <h2 class="font-display text-3xl md:text-4xl tracking-tight">The short version</h2>
       </div>
-      <div class="md:col-span-2 text-lg leading-relaxed text-[color:var(--color-muted)]">
+      <div class="md:col-span-2 max-w-3xl text-lg leading-relaxed text-[color:var(--color-muted)]">
         <ul class="space-y-3 list-disc pl-6">
           {shortVersion.map((line) => <li>{line}</li>)}
         </ul>
@@ -97,13 +97,13 @@ const yourRights = [
     </div>
   </section>
 
-  <section class="mx-auto max-w-6xl px-6 py-16 border-t border-[color:var(--color-line)]">
+  <section class="px-6 md:px-10 xl:px-16 py-16 border-t border-[color:var(--color-line)]">
     <div class="grid md:grid-cols-3 gap-12">
       <div>
         <div class="font-display text-5xl text-[color:var(--color-accent)] mb-4">02</div>
         <h2 class="font-display text-3xl md:text-4xl tracking-tight">What I collect</h2>
       </div>
-      <div class="md:col-span-2 space-y-8 text-lg leading-relaxed text-[color:var(--color-muted)]">
+      <div class="md:col-span-2 max-w-3xl space-y-8 text-lg leading-relaxed text-[color:var(--color-muted)]">
         {dataYouSend.map((item) => (
           <div class="space-y-3">
             <h3 class="font-display text-xl text-[color:var(--color-fg)]">{item.title}</h3>
@@ -121,13 +121,13 @@ const yourRights = [
     </div>
   </section>
 
-  <section class="mx-auto max-w-6xl px-6 py-16 border-t border-[color:var(--color-line)]">
+  <section class="px-6 md:px-10 xl:px-16 py-16 border-t border-[color:var(--color-line)]">
     <div class="grid md:grid-cols-3 gap-12">
       <div>
         <div class="font-display text-5xl text-[color:var(--color-accent)] mb-4">03</div>
         <h2 class="font-display text-3xl md:text-4xl tracking-tight">Why I collect it</h2>
       </div>
-      <div class="md:col-span-2 space-y-6 text-lg leading-relaxed text-[color:var(--color-muted)]">
+      <div class="md:col-span-2 max-w-3xl space-y-6 text-lg leading-relaxed text-[color:var(--color-muted)]">
         <ul class="space-y-3">
           {whyCollect.map((item) => (
             <li><span class="text-[color:var(--color-fg)] font-medium">{item.label}.</span> {item.body}</li>
@@ -138,13 +138,13 @@ const yourRights = [
     </div>
   </section>
 
-  <section class="mx-auto max-w-6xl px-6 py-16 border-t border-[color:var(--color-line)]">
+  <section class="px-6 md:px-10 xl:px-16 py-16 border-t border-[color:var(--color-line)]">
     <div class="grid md:grid-cols-3 gap-12">
       <div>
         <div class="font-display text-5xl text-[color:var(--color-accent)] mb-4">04</div>
         <h2 class="font-display text-3xl md:text-4xl tracking-tight">Sharing</h2>
       </div>
-      <div class="md:col-span-2 space-y-6 text-lg leading-relaxed text-[color:var(--color-muted)]">
+      <div class="md:col-span-2 max-w-3xl space-y-6 text-lg leading-relaxed text-[color:var(--color-muted)]">
         <p>I share information only with service providers strictly necessary to run the Site:</p>
         <ul class="space-y-3">
           {sharedWith.map((item) => (
@@ -156,13 +156,13 @@ const yourRights = [
     </div>
   </section>
 
-  <section class="mx-auto max-w-6xl px-6 py-16 border-t border-[color:var(--color-line)]">
+  <section class="px-6 md:px-10 xl:px-16 py-16 border-t border-[color:var(--color-line)]">
     <div class="grid md:grid-cols-3 gap-12">
       <div>
         <div class="font-display text-5xl text-[color:var(--color-accent)] mb-4">05</div>
         <h2 class="font-display text-3xl md:text-4xl tracking-tight">Your rights</h2>
       </div>
-      <div class="md:col-span-2 space-y-6 text-lg leading-relaxed text-[color:var(--color-muted)]">
+      <div class="md:col-span-2 max-w-3xl space-y-6 text-lg leading-relaxed text-[color:var(--color-muted)]">
         <p>Depending on where you live, you may have the right to:</p>
         <ul class="space-y-2 list-disc pl-6">
           {yourRights.map((line) => <li>{line}</li>)}
@@ -172,56 +172,56 @@ const yourRights = [
     </div>
   </section>
 
-  <section class="mx-auto max-w-6xl px-6 py-16 border-t border-[color:var(--color-line)]">
+  <section class="px-6 md:px-10 xl:px-16 py-16 border-t border-[color:var(--color-line)]">
     <div class="grid md:grid-cols-3 gap-12">
       <div>
         <div class="font-display text-5xl text-[color:var(--color-accent)] mb-4">06</div>
         <h2 class="font-display text-3xl md:text-4xl tracking-tight">International transfers</h2>
       </div>
-      <div class="md:col-span-2 space-y-6 text-lg leading-relaxed text-[color:var(--color-muted)]">
+      <div class="md:col-span-2 max-w-3xl space-y-6 text-lg leading-relaxed text-[color:var(--color-muted)]">
         <p>The Site's hosting and email infrastructure may store and process data outside your country (typically in the United States or EU regions, depending on the provider). Where required, transfers rely on the providers' standard contractual clauses or equivalent safeguards.</p>
       </div>
     </div>
   </section>
 
-  <section class="mx-auto max-w-6xl px-6 py-16 border-t border-[color:var(--color-line)]">
+  <section class="px-6 md:px-10 xl:px-16 py-16 border-t border-[color:var(--color-line)]">
     <div class="grid md:grid-cols-3 gap-12">
       <div>
         <div class="font-display text-5xl text-[color:var(--color-accent)] mb-4">07</div>
         <h2 class="font-display text-3xl md:text-4xl tracking-tight">Children &amp; security</h2>
       </div>
-      <div class="md:col-span-2 space-y-6 text-lg leading-relaxed text-[color:var(--color-muted)]">
+      <div class="md:col-span-2 max-w-3xl space-y-6 text-lg leading-relaxed text-[color:var(--color-muted)]">
         <p>The Site is not directed to children under 13 (or the equivalent minimum age in your jurisdiction). I don't knowingly collect personal information from children. If you believe a child has provided personal data, contact me and I'll delete it.</p>
         <p>I use providers with industry-standard security practices (HTTPS in transit, hosted infrastructure with managed access controls). No system is perfectly secure; if a breach affecting your data occurs, I'll notify affected users in line with applicable law.</p>
       </div>
     </div>
   </section>
 
-  <section class="mx-auto max-w-6xl px-6 py-16 border-t border-[color:var(--color-line)]">
+  <section class="px-6 md:px-10 xl:px-16 py-16 border-t border-[color:var(--color-line)]">
     <div class="grid md:grid-cols-3 gap-12">
       <div>
         <div class="font-display text-5xl text-[color:var(--color-accent)] mb-4">08</div>
         <h2 class="font-display text-3xl md:text-4xl tracking-tight">Changes</h2>
       </div>
-      <div class="md:col-span-2 space-y-6 text-lg leading-relaxed text-[color:var(--color-muted)]">
+      <div class="md:col-span-2 max-w-3xl space-y-6 text-lg leading-relaxed text-[color:var(--color-muted)]">
         <p>I may update this policy when the Site changes or when the law requires it. The Last updated date at the top of this page reflects the most recent revision. Material changes will be flagged on the home page or by direct notice where appropriate.</p>
       </div>
     </div>
   </section>
 
-  <section class="mx-auto max-w-6xl px-6 py-16 border-t border-[color:var(--color-line)]">
+  <section class="px-6 md:px-10 xl:px-16 py-16 border-t border-[color:var(--color-line)]">
     <div class="grid md:grid-cols-3 gap-12">
       <div>
         <SectionEyebrow class="mb-3">Contact</SectionEyebrow>
         <h2 class="font-display text-3xl md:text-4xl tracking-tight">Questions?</h2>
       </div>
-      <div class="md:col-span-2 space-y-6 text-lg leading-relaxed text-[color:var(--color-muted)]">
+      <div class="md:col-span-2 max-w-3xl space-y-6 text-lg leading-relaxed text-[color:var(--color-muted)]">
         <p>Questions about privacy or your rights: <a href={`mailto:${site.email}`} class="text-[color:var(--color-accent)] underline underline-offset-4">{site.email}</a>.</p>
       </div>
     </div>
   </section>
 
-  <div class="mx-auto max-w-6xl px-6 py-12 border-t border-[color:var(--color-line)] flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-sm">
+  <div class="px-6 md:px-10 xl:px-16 py-12 border-t border-[color:var(--color-line)] flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-sm">
     <a href="/" class="text-[color:var(--color-muted)] hover:text-[color:var(--color-accent)]">← Home</a>
     <a href="/terms" class="text-[color:var(--color-muted)] hover:text-[color:var(--color-accent)]">Terms of Use →</a>
   </div>

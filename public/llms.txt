@@ -31,9 +31,10 @@ Engagements above ~$30K, or that need a dedicated team and a US Product Owner, r
 ## Career
 
 - 2026 to present: Partner, Clearframe Labs. Client-facing scoping and engagement structuring on B2B AI and custom-software builds.
+- Aug to Oct 2026: AI Commercial Operations Lead (AI Builder, FDE), Clara. Built three internal AI platforms for the commercial team: sales enablement (LLM call scoring, coaching, governed quoting), SDR meeting intelligence, and customer growth analytics. New-hire ramp cut from three weeks to two; 27% of deals reached proposal in about 1.3 weeks instead of 3.
 - 2025 to present: Director of Operations & GTM, MatchWise.
 - 2023 to 2025: Director of Strategy & Operations, Bedu (Lottus Education, one of Mexico's leading higher-education groups). Enterprise accounts including HSBC, Santander, Novartis, and Accenture.
-- 2021 to 2023: BDM into Head of Sales, Mexico, Jeeves (a16z, YC). Contributed customer-data analysis and research to the Series C deck, ~$180M raised at a $2.1B valuation.
+- 2021 to 2023: BDM into Head of Sales, Mexico, Jeeves (a16z). Contributed customer-data analysis and research to the Series C deck, ~$180M raised at a $2.1B valuation.
 - 2020 to 2021: Senior Consultant, KoreFusion (Mexico and Singapore). Advised on 100+ fintechs across LATAM, EMEA, and the US.
 - Summer 2019: MBA Summer Associate, Operations, BBVA.
 

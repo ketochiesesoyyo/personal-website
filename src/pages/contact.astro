@@ -66,7 +66,7 @@ const notAFitChecklist = [
   description={`Get in touch with ${site.founder} — independent product and AI builder working with B2B companies. Email ${site.email}.`}
   jsonLd={contactPageSchema}
 >
-  <section class="mx-auto max-w-6xl px-6 pt-32 pb-16">
+  <section class="px-6 md:px-10 xl:px-16 pt-32 pb-16">
     <div class="grid md:grid-cols-3 gap-12">
       <div>
         <SectionEyebrow class="mb-4">Contact</SectionEyebrow>
@@ -102,13 +102,13 @@ const notAFitChecklist = [
     </div>
   </section>
 
-  <section class="mx-auto max-w-6xl px-6 py-16 border-t border-[color:var(--color-line)]">
+  <section class="px-6 md:px-10 xl:px-16 py-16 border-t border-[color:var(--color-line)]">
     <div class="grid md:grid-cols-3 gap-12">
       <div>
         <div class="font-display text-5xl text-[color:var(--color-accent)] mb-4">01</div>
         <h2 class="font-display text-3xl md:text-4xl tracking-tight">Channels</h2>
       </div>
-      <div class="md:col-span-2 space-y-8 text-lg leading-relaxed text-[color:var(--color-muted)]">
+      <div class="md:col-span-2 max-w-3xl space-y-8 text-lg leading-relaxed text-[color:var(--color-muted)]">
         {channels.map((channel) => (
           <div class="space-y-2">
             <div class="flex flex-wrap items-baseline gap-x-4">
@@ -127,13 +127,13 @@ const notAFitChecklist = [
     </div>
   </section>
 
-  <section class="mx-auto max-w-6xl px-6 py-16 border-t border-[color:var(--color-line)]">
+  <section class="px-6 md:px-10 xl:px-16 py-16 border-t border-[color:var(--color-line)]">
     <div class="grid md:grid-cols-3 gap-12">
       <div>
         <div class="font-display text-5xl text-[color:var(--color-accent)] mb-4">02</div>
         <h2 class="font-display text-3xl md:text-4xl tracking-tight">When this is a fit</h2>
       </div>
-      <div class="md:col-span-2 space-y-6 text-lg leading-relaxed text-[color:var(--color-muted)]">
+      <div class="md:col-span-2 max-w-3xl space-y-6 text-lg leading-relaxed text-[color:var(--color-muted)]">
         <div>
           <h3 class="font-display text-xl text-[color:var(--color-fg)] mb-3">Usually a good fit</h3>
           <ul class="space-y-2 list-disc pl-6">
@@ -150,13 +150,13 @@ const notAFitChecklist = [
     </div>
   </section>
 
-  <section class="mx-auto max-w-6xl px-6 py-16 border-t border-[color:var(--color-line)]">
+  <section class="px-6 md:px-10 xl:px-16 py-16 border-t border-[color:var(--color-line)]">
     <div class="grid md:grid-cols-3 gap-12">
       <div>
         <div class="font-display text-5xl text-[color:var(--color-accent)] mb-4">03</div>
         <h2 class="font-display text-3xl md:text-4xl tracking-tight">What to send</h2>
       </div>
-      <div class="md:col-span-2 space-y-4 text-lg leading-relaxed text-[color:var(--color-muted)]">
+      <div class="md:col-span-2 max-w-3xl space-y-4 text-lg leading-relaxed text-[color:var(--color-muted)]">
         <p>A short note beats a polished brief. The things that actually help me reply with something useful:</p>
         <ul class="space-y-2 list-disc pl-6">
           <li>The problem in one or two sentences — what's broken, slow, or expensive today.</li>
@@ -169,7 +169,7 @@ const notAFitChecklist = [
     </div>
   </section>
 
-  <div class="mx-auto max-w-6xl px-6 py-12 border-t border-[color:var(--color-line)] flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-sm">
+  <div class="px-6 md:px-10 xl:px-16 py-12 border-t border-[color:var(--color-line)] flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-sm">
     <a href="/" class="text-[color:var(--color-muted)] hover:text-[color:var(--color-accent)]">← Home</a>
     <a href="/#work" class="text-[color:var(--color-muted)] hover:text-[color:var(--color-accent)]">See recent work →</a>
   </div>

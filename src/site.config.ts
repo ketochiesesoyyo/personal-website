@@ -12,7 +12,9 @@ export const site = {
   },
   trackRecord: {
     companies: [
-      { name: "Jeeves (a16z · YC)", url: "https://tryjeeves.com" },
+      { name: "Clara", url: "https://www.clara.com" },
+      { name: "RapidCanvas", url: "https://www.rapidcanvas.ai" },
+      { name: "Jeeves (a16z)", url: "https://tryjeeves.com" },
       { name: "Lottus Education", url: "https://www.lottus.com" },
       { name: "MatchWise", url: "https://matchwise.app" },
       { name: "BBVA", url: "https://www.bbva.mx" },

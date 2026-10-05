@@ -4,7 +4,15 @@
   "intro": "From hyper-growth startups to some of LATAM's largest banks and search funds.",
   "companies": [
     {
-      "name": "Jeeves (YC2020)",
+      "name": "Clara",
+      "url": "https://www.clara.com"
+    },
+    {
+      "name": "RapidCanvas",
+      "url": "https://www.rapidcanvas.ai"
+    },
+    {
+      "name": "Jeeves",
       "url": "https://tryjeeves.com"
     },
     {

@@ -3,7 +3,7 @@ import { site } from "~/site.config";
 ---
 
 <header class="sticky top-0 z-40 backdrop-blur bg-[color:var(--color-bg)]/80 border-b border-[color:var(--color-line)]">
-  <div class="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
+  <div class="px-6 md:px-10 xl:px-16 h-16 flex items-center justify-between">
     <a href="/" class="font-display text-lg tracking-tight">
       {site.studio}
     </a>
@@ -54,7 +54,7 @@ import { site } from "~/site.config";
     id="mobile-nav"
     class="md:hidden hidden border-t border-[color:var(--color-line)] bg-[color:var(--color-bg)]/95 backdrop-blur"
   >
-    <nav class="mx-auto max-w-6xl px-6 py-3 flex flex-col">
+    <nav class="px-6 md:px-10 xl:px-16 py-3 flex flex-col">
       {site.nav.map((item) => (
         <a
           href={item.href}
