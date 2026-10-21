@@ -4,29 +4,25 @@
   "intro": "From hyper-growth startups to some of LATAM's largest banks and search funds.",
   "companies": [
     {
-      "name": "Clara",
-      "url": "https://www.clara.com"
-    },
-    {
       "name": "RapidCanvas",
       "url": "https://www.rapidcanvas.ai"
-    },
-    {
-      "name": "Jeeves",
-      "url": "https://tryjeeves.com"
     },
     {
       "name": "Lottus Education",
       "url": "https://www.lottus.com"
     },
     {
-      "name": "BBVA",
-      "url": "https://www.bbva.mx"
+      "name": "Jeeves",
+      "url": "https://tryjeeves.com"
     },
     {
       "name": "KoreFusion",
       "url": "https://www.korefusion.com"
+    },
+    {
+      "name": "BBVA",
+      "url": "https://www.bbva.mx"
     }
   ],
-  "footnote": "Directed Operations at Lottus Education. Experience managing enterprise accounts including HSBC · Santander · Novartis · Accenture. Contributed to Jeeves' Series C ~$180M raised at a $2.1B valuation."
+  "footnote": "Directed Operations at Lottus Education. Experience managing enterprise accounts including Ideal · Coca Cola · GBM · Megacable. Contributed to Jeeves' Series C ~$180M raised at a $2.1B valuation in 2021. Currently leading AI engagement for more enterprise accounts."
 }
