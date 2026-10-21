@@ -40,7 +40,7 @@ const personSchema = {
   jobTitle: "Independent Product & AI Builder",
   description: site.bio,
   image: `${siteUrl}/henrick.jpg`,
-  sameAs: [site.socials.linkedin, site.socials.github, "https://matchwise.app"],
+  sameAs: [site.socials.linkedin, site.socials.github],
   knowsAbout: [
     "AI Automation",
     "Product Engineering",
@@ -53,7 +53,10 @@ const personSchema = {
     { "@type": "EducationalOrganization", name: "IPADE Business School" },
     { "@type": "EducationalOrganization", name: "Universidad Iberoamericana" },
   ],
-  worksFor: { "@type": "Organization", name: "MatchWise" },
+  worksFor: [
+    { "@type": "Organization", name: "RapidCanvas", url: "https://www.rapidcanvas.ai" },
+    { "@type": "Organization", name: "Clearframe Labs", url: "https://clearframelabs.co" },
+  ],
 };
 
 const studioSchema = {
@@ -84,7 +87,6 @@ const studioSchema = {
   sameAs: [
     site.socials.linkedin,
     site.socials.github,
-    "https://matchwise.app",
   ],
   contactPoint: [
     {
@@ -118,6 +120,18 @@ const safeStringify = (data: object) =>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script is:inline>
+      (function () {
+        var theme;
+        try {
+          theme = localStorage.getItem("theme");
+        } catch (e) {}
+        if (theme !== "light" && theme !== "dark") {
+          theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />

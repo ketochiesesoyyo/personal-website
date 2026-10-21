@@ -10,7 +10,14 @@ const projects = defineCollection({
     role: z.string(),
     year: z.string(),
     status: z.enum(["live", "in-development", "archived"]).default("live"),
-    url: z.string().url().optional(),
+    // Keystatic accepts "www.example.com" or a cleared field; normalize both
+    // so a CMS edit can't fail the build.
+    url: z.preprocess((v) => {
+      if (typeof v !== "string") return v;
+      const s = v.trim();
+      if (!s) return undefined;
+      return /^https?:\/\//i.test(s) ? s : `https://${s}`;
+    }, z.string().url().optional()),
     cover: z.string().optional(),
     stack: z.array(z.string()).default([]),
     categories: z.array(z.string()).default([]),

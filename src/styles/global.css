@@ -13,6 +13,20 @@
   --color-card: #ffffff;
 }
 
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* Dark palette: same warm hues, inverted. data-theme is set before paint by
+   the inline script in Base.astro (saved choice, else system preference). */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-bg: #141210;
+  --color-fg: #f2eee8;
+  --color-muted: #a39d95;
+  --color-line: #2e2a26;
+  --color-accent: #e0735a;
+  --color-card: #1c1916;
+}
+
 html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;

@@ -4,31 +4,35 @@ tagline: >-
   A shared disposable camera for events: every guest shoots, nobody sees a photo
   until the reveal.
 type: product
-role: Founder & Builders
+role: Founder & Builder
 year: 2025-2026
 status: live
-url: www.konfetticamera.app
+url: https://konfetticamera.app
 stack:
   - Swift/SwiftUI
   - Supabase
-  - Lemon Squeeze
+  - Lemon Squeezy
   - Next.js
 categories:
   - website
   - app
-metrics: []
+metrics:
+  - label: Events hosted
+    value: 120+
+  - label: Guests shooting
+    value: 1,000+
+  - label: Photos captured
+    value: 25,000+
 featured: false
 order: 0
 ---
-\## The problem
+## The problem
 
 Every event produces two photo albums. The official one, shot by a photographer, arrives weeks later and misses most of what happened at the tables. The real one lives on a hundred guests' phones and never gets collected: a few pictures land in a WhatsApp group (compressed), a shared album link gets ignored because it asks guests for an app and an account, and the rest of the night stays on camera rolls nobody opens again. Disposable cameras on the tables solved this a generation ago, at the cost of film, development, and half the shots coming back blurry.
 
 Shared-camera apps already exist, and they've made the core mechanic (scan a QR code, shoot a few frames, see everything later) table stakes. But they're built English-first for US hosts, and they ask someone planning a once-in-a-lifetime night to trust an app with the one event they can't redo.
 
-\
-
-\## The approach
+## The approach
 
 Three calls shaped the product.
 
@@ -38,24 +42,20 @@ Second, earn the trust of hosts with a high-stakes event. That meant control ove
 
 Third, treat language as a market, not a translation pass. The category is English-first, so Konfetti Camera shipped in English, Spanish, German, French and Japanese across the app, the App Clip, the web app and every marketing page, from the first public version.
 
-\
-
-\## What I built
+## What I built
 
 A native iOS app, an App Clip and a full web app, all writing to one Supabase backend.
 
-\**iOS app.*\* SwiftUI, iPhone-only, with iOS 26's Liquid Glass. A creation wizard (event type, schedule, reveal, camera style, invitation cover, guest capacity and checkout), a camera with film styles, a baked-in date stamp, per-model optical zoom and tap-to-focus, and an offline-first upload queue so shots survive bad venue Wi-Fi. A Live Activity on the lock screen and Dynamic Island counts down your remaining shots like a film counter. In-app purchases through StoreKit 2, push reminders, and Instagram Story sharing.\
+**iOS app.** SwiftUI, iPhone-only, with iOS 26's Liquid Glass. A creation wizard (event type, schedule, reveal, camera style, invitation cover, guest capacity and checkout), a camera with film styles, a baked-in date stamp, per-model optical zoom and tap-to-focus, and an offline-first upload queue so shots survive bad venue Wi-Fi. A Live Activity on the lock screen and Dynamic Island counts down your remaining shots like a film counter. In-app purchases through StoreKit 2, push reminders, and Instagram Story sharing.
 
-\**App Clip.*\* The guest flow (scan, invitation card, camera, upload) runs as an App Clip inside Apple's 15 MB budget. Camera, models and the upload queue live in shared packages, so the clip and the app shoot and upload identically, and purchasing code stays out of the clip entirely.
+**App Clip.** The guest flow (scan, invitation card, camera, upload) runs as an App Clip inside Apple's 15 MB budget. Camera, models and the upload queue live in shared packages, so the clip and the app shoot and upload identically, and purchasing code stays out of the clip entirely.
 
-\**Web app.*\* Next.js on Vercel. Guests on Android or desktop join from the browser: a getUserMedia camera with a canvas pipeline that mirrors the iOS film styles, plus a durable IndexedDB upload queue. Hosts get a dashboard, a create wizard with brand-logo upload for company events, invites with a printable QR poster, and moderation tools. One hard rule: an event created on the web behaves identically on iOS. Same tables, same storage paths, same pipeline.\
+**Web app.** Next.js on Vercel. Guests on Android or desktop join from the browser: a getUserMedia camera with a canvas pipeline that mirrors the iOS film styles, plus a durable IndexedDB upload queue. Hosts get a dashboard, a create wizard with brand-logo upload for company events, invites with a printable QR poster, and moderation tools. One hard rule: an event created on the web behaves identically on iOS. Same tables, same storage paths, same pipeline.
 
-\**Backend.*\* Supabase Postgres with row-level security written into the same migration as every table (50 forward-only migrations, pgTAP tests). Event state (open, closed, revealed) is derived from server timestamps instead of a stored status flag, so authorization can't drift from the clock. Purchases from the App Store and from Lemon Squeezy on the web land in one entitlements ledger, with refund webhooks that fail closed. When a batch of photos started rendering black, I fixed the pipeline on both iOS and web and ran a backfill to recover the affected albums.
+**Backend.** Supabase Postgres with row-level security written into the same migration as every table (50 forward-only migrations, pgTAP tests). Event state (open, closed, revealed) is derived from server timestamps instead of a stored status flag, so authorization can't drift from the clock. Purchases from the App Store and from Lemon Squeezy on the web land in one entitlements ledger, with refund webhooks that fail closed. When a batch of photos started rendering black, I fixed the pipeline on both iOS and web and ran a backfill to recover the affected albums.
 
-\**Growth layer.*\* A marketing site with 14 use-case pages (weddings, conferences, bars, ski resorts and more) in 5 languages, with llms.txt and structured data. A weekly SEO loop pulls Search Console data, drafts page rewrites with an LLM and queues them for my approval in a founder admin dashboard, next to activation and purchase metrics. A lifecycle email sends each host their QR poster before the event.
+**Growth layer.** A marketing site with 14 use-case pages (weddings, conferences, bars, ski resorts and more) in 5 languages, with llms.txt and structured data. A weekly SEO loop pulls Search Console data, drafts page rewrites with an LLM and queues them for my approval in a founder admin dashboard, next to activation and purchase metrics. A lifecycle email sends each host their QR poster before the event.
 
-\
-
-\## Outcome
+## Outcome
 
 Live on the App Store since June 30, 2026, with the web app live at konfetticamera.app. 120+ events hosted, 1,000+ guests shooting and 25,000+ photos captured, from a branded hackathon in Bogotá to weddings in Mexico, the US and Japan. Paying customers since the first month, mostly from App Store search, and buyers in Mexico and Spain convert 2 to 3x better than in the US: the localization bet paying off. The open problem is activation (hosts who pay but don't get guests scanning), which the latest releases go after with a QR nudge at creation, a low-join warning and the pre-event poster email. Designed and built end-to-end: product, iOS, web, backend and brand.

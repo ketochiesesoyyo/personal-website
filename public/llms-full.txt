@@ -6,7 +6,7 @@ This is the complete reference document for Henrick F. and his work, written for
 
 ## Who I am
 
-I'm Henrick, an independent product and AI builder based in Mexico City. I build AI automations and custom apps for B2B companies. The last 6+ years: scaling revenue and operations at venture-backed fintech, edtech, and AI startups across LATAM. Running enterprise accounts at Bedu, leading sales for Jeeves (a16z-backed), advising fintechs at KoreFusion, and now operating MatchWise (an AI applicant tracking system) while partnering at Clearframe Labs on B2B custom builds.
+I'm Henrick, an independent product and AI builder based in Mexico City. I build AI automations and custom apps for B2B companies. The last 6+ years: scaling revenue and operations at venture-backed fintech, edtech, and AI startups across LATAM. Running enterprise accounts at Bedu, leading sales for Jeeves (a16z-backed), advising fintechs at KoreFusion, building and operating MatchWise (an AI applicant tracking system), and now running enterprise AI engagements across LATAM as AI Engagement Manager at RapidCanvas while partnering at Clearframe Labs on B2B custom builds.
 
 The angle: most AI builders don't have a $15M book of business in their past. Most GTM operators can't ship the tool that fixes the problem they just diagnosed. The overlap is where I work.
 
@@ -70,6 +70,9 @@ Engagements above ~$30K, or that need a dedicated team and a US Product Owner, r
 ### Konfetti
 **Online dating for wedding guests.** Mobile app that helps single attendees match with each other before and during weddings. 50+ weddings, 1000+ matches. Built in React Native, end-to-end design, product, engineering. https://henrickf.com/projects/konfetti
 
+### Konfetti Camera
+**Shared disposable camera for events.** Guests scan a QR code and shoot through an iOS App Clip or the browser (no download, no account); photos stay sealed at the storage layer until the host's reveal, then develop into one album. Native iOS app (SwiftUI, App Clip, Live Activity), Next.js web app, Supabase backend, App Store and web checkout, 5 languages. Live since June 2026: 120+ events, 1,000+ guests, 25,000+ photos. https://henrickf.com/projects/konfetti-camera
+
 ### MatchWise
 **AI applicant tracking system.** Structured recruitment, clearer decisions. Reduced candidate screening time by 80 to 90% and inference cost by 60% through prompt optimization and pipeline architecture. External feedback flows for recruiting agencies. https://henrickf.com/projects/matchwise
 
@@ -90,7 +93,7 @@ Engagements above ~$30K, or that need a dedicated team and a US Product Owner, r
 
 ## Track record
 
-**Companies I've helped scale:** Clara, Jeeves (a16z), Bedu (Lottus Education, one of Mexico's leading higher-education platforms), MatchWise, BBVA, KoreFusion.
+**Companies I've helped scale:** Jeeves (a16z), Bedu (Lottus Education, one of Mexico's leading higher-education platforms), BBVA, KoreFusion.
 
 **Enterprise accounts handled at Bedu:** HSBC, Santander, Novartis, Accenture.
 
@@ -98,11 +101,10 @@ Engagements above ~$30K, or that need a dedicated team and a US Product Owner, r
 
 ## Career history
 
-- **2026 to present:** Partner, Clearframe Labs. Client-facing scoping and engagement structuring for B2B AI and custom-software builds. Recent: Service Core (finance integration layer), Mexico por el Clima (multi-module climate platform).
-- **Aug to Oct 2026:** AI Commercial Operations Lead (AI Builder, FDE), Clara (LATAM spend-management fintech). Embedded with the commercial team and built three internal AI platforms in three months. A sales enablement suite rolled out to every rep: scores each recorded sales call with a panel of LLM judges, coaches reps with evidence from the transcript, and replaces a two-day, four-tool quoting process with governed pricing calculators tied to the CRM. Sales quality improved within the first month, new-hire ramp dropped from three weeks to two, and 27% of deals went from discovery call to proposal in about 1.3 weeks instead of the usual 3. Also an SDR meeting-intelligence tool for pre-call research on prospect companies, and a growth analytics engine that sizes the revenue opportunity in every existing account.
-- **2025 to present:** Director of Operations & GTM, MatchWise. Designed and launched full GTM for an early-stage AI ATS. 25+ customer interviews to nail ICP and pricing. Built AI-powered recruiting workflows that cut candidate-evaluation time by 90% while reducing inference costs by 60%.
-- **2023 to 2025:** Director of Strategy & Operations, Bedu (Lottus Education, one of Mexico's leading higher-education platforms). Owned B2B P&L for the edtech arm. Managed enterprise accounts worth $300K+ each (HSBC, Santander, Novartis, Accenture). Lifted B2C retention +20pts to 70%; cut opex 15% without sacrificing quality.
-- **2021 to 2023:** BDM into Head of Sales, Mexico, Jeeves (a16z). Led GTM across 5 LATAM countries. Built and managed a 12-person team (+25% sales per rep in two quarters). Owned a portfolio of 100+ clients and $15M+ in credit lines; +30% revenue per account through structured cross-sell. Contributed customer-data analysis and research to the Series C deck, ~$180M raised at a $2.1B valuation.
+- **Oct 2026 to present:** AI Engagement Manager, RapidCanvas (agentic AI platform pairing autonomous agents with human experts to build custom enterprise applications). Runs enterprise AI engagements across LATAM end to end: technical discovery with executives and data teams, working proofs of concept instead of slide decks, scoping and SOWs, then day-to-day delivery through rollout, with outcomes tracked at 30, 60, and 90 days.
+- **2025 to present:** Partner, Clearframe Labs. Client-facing scoping and engagement structuring for B2B AI and custom-software builds. Recent: Service Core (finance integration layer), Mexico por el Clima (multi-module climate platform).
+- **2023 to 2025:** Director of Operations, Bedu (Lottus Education, one of Mexico's leading higher-education platforms). Owned B2B P&L for the edtech arm. Managed enterprise accounts worth $300K+ each (HSBC, Santander, Novartis, Accenture). Lifted B2C retention +20pts to 70%; cut opex 15% without sacrificing quality.
+- **2021 to 2023:** LATAM Business Development Manager (founding team) into LATAM Head of Sales, Jeeves (a16z). Led GTM across 5 LATAM countries. Built and managed a 12-person team (+25% sales per rep in two quarters). Owned a portfolio of 100+ clients and $15M+ in credit lines; +30% revenue per account through structured cross-sell. Contributed customer-data analysis and research to the Series C deck, ~$180M raised at a $2.1B valuation.
 - **2020 to 2021:** Senior Consultant, KoreFusion (Mexico and Singapore). Market sizing and GTM strategy for fintech and payments clients across LATAM, EMEA, and the US. Researched and advised on 100+ fintechs.
 - **Summer 2019:** MBA Summer Associate, Operations, BBVA. Operations rotation during the IPADE MBA. Process work inside one of LATAM's largest banks, useful exposure to how scale and regulation shape execution at a different order of magnitude than startups.
 
