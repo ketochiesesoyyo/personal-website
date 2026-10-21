@@ -241,7 +241,7 @@ export default config({
     }),
 
     trackRecord: singleton({
-      label: "Track record",
+      label: "Experience (company strip)",
       path: "src/content/homepage/trackRecord",
       format: { data: "json" },
       schema: {

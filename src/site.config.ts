@@ -16,7 +16,6 @@ export const site = {
       { name: "RapidCanvas", url: "https://www.rapidcanvas.ai" },
       { name: "Jeeves (a16z)", url: "https://tryjeeves.com" },
       { name: "Lottus Education", url: "https://www.lottus.com" },
-      { name: "MatchWise", url: "https://matchwise.app" },
       { name: "BBVA", url: "https://www.bbva.mx" },
       { name: "KoreFusion", url: "https://www.korefusion.com" },
     ],
