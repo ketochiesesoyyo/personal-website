@@ -6,6 +6,28 @@ import keystatic from "@keystatic/astro";
 import markdoc from "@astrojs/markdoc";
 import tailwindcss from "@tailwindcss/vite";
 
+// src/pages/keystatic/[...params].astro owns the admin page (it adds the admin
+// toolbar without middleware), so skip the integration's duplicate of that
+// route. Everything else the integration sets up, including the API route,
+// stays as is.
+const keystaticWithOwnAdminPage = () => {
+  const integration = keystatic();
+  const setup = integration.hooks["astro:config:setup"];
+  return {
+    ...integration,
+    hooks: {
+      ...integration.hooks,
+      "astro:config:setup": (params) =>
+        setup({
+          ...params,
+          injectRoute: (route) => {
+            if (route.pattern !== "/keystatic/[...params]") params.injectRoute(route);
+          },
+        }),
+    },
+  };
+};
+
 export default defineConfig({
   site: "https://www.henrickf.com",
   trailingSlash: "ignore",
@@ -17,7 +39,7 @@ export default defineConfig({
   integrations: [
     react(),
     markdoc(),
-    keystatic(),
+    keystaticWithOwnAdminPage(),
     sitemap({
       lastmod: new Date(),
       changefreq: "weekly",
